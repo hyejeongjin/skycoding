@@ -5,7 +5,7 @@ create table course(
 	course_name varchar2(30) not null,
 	course_hit number not null,
 	course_content clob not null,
-	report_date date(10) default sysdate not null,
+	report_date date default sysdate not null,
 	course_tr varchar2(20) not null,
 	/*카테고리 변수: 0JAVA,1DB,2HTML,3JS*/
 	course_cate number not null,

@@ -29,3 +29,4 @@ create table hmember_qna(
  qna_detail varchar2(50) not null,
  constraint hmember_qna_pk primary key (mem_pwq)
 );
+       

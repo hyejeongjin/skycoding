@@ -14,8 +14,8 @@ create table hmember_detail(
  mem_pwq number(1) not null,
  mem_pwa varchar2(50) not null,
  mem_cell varchar2(15) not null,
- mem_regdate date default sysdate not null,
- mem_moddate date,
+ mem_reg_date date default sysdate not null,
+ mem_modify_date date,
  constraint hmember_detail_pk primary key (mem_num),
  constraint hmember_detail_fk foreign key (mem_num)
  							  references hmember (mem_num)

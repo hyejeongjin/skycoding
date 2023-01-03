@@ -14,7 +14,7 @@ CREATE TABLE EVENT(
 create sequence event_seq;
 
 --이벤트 상세 페이지
-CREATE TABLE EVENT_DETAIL(
+CREATE TABLE EVENT_DETAIL( 
 	event_id number,
 	course_id number not null,
 	event_detail_content varchar2(4000) not null,

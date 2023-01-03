@@ -14,7 +14,7 @@ CREATE TABLE free_detail
     CONSTRAINT FK_free_detail FOREIGN KEY (mem_num) REFERENCES hmember (mem_num)
 );
 
-CREATE SEQUENCE free_seq;
+CREATE SEQUENCE free_detail_seq;
 
 -- freeComment Table Create SQL
 CREATE TABLE freeComment
@@ -30,4 +30,4 @@ CREATE TABLE freeComment
     CONSTRAINT FK_freeComment_free_id FOREIGN KEY (free_id) REFERENCES free_seq (free_id)
 );
 
-CREATE SEQUENCE free_comm_seq;
+CREATE SEQUENCE freeComment_seq;

@@ -14,10 +14,10 @@ CREATE TABLE EVENT(
 create sequence event_seq;
 
 --이벤트 상세 페이지
-CREATE TABLE EVENT_DETAIL(
+CREATE TABLE EVENT_DETAIL( 
 	event_id number,
 	course_id number not null,
-	event_detail_content varchar2(4000) not null,\
+	event_detail_content varchar2(4000) not null,
 	constraint event_detail_pk primary key (event_id),
 	constraint event_detail_fk foreign key (event_id) REFERENCES EVENT(event_id),
 	constraint event_detail_fk2 foreign key (course_id) REFERENCES COURSE (course_id)

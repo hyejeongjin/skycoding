@@ -23,10 +23,9 @@ create table hmember_detail(
 
 create sequence hmember_seq;
 
---비밀번호 질문 저장 테이블
+--비밀번호 질문 저장 테이블   
 create table hmember_qna(
  mem_pwq number(1) not null,
  qna_detail varchar2(50) not null,
  constraint hmember_qna_pk primary key (mem_pwq)
 );
-

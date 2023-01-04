@@ -21,7 +21,7 @@ create table qnaComment(
  qnaComm_content varchar2(150) not null,
  qnaComm_reg_date date default sysdate not null,
  qnaComm_modify_date date,
- constraint qnaComment_pk primary key (qndComm_id),
+ constraint qnaComment_pk primary key (qnaComm_id),
  constraint qnaComment_fk foreign key (qna_id) references qna_detail (qna_id),
  constraint qnaComment_fk2 foreign key (mem_num) references hmember (mem_num)
 );

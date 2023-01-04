@@ -12,7 +12,7 @@ create table qna_detail(
  constraint qna_detail_fk foreign key (mem_num) references hmember (mem_num)
 );
 create sequence qna_detail_seq;
-
+  
 --커뮤니티 질문글 댓글
 create table qnaComment(
  qnaComm_id number not null,

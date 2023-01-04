@@ -8,7 +8,7 @@
 <div id="main_nav">
 	<ul>
 		<li>
-			<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
+			<a href="${pageContext.request.contextPath}/board_qna/list.do">게시판</a>
 		</li>
 		<c:if test="${!empty user_num && user_auth == 2}"> <%-- !(비어있거나 null이면) --%>
 		<li><a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a></li>

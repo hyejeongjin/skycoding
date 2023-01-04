@@ -10,7 +10,7 @@ create table course(
 	/*카테고리 변수: 0JAVA,1DB,2HTML,3JS*/
 	course_cate number not null,
 	course_photo varchar2(150) not null,
-	constraint course_pk primary key (mem_id),
+	constraint course_pk primary key (course_id),
 	constraint course_fk foreign key (mem_num)
 	                     references hmember (mem_num)
 	   

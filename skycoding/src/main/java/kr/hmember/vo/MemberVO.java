@@ -13,8 +13,9 @@ public class MemberVO {
 	private String mem_cell;
 	private Date mem_reg_date;
 	private Date mem_modify_date;
-	
-	
+	private String mem_photo;
+
+
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
 		//회원 등급(mem_auth): 0-탈퇴회원, 1-일반회원, 9-관리자
@@ -22,9 +23,9 @@ public class MemberVO {
 			//비밀번호 일치 시
 			return true;
 		}
-			return false;
+		return false;
 	}
-	
+
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -84,5 +85,11 @@ public class MemberVO {
 	}
 	public void setMem_modify_date(Date mem_modify_date) {
 		this.mem_modify_date = mem_modify_date;
+	}
+	public String getMem_photo() {
+		return mem_photo;
+	}
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
 	}
 }

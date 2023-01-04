@@ -73,6 +73,39 @@ public class MemberDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 	}	
+	
+	//ID 중복 체크 및 로그인 처리
+	public MemberVO checkMember(String id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO hmember = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//sql문 작성
+			sql = "SELECT * FROM hmember m LEFT OUTER JOIN "
+					+ "hmember_detail d ON m.mem_num=d.mem_num "
+					+ "WHERE m.mem_id=?";
+			
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 데이터 바인딩
+			pstmt.setString(1, id);
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return hmember;
+	}
+	
 }
 
 

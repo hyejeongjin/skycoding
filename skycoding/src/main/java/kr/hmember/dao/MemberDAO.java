@@ -97,7 +97,17 @@ public class MemberDAO {
 			//?에 데이터 바인딩
 			pstmt.setString(1, id);
 			
-			
+			//SQL문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				hmember = new MemberVO();
+				hmember.setMem_num(rs.getInt("mem_num"));
+				hmember.setMem_id(rs.getString("mem_id"));
+				hmember.setMem_auth(rs.getInt("mem_auth"));
+				hmember.setMem_pw(rs.getString("mem_pw"));
+				hmember.setMem_cell(rs.getString("mem_cell"));//회원탈퇴 시 사용할 것
+				hmember.setMem_photo(rs.getString("mem_photo"));
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -105,6 +115,9 @@ public class MemberDAO {
 		}
 		return hmember;
 	}
+	
+	
+	
 	
 }
 

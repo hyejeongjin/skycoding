@@ -9,7 +9,9 @@ import kr.controller.Action;
 public class WriteFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		/*
+		 * 로그인처리 예정
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		

@@ -34,8 +34,8 @@
 			<ul>
 				<li>
 					<%--제목--%>
-					<label for="title"></label>
-					<input type="text" name="title" id="qna_title" maxlength="50" placeholder="제목을 입력해주세요">
+					<label for="qna_title"></label>
+					<input type="text" name="qna_title" id="qna_title" maxlength="50" placeholder="제목을 입력해주세요">
 				</li>
 			
 				<%--사진파일--%>
@@ -47,7 +47,7 @@
 				<%--내용--%>
 				<li>
 					<label for="content"></label>
-					<textarea rows="5" cols="30" name="content" id="qna_content" placeholder="내용을 입력해주세요"></textarea>
+					<textarea rows="5" cols="30" name="qna_content" id="qna_content" placeholder="내용을 입력해주세요"></textarea>
 				</li>
 				
 			</ul>

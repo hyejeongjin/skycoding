@@ -233,6 +233,47 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	//글수정
+	public void updateBoard(QnaBoardVO qnaBoard)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0; //if문이 있는 데이터 바인딩 시 사용
+
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//파일 업로드 할 때는 대체가 되지만 안 할 때는 기존 정보 그대로 둬야해서 sql문이 2개.
+			//제목이랑 내용은 미리보기가 있어서 그대로 기존데이터가 넘어가는데 파일은 선택하고 안 하고의 차이가 있음
+
+			//전송된 파일 여부 체크
+			if(qnaBoard.getQna_photo()!=null) { //수정폼에서 새로운 파일을 업로드했을 경우
+				sub_sql += ",qna_photo=?";
+			}
+
+			//SQL문 작성
+			sql = "UPDATE qna_detail SET qna_title=?,qna_content=?,qna_modify_date=SYSDATE" + sub_sql + 
+					" WHERE qna_id=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt,qnaBoard.getQna_title());
+			pstmt.setString(++cnt, qnaBoard.getQna_content());
+			if(qnaBoard.getQna_photo()!=null) {
+				pstmt.setString(++cnt, qnaBoard.getQna_photo());
+			}
+			pstmt.setInt(++cnt, qnaBoard.getQna_id()); //if문이 실행 안 되면 Qna_id가 4번이 아니라 3번이라 이런식으로 처리 
+
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
 }
 
 

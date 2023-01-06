@@ -7,7 +7,7 @@ CREATE TABLE free_detail
 	free_content	CLOB	NOT NULL,
 	free_reg_date	DATE    DEFAULT SYSDATE	    NOT NULL,
 	free_modify_date	DATE,
-	free_hit	NUMBER	NOT NULL,
+	free_hit	NUMBER	DEFAULT 0 NOT NULL,
 	free_photo	VARCHAR2(150),
 	
     CONSTRAINT PK_free_detail PRIMARY KEY (free_id),

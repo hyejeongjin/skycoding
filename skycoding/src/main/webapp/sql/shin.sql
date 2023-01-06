@@ -6,7 +6,7 @@ create table qna_detail(
  qna_content clob not null,
  qna_reg_date date default sysdate not null,
  qna_modify_date date,
- qna_hit number not null,
+ qna_hit number default 0 not null,
  qna_photo varchar2(150),
  constraint qna_detail_pk primary key (qna_id),
  constraint qna_detail_fk foreign key (mem_num) references hmember (mem_num)

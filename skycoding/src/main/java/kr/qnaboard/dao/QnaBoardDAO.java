@@ -129,14 +129,14 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 			rs = pstmt.executeQuery();
 			list = new ArrayList<QnaBoardVO>();
 			while(rs.next()) {
-				QnaBoardVO board = new QnaBoardVO();
-				board.setQna_id(rs.getInt("qna_id"));
-				board.setQna_title(StringUtil.useNoHtml(rs.getString("qna_title")));
-				board.setQna_hit(rs.getInt("qna_hit"));
-				board.setQna_reg_date(rs.getDate("qna_reg_date"));
-				board.setMem_id(rs.getString("mem_id"));
+				QnaBoardVO qnaBoard = new QnaBoardVO();
+				qnaBoard.setQna_id(rs.getInt("qna_id"));
+				qnaBoard.setQna_title(StringUtil.useNoHtml(rs.getString("qna_title")));
+				qnaBoard.setQna_hit(rs.getInt("qna_hit"));
+				qnaBoard.setQna_reg_date(rs.getDate("qna_reg_date"));
+				qnaBoard.setMem_id(rs.getString("mem_id"));
 				
-				list.add(board);
+				list.add(qnaBoard);
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -151,7 +151,7 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			QnaBoardVO board = null;
+			QnaBoardVO qnaBoard = null;
 			String sql = null;
 			
 			try {
@@ -168,24 +168,24 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
-					board = new QnaBoardVO();
-					board.setQna_id(rs.getInt("qna_id")); //컬럼명이라서 문자열로 작성!
-					board.setQna_title(rs.getString("qna_title"));
-					board.setQna_content(rs.getString("qna_content"));
-					board.setQna_hit(rs.getInt("qna_hit"));
-					board.setQna_reg_date(rs.getDate("qna_reg_date"));
-					board.setQna_modify_date(rs.getDate("qna_modify_date"));
-					board.setQna_photo(rs.getString("qna_photo"));
-					board.setMem_num(rs.getInt("mem_num"));
-					board.setMem_id(rs.getString("mem_id"));
-					board.setPhoto(rs.getString("photo"));
+					qnaBoard = new QnaBoardVO();
+					qnaBoard.setQna_id(rs.getInt("qna_id")); //컬럼명이라서 문자열로 작성!
+					qnaBoard.setQna_title(rs.getString("qna_title"));
+					qnaBoard.setQna_content(rs.getString("qna_content"));
+					qnaBoard.setQna_hit(rs.getInt("qna_hit"));
+					qnaBoard.setQna_reg_date(rs.getDate("qna_reg_date"));
+					qnaBoard.setQna_modify_date(rs.getDate("qna_modify_date"));
+					qnaBoard.setQna_photo(rs.getString("qna_photo"));
+					qnaBoard.setMem_num(rs.getInt("mem_num"));
+					qnaBoard.setMem_id(rs.getString("mem_id"));
+					qnaBoard.setPhoto(rs.getString("photo"));
 				}
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
-			return board;
+			return qnaBoard;
 		}
 		
 		//조회수 증가

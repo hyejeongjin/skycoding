@@ -32,16 +32,17 @@
 		<h2>게시판 글쓰기</h2>
 		<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 			<ul>
+			
+				<%--제목--%>
 				<li>
-					<%--제목--%>
 					<label for="qna_title"></label>
 					<input type="text" name="qna_title" id="qna_title" maxlength="50" placeholder="제목을 입력해주세요">
 				</li>
 			
 				<%--사진파일--%>
 				<li>
-					<label for="filename"></label>
-					<input type="file" name="filename" id="qna_filename" accept="image/gif,image/png,image/jpeg">
+					<label for="qna_photo"></label>
+					<input type="file" name="qna_photo" id="qna_photo" accept="image/gif,image/png,image/jpeg">
 				</li>
 				
 				<%--내용--%>

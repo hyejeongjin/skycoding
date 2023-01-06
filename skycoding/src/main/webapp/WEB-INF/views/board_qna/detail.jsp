@@ -29,7 +29,7 @@
 				</c:if>
 			</li>
 			<li>
-				${qnaBoard.qna_id}<br>
+				${qnaBoard.mem_id}<br>
 				조회 : ${qnaBoard.qna_hit} ${qnaBoard.qna_photo}
 			</li>
 		</ul>
@@ -46,12 +46,6 @@
 		<hr size="1" noshade="noshade" width="100%">
 		<ul class="detail-sub">
 			<li>
-				<%-- 좋아요 --%>
-				<img id="output_fav" src="${pageContext.request.contextPath}/images/fav01.gif" width="50">
-				좋아요
-				<span id="output_fcount"></span>
-			</li>
-			<li>
 				<c:if test="${!empty qnaBoard.qna_modify_date}">
 					최근 수정일 : ${qnaBoard.qna_modify_date}
 				</c:if>
@@ -59,7 +53,7 @@
 					<%--로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
 					<c:if test="${user_num == qnaBoard.mem_num}">
 					<input type="button" value="수정"
-					onclick="location.href='updateForm.do?qnd_id=${qnaBoard.qna_id}'">
+					onclick="location.href='updateForm.do?qna_id=${qnaBoard.qna_id}'">
 					<input type="button" value="삭제" id="delete_btn">
 					<script type="text/javascript">
 						let delete_btn = document.getElementById('delete_btn');
@@ -71,7 +65,7 @@
 							}
 						};
 					</script>
-					</c:if>
+					</c:if> 
 			</li>
 		</ul>
 		<%--댓글 미완성이라 주석처리

@@ -8,8 +8,7 @@
 <title>질문글상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.fav.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/board.reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/qnaBoard.reply.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -20,12 +19,13 @@
 		<input type="button" value="삭제" id="delete_btn">
 		<h2>${qnaBoard.qna_title}</h2>
 			<ul class="detail-info">
-				<li>
-					<%--프사 있는 경우 --%> <c:if test="${!empty qnaBoard.photo}">
-						<img
-							src="${pageContext.request.contextPath}/upload/${qnaBoard.photo}"
+				<li><%--프사 있는 경우 --%> 
+					<c:if test="${!empty qnaBoard.photo}">
+						<img src="${pageContext.request.contextPath}/upload/${qnaBoard.photo}"
 							width="40" height="40" class="my-photo">
-					</c:if> <%--프사 없는 경우 --%> <c:if test="${empty qnaBoard.photo}">
+					</c:if>
+					<%--프사 없는 경우 --%>
+					<c:if test="${empty qnaBoard.photo}">
 						<img src="${pageContext.request.contextPath}/images/face.png"
 							width="40" height="40" class="my-photo">
 					</c:if>
@@ -61,13 +61,12 @@
 			${qnaBoard.qna_content}
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
-		<%--댓글 미완성이라 주석처리
 		<!-- 댓글 시작 -->
 		<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
-			<form id="re_form"> <!-- submit하면 ajax 통신하도록 만듦. board.reply.js에서 댓글 등록 부분 참고 -->
-				<input type="hidden" name="board_num" value="${board.board_num}" id="board_num">
-				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+			<form id="re_form"> <!-- submit하면 ajax 통신하도록 만듦. qnaBoard.reply.js에서 댓글 등록 부분 참고 -->
+				<input type="hidden" name="qna_id" value="${qnaBoard.qna_id}" id="qna_id">
+				<textarea rows="3" cols="50" name="qnaComm_content" id="qnaComm_content" class="rep-content"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				><c:if test="${empty user_num}">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 				<c:if test="${!empty user_num}">
@@ -90,7 +89,6 @@
 		</div>
 		<!-- 댓글 목록 출력 끝 -->
 		<!-- 댓글 끝 -->
-		 --%>
 	</div>
 </div>
 </body>

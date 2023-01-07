@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.qnaboard.vo.QnaBoardReplyVO;
 import kr.qnaboard.vo.QnaBoardVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class QnaBoardDAO {
@@ -315,6 +317,97 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 		}
 	}
 
+	
+	//댓글 등록
+	public void insertReplyBoard(QnaBoardReplyVO qnaBoardReply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO qnaComment (qnaComm_id,qnaComm_content,mem_num,qna_id) "
+					+ "VALUES(qnaComment_seq.nextval,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qnaBoardReply.getQnaComm_content());
+			pstmt.setInt(2, qnaBoardReply.getMem_num());
+			pstmt.setInt(3, qnaBoardReply.getQna_id());
+
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 개수
+	public int getReplyBoardCount(int qna_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM qnaComment q JOIN hmember m ON q.mem_num=m.mem_num "
+				+ "WHERE q.qna_id=?"; //댓글은 부모글 밑에 딸려있으니까 부모글의 넘버를 구함
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_id);
+
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	
+	//댓글 목록
+	public List<QnaBoardReplyVO> getListReplyBoard(int start,int end, int qna_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<QnaBoardReplyVO> list = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+					+ "FROM (SELECT * FROM qnaComment q JOIN "
+					+ "hmember m USING(mem_num) WHERE "
+					+ "q.qna_id=? ORDER BY q.qnaComm_id DESC)a) "
+					+ "WHERE rnum>=? AND rnum<=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+
+			rs = pstmt.executeQuery();
+			list = new ArrayList<QnaBoardReplyVO>();
+			while(rs.next()) {
+				QnaBoardReplyVO reply = new QnaBoardReplyVO();
+				reply.setQnaComm_id(rs.getInt("qnaComm_id"));
+				reply.setQnaComm_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("qnaComm_reg_date")));
+				reply.setQnaComm_content(StringUtil.useBrNoHtml(rs.getString("qnaComm_content")));
+				reply.setQna_id(rs.getInt("qna_id"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setMem_id(rs.getString("mem_id"));
+
+				list.add(reply); //행이 여러 개니까 생성한 자바빈을 list에 넣음
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 }
 
 

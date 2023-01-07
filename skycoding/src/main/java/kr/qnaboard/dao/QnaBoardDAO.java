@@ -274,6 +274,47 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 		}
 	}
 	
+	//글삭제(이게 부모글, 댓글이 자식글. 자식글 있을 때 부모글을 지울 수 없도록 설정(FK로))
+	public void deleteBoard(int qna_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+
+			//오토커밋 해제
+			conn.setAutoCommit(false);
+
+			/* 댓글 만들고 주석 풀 예정
+			//댓글 삭제
+			sql = "DELETE FROM qnaComment WHERE qna_id=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, qna_id);
+			pstmt2.executeUpdate();
+			 */
+
+			//부모글 삭제(제약조건 때문에 자식글 먼저 삭제해야 함)
+			sql = "DELETE FROM qna_detail WHERE qna_id=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, qna_id);
+			pstmt2.executeUpdate();
+
+			//예외 발생 없이 정상적으로 SQL문이 실행
+			conn.commit();
+
+		}catch(Exception e) {
+			//예외 발생
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
 }
 
 

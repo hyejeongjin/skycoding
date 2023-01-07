@@ -38,13 +38,11 @@ public class WriteAction implements Action {
 		QnaBoardDAO dao = QnaBoardDAO.getInstance();
 		dao.insertBoard(qnaboard);
 		
-		//일단 refresh처리했는데 잘 안 되면 나중에 return으로 write.jsp랑 연결할 예정
-		response.addHeader("Refresh", "2;url=list.do");
-		
-		return null;
+		//일단 refresh써봄. 잘 안 되면 나중에 return으로 write.jsp랑 연결할 예정
+		//response.addHeader("Refresh", "2;url=list.do");
 		
 		//refresh 안 할 거면 이걸로 처리
-		//return "/WEB-INF/views/board_qna/write.jsp";
+		return "/WEB-INF/views/board_qna/write.jsp";
 		
 	}
 

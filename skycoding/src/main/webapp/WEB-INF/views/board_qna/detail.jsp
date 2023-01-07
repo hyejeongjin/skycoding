@@ -15,25 +15,42 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
+		<input type="button" value="수정"
+				onclick="location.href='updateForm.do?qna_id=${qnaBoard.qna_id}'">
+		<input type="button" value="삭제" id="delete_btn">
 		<h2>${qnaBoard.qna_title}</h2>
-		<ul class="detail-info">
-			<li> <%--프사 있는 경우 --%>
-				<c:if test="${!empty qnaBoard.photo}">
-				<img src="${pageContext.request.contextPath}/upload/${qnaBoard.photo}" 
+			<ul class="detail-info">
+				<li>
+					<%--프사 있는 경우 --%> <c:if test="${!empty qnaBoard.photo}">
+						<img
+							src="${pageContext.request.contextPath}/upload/${qnaBoard.photo}"
 							width="40" height="40" class="my-photo">
-				</c:if>
-				<%--프사 없는 경우 --%>
-				<c:if test="${empty qnaBoard.photo}">
-				<img src="${pageContext.request.contextPath}/images/face.png" 
+					</c:if> <%--프사 없는 경우 --%> <c:if test="${empty qnaBoard.photo}">
+						<img src="${pageContext.request.contextPath}/images/face.png"
 							width="40" height="40" class="my-photo">
-				</c:if>
-			</li>
-			<li>
-				${qnaBoard.mem_id}<br>
-				조회 : ${qnaBoard.qna_hit} ${qnaBoard.qna_photo}
-			</li>
-		</ul>
-		<hr size="1" noshade="noshade" width="100%">
+					</c:if>
+				</li>
+				<li>${qnaBoard.mem_id}<br> 작성일 : ${qnaBoard.qna_reg_date}
+					<%--로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%> <c:if
+						test="${user_num == qnaBoard.mem_num}">
+						<script type="text/javascript">
+							let delete_btn = document
+									.getElementById('delete_btn');
+							//이벤트 연결
+							delete_btn.onclick = function() {
+								let choice = confirm('삭제하시겠습니까?');
+								if (choice) {
+									location
+											.replace('delete.do?qna_id=${qnaBoard.qna_id}');
+								}
+							};
+						</script>
+					</c:if> <c:if test="${!empty qnaBoard.qna_modify_date}">
+					수정일 : ${qnaBoard.qna_modify_date}
+					</c:if>
+				<li>조회 : ${qnaBoard.qna_hit}</li>
+			</ul>
+			<hr size="1" noshade="noshade" width="100%">
 		<%--이미지가 있을 때만 보여지게 --%>
 		<c:if test="${!empty qnaBoard.qna_photo}">
 		<div class="align-center">
@@ -44,30 +61,6 @@
 			${qnaBoard.qna_content}
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
-		<ul class="detail-sub">
-			<li>
-				<c:if test="${!empty qnaBoard.qna_modify_date}">
-					최근 수정일 : ${qnaBoard.qna_modify_date}
-				</c:if>
-					작성일 : ${qnaBoard.qna_reg_date}
-					<%--로그인한 회원번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
-					<c:if test="${user_num == qnaBoard.mem_num}">
-					<input type="button" value="수정"
-					onclick="location.href='updateForm.do?qna_id=${qnaBoard.qna_id}'">
-					<input type="button" value="삭제" id="delete_btn">
-					<script type="text/javascript">
-						let delete_btn = document.getElementById('delete_btn');
-						//이벤트 연결
-						delete_btn.onclick=function(){
-							let choice = confirm('삭제하시겠습니까?');
-							if(choice){
-								location.replace('delete.do?qna_id=${qnaBoard.qna_id}');
-							}
-						};
-					</script>
-					</c:if> 
-			</li>
-		</ul>
 		<%--댓글 미완성이라 주석처리
 		<!-- 댓글 시작 -->
 		<div id="reply_div">

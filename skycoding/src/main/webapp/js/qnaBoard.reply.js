@@ -146,14 +146,14 @@ $(function(){
 	//댓글 수정 버튼 클릭시 수정폼 노출(미래의 태그)
 	$(document).on('click','.modify-btn',function(){
 		//댓글 번호
-		let qnaComment_id = $(this).attr('data-renum');
+		let qnaComm_id = $(this).attr('data-renum');
 		//댓글 내용		this는 수정버튼						//g:지정문자열 모두, i:대소문자 구별없이 검색
-		let qnaCommtent_content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+		let qnaComm_content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
 		
 		//댓글 수정폼 UI(동적으로 만듦) //아래에서 .item에 붙일 건데 이게 있어야 할 자리에 수정폼을 보여지게 할 거라서 이건 숨김처리 할 거다
 		let modifyUI = '<form id="mre_form">';
-			modifyUI += '<input type="hidden" name="re_num" id="re_num" value="'+qnaComment_id+'">';
-			modifyUI += '<textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+qnaCommtent_content+'</textarea>';
+			modifyUI += '<input type="hidden" name="qnaComm_id" id="qnaComm_id" value="'+qnaComm_id+'">';
+			modifyUI += '<textarea rows="3" cols="50" name="qnaComm_content" id="mre_content" class="rep-content">'+qnaComm_content+'</textarea>';
 			modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
 			modifyUI += '<div id="mre_second" class="align-right">';
 			modifyUI += ' <input type="submit" value="수정">';
@@ -178,7 +178,7 @@ $(function(){
 			let remain = 300 - inputLength;
 			remain += '/300';
 			
-			//문서 객체에 반영
+				//문서 객체에 반영
 			$('#mre_first .letter-count').text(remain);
 	});
 	
@@ -221,7 +221,9 @@ $(function(){
 					$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;')
 																				  .replace(/>/g,'&gt')
 																				  .replace(/\n/g,'<br>'));
-					$('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초 미만');
+					//댓글은 수정일 안 쓰고 등록일만 쓰기로 해서 주석처리
+					//$('#mre_form').parent().find('.reg-date').text('최근 수정일 : 5초 미만');
+					
 					//수정폼 삭제 및 초기화
 					initModifyForm();
 				}else if(param.result == 'wrongAccess'){
@@ -239,13 +241,13 @@ $(function(){
 	//댓글 삭제
 	$(document).on('click','.delete-btn',function(){
 		//댓글 번호
-		let re_num = $(this).attr('data-renum');
+		let qnaComm_id = $(this).attr('data-renum');
 		
 		//서버와 통신
 		$.ajax({
 			url:'deleteReply.do',
 			type:'post',
-			data:{re_num:re_num},
+			data:{qnaComm_id:qnaComm_id},
 			dataType:'json',
 			success:function(param){
 				if(param.result=='logout'){

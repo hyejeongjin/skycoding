@@ -408,6 +408,72 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 		}
 		return list;
 	}
+	
+	//댓글 상세
+	public QnaBoardReplyVO getReplyBoard(int qnaComm_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		QnaBoardReplyVO reply = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM qnaComment WHERE qnaComm_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qnaComm_id); //pk를 통해 한 건의 데이터 읽어옴
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new QnaBoardReplyVO(); //객체 생성
+				reply.setQnaComm_id(rs.getInt("qnaComm_id"));
+				reply.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reply;
+	}
+	
+	//댓글 수정
+	public void updateReplyBoard(QnaBoardReplyVO reply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE qnaComment SET qnaComm_content=? WHERE qnaComm_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reply.getQnaComm_content());
+			pstmt.setInt(2, reply.getQnaComm_id());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 삭제
+	public void deleteReplyBoard(int qnaComm_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM qnaComment WHERE qnaComm_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qnaComm_id);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }
 
 

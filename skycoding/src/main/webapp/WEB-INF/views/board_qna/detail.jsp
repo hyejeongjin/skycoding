@@ -48,7 +48,7 @@
 					</c:if> <c:if test="${!empty qnaBoard.qna_modify_date}">
 					수정일 : ${qnaBoard.qna_modify_date}
 					</c:if>
-				<li>조회 : ${qnaBoard.qna_hit}</li>
+				<li> | 조회 : ${qnaBoard.qna_hit}</li>
 			</ul>
 			<hr size="1" noshade="noshade" width="100%">
 		<%--이미지가 있을 때만 보여지게 --%>

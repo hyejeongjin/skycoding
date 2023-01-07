@@ -2,7 +2,7 @@
 create table course(
 	course_id number not null,
 	mem_num number not null,
-	course_name varchar2(30) not null,
+	course_name varchar2(60) not null,
 	course_hit number default 0 not null,
 	course_content clob not null,
 	report_date date default sysdate not null,

@@ -290,13 +290,11 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 			//오토커밋 해제
 			conn.setAutoCommit(false);
 
-			/* 댓글 만들고 주석 풀 예정
 			//댓글 삭제
 			sql = "DELETE FROM qnaComment WHERE qna_id=?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, qna_id);
-			pstmt2.executeUpdate();
-			 */
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_id);
+			pstmt.executeUpdate();
 
 			//부모글 삭제(제약조건 때문에 자식글 먼저 삭제해야 함)
 			sql = "DELETE FROM qna_detail WHERE qna_id=?";

@@ -253,6 +253,7 @@ h6 {
   float:left;
   width:250px;
   margin : 10px;
+  cursor : pointer;
 }
 .card-write{
 	margin-bottom: 30px;

@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('등록 완료!');
-	location.href='htmlList.do';
+	location.href='list.do';
 </script>

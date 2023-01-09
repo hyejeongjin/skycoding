@@ -55,7 +55,7 @@ public class CourseDAO {
 	
 	
 	//관리자/사용자 - 전체 강의 개수/검색 강의 개수
-	public int getCourseCount(String keyfield,String keyword)
+	public int getCourseCount(String keyfield,String keyword,int course_cate)
             throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -73,9 +73,10 @@ public class CourseDAO {
 		}
 		
 		//검색글 개수
-		sql = "SELECT COUNT(*) FROM course " + sub_sql;
+		sql = "SELECT COUNT(*) FROM course WHERE course_cate=? " + sub_sql;
 		//PreparedStatement 객체 생성
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, course_cate);
 		//keyword가 비어있지 않고 null이 아니면 검색처리
 		if(keyword != null && !"".equals(keyword)) {
 			pstmt.setString(2, "%"+keyword+"%");
@@ -117,13 +118,13 @@ public class CourseDAO {
 			
 			//전체/검색 강의 보기
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM ("
-					+ "SELECT * FROM course WHERE course_cate > ? " + sub_sql
+					+ "SELECT * FROM course WHERE course_cate = ? " + sub_sql
 					+ " ORDER BY course_id DESC)a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터를 바인딩
-			pstmt.setInt(1, course_cate);
+			pstmt.setInt(++cnt, course_cate);
 			//검색 부분이 들어가므로 cnt가 필요 
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
@@ -155,7 +156,7 @@ public class CourseDAO {
 	}
 }
 	//관리자/사용자 - 강의상세
-	//조회수증가
+	//조회수증가   
 	//좋아요 등록
 	//좋아요 개수
 	//회원이 강의를 호출했을 때 좋아요 선택 여부 표시

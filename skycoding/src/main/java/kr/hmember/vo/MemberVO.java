@@ -14,6 +14,7 @@ public class MemberVO {
 	private Date mem_reg_date;
 	private Date mem_modify_date;
 	private String mem_photo;
+	private String qna_detail;
 
 
 	//비밀번호 일치 여부 체크
@@ -25,7 +26,17 @@ public class MemberVO {
 		}
 		return false;
 	}
+	
+	//아이디 찾기 내용 일치 여부 체크
+		public boolean isCheckedInfo(String mem_name, String mem_cell) {
+			if(mem_name.equals(mem_name) && mem_cell.equals(mem_cell)) {
+				//이름, 전화번호 일치 시
+				return true;
+			}
+			return false;
+		}
 
+	
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -92,4 +103,21 @@ public class MemberVO {
 	public void setMem_photo(String mem_photo) {
 		this.mem_photo = mem_photo;
 	}
+
+	public String getQna_detail() {
+		return qna_detail;
+	}
+
+	public void setQna_detail(String qna_detail) {
+		this.qna_detail = qna_detail;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_auth=" + mem_auth + ", mem_name="
+				+ mem_name + ", mem_pw=" + mem_pw + ", mem_pwq=" + mem_pwq + ", mem_pwa=" + mem_pwa + ", mem_cell="
+				+ mem_cell + ", mem_reg_date=" + mem_reg_date + ", mem_modify_date=" + mem_modify_date + ", mem_photo="
+				+ mem_photo + ", qna_detail=" + qna_detail + "]";
+	}
+	
 }

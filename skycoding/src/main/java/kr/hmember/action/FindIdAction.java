@@ -23,6 +23,6 @@ public class FindIdAction implements Action{
 		
 		request.setAttribute("my_id", my_id);
 	
-		return "/WEB-INF/views/member/findId.jsp";
+		return "/WEB-INF/views/hmember/findId.jsp";
 	}
 }

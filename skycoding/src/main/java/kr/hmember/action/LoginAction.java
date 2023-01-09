@@ -43,7 +43,7 @@ public class LoginAction implements Action{
 		}
 
 		//인증 실패 시 호출
-		return "/WEB-INF/views/member/login.jsp";
+		return "/WEB-INF/views/hmember/login.jsp";
 	}
 
 }

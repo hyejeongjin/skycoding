@@ -10,7 +10,7 @@ public class LoginFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return "/WEB-INF/views/member/loginForm.jsp";
+		return "/WEB-INF/views/hmember/loginForm.jsp";
 	}
 
 }

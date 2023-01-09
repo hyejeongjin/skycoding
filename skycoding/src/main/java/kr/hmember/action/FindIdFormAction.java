@@ -10,7 +10,7 @@ public class FindIdFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return "/WEB-INF/views/member/findIdForm.jsp";
+		return "/WEB-INF/views/hmember/findIdForm.jsp";
 	}
 
 }

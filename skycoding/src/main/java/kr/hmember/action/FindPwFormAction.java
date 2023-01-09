@@ -12,7 +12,7 @@ public class FindPwFormAction implements Action{
 		
 		
 		
-		return "/WEB-INF/views/membber/findPwForm.jsp";
+		return "/WEB-INF/views/hmember/findPwForm.jsp";
 	}
 
 }

@@ -44,6 +44,12 @@ public class QnaBoardReplyVO {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+	@Override
+	public String toString() {
+		return "QnaBoardReplyVO [qnaComm_id=" + qnaComm_id + ", qnaComm_content=" + qnaComm_content
+				+ ", qnaComm_reg_date=" + qnaComm_reg_date + ", qna_id=" + qna_id + ", mem_num=" + mem_num + ", mem_id="
+				+ mem_id + "]";
+	}
 	
 	
 }

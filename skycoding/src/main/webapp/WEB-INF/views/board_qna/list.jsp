@@ -108,11 +108,9 @@ $(function(){
 			</tr>
 		</c:forEach>
 		</table>
-		<div class="list-space align-right">
-			<!-- 로그인 안 되어 있으면 태그가 보여지긴 하는데 비활성화 -->
-			<button type="button" class="btn btn-primary" style="float:right;" onclick="location.href='writeForm.do'"
+		<!-- 로그인 안 되어 있으면 태그가 보여지긴 하는데 비활성화 -->
+		<button type="button" class="btn btn-primary" style="float:right;" onclick="location.href='writeForm.do'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>>글쓰기</button>
-		</div>
 </main>
 </body>
 </html>

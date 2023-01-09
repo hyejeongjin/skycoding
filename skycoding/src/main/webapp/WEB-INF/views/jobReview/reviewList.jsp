@@ -118,7 +118,7 @@
 				<div class="align-right">
 					<input class="btn btn-primary" type="button" value="글쓰기" id="write_btn"
 								onclick="location.href='reviewWriteForm.do'"
-								<c:if test="${empty user_num}">disabled="disabled"</c:if>/><!-- 로그인 안된 경우 버튼 비활성화 -->
+								<c:if test="${empty mem_num}">disabled="disabled"</c:if>/><!-- 로그인 안된 경우 버튼 비활성화 -->
 				</div>
 			
 				<!-- 페이지 번호 시작 -->

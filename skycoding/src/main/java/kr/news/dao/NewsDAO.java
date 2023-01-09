@@ -3,6 +3,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class NewsDAO {
 			}
 		}
 		//총 레코드수( 검색수)
-		public int getBoardCount(String keyfield, 
+		public int getNewsCount(String keyfield, 
 				                 String keyword)
 		                                    throws Exception{
 			Connection conn = null;
@@ -78,7 +79,7 @@ public class NewsDAO {
 				
 				
 				//SQL문 작성
-				sql = "SELECT COUNT(*) FROM zboard b JOIN zmember m USING(mem_num) " + sub_sql;
+				sql = "SELECT COUNT(*) FROM news b JOIN hmember USING(mem_num)" + sub_sql;
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				if(keyword !=null && !"".equals(keyword)) {
@@ -98,7 +99,7 @@ public class NewsDAO {
 			return count;
 		}
 		//글목록(검색글 목록)
-		public List<NewsVO> getListBoard(int start, int end,
+		public List<NewsVO> getListNews(int start, int end,
 				             String keyfield, String keyword)
 		                                   throws Exception{
 			Connection conn = null;
@@ -123,7 +124,7 @@ public class NewsDAO {
 				//SQL문 작성
 				sql= "SELECT * FROM (SELECT a.*, rownum rnum "
 						+ "FROM (SELECT * FROM news  " 
-						+ sub_sql + " ORDER BY b.board_num DESC)a) "
+						+ sub_sql + " ORDER BY b.news_num DESC)a) "
 						+ "WHERE rnum >= ? AND rnum <= ?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);

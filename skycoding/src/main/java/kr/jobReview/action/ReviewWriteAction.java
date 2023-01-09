@@ -16,8 +16,8 @@ public class ReviewWriteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//로그인 안 된 경우
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		if(mem_num==null) {//로그인 안 된 경우
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인이 된 경우
@@ -29,7 +29,7 @@ public class ReviewWriteAction implements Action{
 		String rev_content = multi.getParameter("content");
 		
 		ReviewVO review = new ReviewVO();
-		review.setMem_num(user_num);
+		review.setMem_num(mem_num);
 		review.setRev_title(rev_title);
 		review.setRev_photo(rev_photo);
 		review.setRev_content(rev_content);

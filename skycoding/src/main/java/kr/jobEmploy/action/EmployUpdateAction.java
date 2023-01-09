@@ -16,10 +16,10 @@ public class EmployUpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
 		
-		if(user_num==null) {//로그인 안 된 경우
+		if(mem_num==null) {//로그인 안 된 경우
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
@@ -33,7 +33,7 @@ public class EmployUpdateAction implements Action{
 		EmployDAO dao = EmployDAO.getInstance();
 		EmployVO db_employ = dao.getEmployDetail(emp_id);
 		
-		if(user_auth!=9){
+		if(mem_auth!=9){
 			//관리자가 아닌 경우
 			FileUtil.removeFile(request, emp_photo);//업로드 된 파일 삭제
 			return "/WEB-INF/views/common/notice.jsp";

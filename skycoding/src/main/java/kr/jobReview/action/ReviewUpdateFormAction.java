@@ -14,9 +14,9 @@ public class ReviewUpdateFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
-		if(user_num==null) {//로그인 안 된 경우
+		if(mem_num==null) {//로그인 안 된 경우
 			return "redirect:/member/loginForm.jsp";
 		}
 		//로그인 된 경우
@@ -24,7 +24,7 @@ public class ReviewUpdateFormAction implements Action{
 		ReviewDAO dao = ReviewDAO.getInstance();
 		ReviewVO review = dao.getReviewDetail(rev_id);
 		
-		if(user_num!=review.getMem_num()) {
+		if(mem_num!=review.getMem_num()) {
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		review.setRev_title(StringUtil.parseQuot(review.getRev_title()));

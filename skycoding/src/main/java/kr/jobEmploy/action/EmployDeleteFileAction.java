@@ -21,15 +21,15 @@ public class EmployDeleteFileAction implements Action{
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//로그인이 안 된 경우
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		if(mem_num==null) {//로그인이 안 된 경우
 			mapAjax.put("result","logout");
 		}else {//로그인 된 경우
 			int emp_id = Integer.parseInt(request.getParameter("emp_id"));
 			EmployDAO dao = EmployDAO.getInstance();
 			EmployVO employ = dao.getEmployDetail(emp_id);
 			//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-			if(user_num!=employ.getMem_num()) {//불일치
+			if(mem_num!=employ.getMem_num()) {//불일치
 				mapAjax.put("result", "wrongAccess");
 			}else {
 				dao.deleteFile(emp_id);//테이블에서 파일 이름만 삭제

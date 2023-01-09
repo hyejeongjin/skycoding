@@ -20,15 +20,15 @@ public class ReviewDeleteFileAction implements Action{
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//로그인이 안 된 경우
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
+		if(mem_num==null) {//로그인이 안 된 경우
 			mapAjax.put("result","logout");
 		}else {//로그인 된 경우
 			int rev_id = Integer.parseInt(request.getParameter("rev_id"));
 			ReviewDAO dao = ReviewDAO.getInstance();
 			ReviewVO review = dao.getReviewDetail(rev_id);
 			
-			if(user_num!=review.getMem_num()) {
+			if(mem_num!=review.getMem_num()) {
 				mapAjax.put("result", "wrongAccess");
 			}else {
 				dao.deleteFile(rev_id);//테이블에서 파일명만 삭제

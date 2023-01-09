@@ -16,9 +16,9 @@ public class ReviewUpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
-		if(user_num==null) {//로그인 안 된 경우
+		if(mem_num==null) {//로그인 안 된 경우
 			return "redirect:/member/loginForm.do";
 		}
 		//로그인 된 경우
@@ -29,7 +29,7 @@ public class ReviewUpdateAction implements Action{
 		ReviewDAO dao = ReviewDAO.getInstance();
 		ReviewVO db_review = dao.getReviewDetail(rev_id);
 		
-		if(user_num!=db_review.getMem_num()) {
+		if(mem_num!=db_review.getMem_num()) {
 			FileUtil.removeFile(request, rev_photo);
 			return "/WEB-INF/views/common/notice.jsp";
 		}

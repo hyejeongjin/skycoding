@@ -15,8 +15,8 @@ public class EmployDetailAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//관리자만 수정,삭제 버튼 보이게 하기위해 auth값 전달
 		HttpSession session = request.getSession();
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		request.setAttribute("user_auth", user_auth);
+		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
+		request.setAttribute("mem_auth", mem_auth);
 		
 		//글 번호 반환
 		int emp_id = Integer.parseInt(request.getParameter("emp_id"));

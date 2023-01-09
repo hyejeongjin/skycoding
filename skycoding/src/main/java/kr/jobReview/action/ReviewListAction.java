@@ -17,8 +17,8 @@ public class ReviewListAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//관리자만 글쓰기 버튼 활성화
 		HttpSession session = request.getSession();
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		request.setAttribute("user_auth", user_auth);
+		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
+		request.setAttribute("mem_auth", mem_auth);
 		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";

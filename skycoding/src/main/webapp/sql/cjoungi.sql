@@ -30,7 +30,7 @@ create table job_review_comment (
 	com_id number(10) not null,
 	mem_num	number not null,
 	rev_id number(10) not null,
-	com_content varchar(150) not null,
+	com_content varchar2(900) not null,
 	com_reg_date date default sysdate not null,
 	com_modify_date date,
 	constraint job_review_comment_pk primary key(com_id),

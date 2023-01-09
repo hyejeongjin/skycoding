@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.jobReview.vo.ReviewCommentVO;
 import kr.jobReview.vo.ReviewVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -267,4 +268,45 @@ public class ReviewDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	
+	//댓글 등록
+	public void insertReviewComment(ReviewCommentVO reviewComment)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "INSERT INTO job_review_comment (com_id,com_content,mem_num,rev_id) VALUES "
+					+ "(job_review_seq.nextval,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewComment.getCom_content());
+			pstmt.setInt(2, reviewComment.getMem_num());
+			pstmt.setInt(3, reviewComment.getRev_id());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 개수
+	
+	//댓글 목록
+	
+	//댓글 상세
+	
+	//댓글 수정
+	
+	
+	//댓글 삭제
+	
+	
+	
+	
+	
+	
+	
 }

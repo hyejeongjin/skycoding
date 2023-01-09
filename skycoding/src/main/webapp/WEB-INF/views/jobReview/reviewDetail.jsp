@@ -95,26 +95,29 @@
 			</div>
 			<!-- 댓글 시작 -->
 			<div id="comment_div">
-				<span>댓글 #개</span>
-				<form id="comm_form">
+				<form id="com_form">
 					<input type="hidden" name="rev_id" value="${review.rev_id}" id="rev_id">
-					<textarea rows="3" cols="50" name="comm_content" id="comm_content" class="comment_content" 
+					<textarea rows="3" cols="50" name="com_content" id="com_content" class="comment_content" 
 					<c:if test="${empty user_num}">disabled="disabled"</c:if>
 					><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다</c:if></textarea>
 					<c:if test="${!empty user_num }">
-						<div id="comm_first">
+						<div id="com_first">
 							<span class="letter-count">300/300</span>
 						</div>
-						<div id="comm_second">
+						<div id="com_second">
 							<input type="submit" value="등록">
 						</div>
 					</c:if>
 				</form>
 			</div>
 			<!-- 댓글 목록 시작 -->
-			<div id="comm_output"></div>
+			<span>댓글 #개</span>
+			<div id="com_output"></div>
 			<div>
-				<button type="button"><i class="bi bi-search"></i></button>				
+				<button type="button" class="paging-button"><i class="fa-solid fa-chevron-down"></i></button>				
+			</div>
+			<div id="loading" style="display:none;">
+				<img src="${pageContext.request.contextPath}/images/loading.gif" width="40" height="40">
 			</div>
 			<!-- 댓글 목록 끝 -->
 			<!-- 댓글 끝 -->

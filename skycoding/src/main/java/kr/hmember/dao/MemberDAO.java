@@ -160,13 +160,12 @@ public class MemberDAO {
 	}
 
 	//아이디 찾기
-	public MemberVO findId(String email, String cell) throws Exception{
+	public String findId(String email, String cell) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MemberVO member = null;
 		String sql = null;
-		
+		String myId = null;
 
 		try {
 			//커넥션풀로부터 커넥션 할당
@@ -187,17 +186,14 @@ public class MemberDAO {
 			//SQL문을 실행해서 결과행을 ResultSet에 담음
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				member = new MemberVO();
-				member.setMem_email(email);
-				member.setMem_cell(cell);
-				member.setMem_id(rs.getString("mem_id"));
+				myId = rs.getString("mem_id");
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		return member;
+		return myId;
 	}
 
 }

@@ -29,16 +29,6 @@ public class MemberVO {
 		return false;
 	}
 	
-	//아이디 찾기 내용 일치 여부 체크
-		public boolean isCheckedInfo(String mem_name, String mem_cell) {
-			if(mem_name.equals(mem_name) && mem_cell.equals(mem_cell)) {
-				//이름, 전화번호 일치 시
-				return true;
-			}
-			return false;
-		}
-
-	
 	public int getMem_num() {
 		return mem_num;
 	}

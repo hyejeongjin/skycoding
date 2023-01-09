@@ -27,7 +27,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     
     <div class="d-flex align-items-center justify-content-between">
-      <a href="/myUITest/course/list.do?cate=1" class="logo d-flex align-items-center">
+      <a href="/skycoding/course/list.do?cate=1" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">강의</span>
       </a>
     </div>
@@ -66,7 +66,7 @@
       </li>
       
          <!-- 관리자 등급만 버튼 보이게 생성 -->
-    <c:if test="${!empty user_num && user_auth == 9}">
+    <c:if test="${!empty mem_num && mem_auth == 9}">
         <li class="nav-item">         <!-- 변경 -->
         <a class="nav-link collapsed" href="/skycoding/course/writeForm.do">
           <span>강의 등록</span>

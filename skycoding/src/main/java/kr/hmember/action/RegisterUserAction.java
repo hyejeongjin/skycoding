@@ -35,7 +35,7 @@ public class RegisterUserAction implements Action{
 		request.setAttribute("qnaList", qnaList);
 		
 		//경로 지정
-		return "/WEB-INF/views/member/registerUser.jsp";
+		return "/WEB-INF/views/hmember/registerUser.jsp";
 	}
 
 }

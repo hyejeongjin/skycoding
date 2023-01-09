@@ -19,7 +19,7 @@ public class RegisterUserFormAction implements Action{
 		
 		request.setAttribute("qnaList", qnaList);
 		
-		return "/WEB-INF/views/member/registerUserForm.jsp";
+		return "/WEB-INF/views/hmember/registerUserForm.jsp";
 	}
 
 }

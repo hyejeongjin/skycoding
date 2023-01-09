@@ -69,15 +69,15 @@
 
 						<span style="margin-right: 10px;">${mem_id} 님</span>
 						<Button type="button" class="btn btn-primary"
-							onclick="location.href='${pageContext.request.contextPath}/member/logout.do'">로그아웃</Button>
+							onclick="location.href='${pageContext.request.contextPath}/hmember/logout.do'">로그아웃</Button>
 					</c:if>
 
 					<c:if test="${empty mem_num}">
 						<button type="button" class="btn btn-primary"
-							onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'"
+							onclick="location.href='${pageContext.request.contextPath}/hmember/loginForm.do'"
 							style="float: right;">로그인</button>
 						<button class="btn btn-outline-black" type="button"
-							onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">회원가입</button>
+							onclick="location.href='${pageContext.request.contextPath}/hmember/registerUserForm.do'">회원가입</button>
 					</c:if>
 				</div>
 			</nav>

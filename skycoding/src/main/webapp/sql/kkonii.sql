@@ -15,5 +15,5 @@ CREATE TABLE EVENT(
     constraint event_fk2 foreign key (event_course_id) references COURSE (course_id)
 );
 
---event_id 시퀀스
+--event_id 시퀀스 
 CREATE SEQUENCE EVENT_SEQ;

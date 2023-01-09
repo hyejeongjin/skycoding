@@ -27,7 +27,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     
     <div class="d-flex align-items-center justify-content-between">
-      <a href="/myUITest/course/list.do?cate=1" class="logo d-flex align-items-center">
+      <a href="/skycoding/course/list.do?cate=1" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">강의</span>
       </a>
     </div>
@@ -42,33 +42,33 @@
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
                             <!-- 변경 -->
-        <a class="nav-link " href="/myUITest/course/list.do?course_cate=1">
+        <a class="nav-link " href="/skycoding/course/list.do?course_cate=1">
           <span>HTML</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/myUITest/course/list.do?course_cate=2">
+        <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=2">
           <span>CSS</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/myUITest/course/list.do?course_cate=3">
+        <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=3">
           <span>JAVA</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/myUITest/course/list.do?course_cate=4">
+        <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=4">
           <span>DB</span>
         </a>
       </li>
       
          <!-- 관리자 등급만 버튼 보이게 생성 -->
-    <c:if test="${!empty user_num && user_auth == 9}">
+    <c:if test="${!empty mem_num && mem_auth == 9}">
         <li class="nav-item">         <!-- 변경 -->
-        <a class="nav-link collapsed" href="/myUITest/course/writeForm.do">
+        <a class="nav-link collapsed" href="/skycoding/course/writeForm.do">
           <span>강의 등록</span>
         </a>
       </li>
@@ -99,7 +99,7 @@
     <c:if test="${count > 0}">
     <section class="section">
       <div class="row align-items-top">
-        <div class="col-lg-3">
+        <div class="col-lg-6">
         <c:forEach var="course" items="${list}">
           <div class="card">
             <img src="${pageContext.request.contextPath}/upload/${course.course_photo}" class="card-img-top">

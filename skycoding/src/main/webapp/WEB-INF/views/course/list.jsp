@@ -99,7 +99,7 @@
     <c:if test="${count > 0}">
     <section class="section">
       <div class="row align-items-top">
-        <div class="col-lg-3">
+        <div class="col-lg-6">
         <c:forEach var="course" items="${list}">
           <div class="card">
             <img src="${pageContext.request.contextPath}/upload/${course.course_photo}" class="card-img-top">

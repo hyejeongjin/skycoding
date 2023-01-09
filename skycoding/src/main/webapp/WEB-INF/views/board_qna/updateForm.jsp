@@ -16,7 +16,7 @@
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" >
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css" >
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/qna-style.css">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

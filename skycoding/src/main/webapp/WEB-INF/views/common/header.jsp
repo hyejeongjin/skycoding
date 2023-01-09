@@ -37,7 +37,7 @@
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">강의</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#!">HTML</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/course/htmlList.do">HTML</a></li>
 								<li><a class="dropdown-item" href="#!">CSS</a></li>
 								<li><a class="dropdown-item" href="#!">JAVA</a></li>
 								<li><a class="dropdown-item" href="#!">DB</a></li>

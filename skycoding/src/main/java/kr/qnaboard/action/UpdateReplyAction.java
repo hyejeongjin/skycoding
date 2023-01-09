@@ -27,7 +27,7 @@ public class UpdateReplyAction implements Action{
 		QnaBoardReplyVO db_reply = dao.getReplyBoard(qnaComm_id);
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_num = (Integer)session.getAttribute("mem_num");
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		

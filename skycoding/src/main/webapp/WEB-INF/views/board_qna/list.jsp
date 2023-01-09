@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>커뮤니티</title>
+<title>질문게시판</title>
 
 <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -32,85 +32,120 @@ $(function(){
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="list.do">
-          <i class="bi bi-grid"></i>
-          <span>질문글</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <span>자유글</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
-<!-- End Sidebar-->
+	<div class="page-main">
+		<!-- header 시작 -->
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<!-- header 끝 -->
 
-<!-- Start #main -->
-<main id="main" class="main">
-	<br>
-	<span style="font-size:25pt;">질문글</span>
-	<hr size="1" noshade="noshade" width="100%">
+		<!-- 사이드바 시작 -->
+		 <aside id="sidebar" class="sidebar">
+		   <ul class="sidebar-nav" id="sidebar-nav">
+				<li class="nav-item"><a class="nav-link collapsed"
+					href="${pageContext.request.contextPath}/board_qna/list.do"> <span>질문게시판</span>
+				</a></li>
 	
-		<%--검색 폼 시작 --%>
+				<!-- 자유게시판 경로추가 예정 -->
+				<li class="nav-item"><a class="nav-link" href="#"> <span>자유게시판</span> 
+				</a></li>
+			</ul>
+		 </aside>
+		<!-- 사이드바 끝 -->
 
-			<form id="search_form" action="list.do" method="get" class="d-inline-flex">
-				<select name="keyfield" class="form-select m-1"
-					aria-label="Default select example" style="width: auto;">
-					<%--제목을 선택한 게 남아있게 하기 위해 value, c:if 작성. value가 keyfield에 전송된다--%>
-					<%--제목,작성자,내용이 keyfield, 검색창이 keyword --%>
-					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작성자</option>
-					<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
-				</select> 
-				<input class="navbar-search form-control m-1" type="search" name="keyword"
-					id="keyword" placeholder="Search" value="${param.keyword}"
-					aria-label="Default select example" style="width: auto;">
-				<button class="btn btn-outline-primary m-1" type="submit">검색</button>
+		<div class="content-main"><!-- 전체 화면의 80% -->
+			<!-- 사이드바 오른쪽 화면 시작 -->
+			<div class="content-right">
 			
-			</form>
+				<!-- 검색폼 시작 -->
+				<div class="section"> 
+					<div class="search-bar">
+						<form class="search-form d-flex align-items-center" action="list.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
+							<select class="form-select" id="form-select1" name="keyfield" aria-label="form-select">
+								<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+								<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
+								<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>작성자</option>
+							</select> 
+							<%--제목을 선택한 게 남아있게 하기 위해 value, c:if 작성. value가 keyfield에 전송된다--%>
+							<%--제목,작성자,내용이 keyfield, 검색창이 keyword.  자기자신에게 값을 보내기 때문에 param 이용 --%>
+							<input type="text" name="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요">
+							<button type="submit" title="Search"><i class="bi bi-search"></i></button>
+						</form>
+					</div>
+				</div>
+				<!-- 검색폼 끝 -->
 	
-		<%--검색 폼 끝 --%>
+				<%--조회순, 최신순 정렬 시작 --%>
+				<div id="sub-select" class="content1">
+					<span id="list-num">전체 ${count}개</span>
+					<select class="form-select" id="form-select2" name="keyfield2" aria-label="form-select">
+						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>최신순</option>
+						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
+					</select>
+				</div>
+				<%--조회순, 최신순 정렬 끝 --%>
 		
-		<%--조회순, 최신순 시작 --%>
-		<%--조회순, 최신순 끝 --%>
-		
-		<table class="table caption-top mt-3" id="table-main">
-			<thead>
-				<tr style="border-top: 1px solid">
-					<th scope="col" style="width: 5%" class="text-center">번호</th>
-					<th scope="col" style="width: 40%" class="text-center">제목</th>
-					<th scope="col" style="width: 10%">작성자</th>
-					<th scope="col" style="width: 15%" class="text-center">작성일</th>
-					<th scope="col" style="width: 5%" class="text-center">조회</th>
-				</tr>
-			</thead>
-		
-		<c:if test="${count == 0}">
-		<div class="result-display">
-			표시할 게시물이 없습니다.
-		</div>
-		</c:if>
-		
-		<c:forEach var="qnaBoard" items="${list}">
-			<tr>
-				<td>${qnaBoard.qna_id}</td>
-				<td><a href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></td>
-				<td>${qnaBoard.mem_id}</td>
-				<td>${qnaBoard.qna_reg_date}</td>
-				<td>${qnaBoard.qna_hit}</td>
-			</tr>
-		</c:forEach>
-		</table>
-		<!-- 로그인 안 되어 있으면 태그가 보여지긴 하는데 비활성화 -->
-		<button type="button" class="btn btn-primary" style="float:right;" onclick="location.href='writeForm.do'"
-				<c:if test="${empty user_num}">disabled="disabled"</c:if>>글쓰기</button>
-</main>
+				<%-- table 시작 --%>
+				<div class="table-content">
+				<c:if test="${count == 0}">
+				<table class="table table-group-divider align-center">
+					<tr>
+						<td>표시할 게시물이 없습니다</td>
+					</tr>
+				</table>
+				</c:if>
+				<c:if test="${count>0}">
+				<table class="table table-hover align-center" id="t1">
+						<thead class="table-head">
+							<tr>
+								<th scope="col" width="10%">글번호</th>
+								<th scope="col" width="40%">제목</th>
+								<th scope="col" width="15%">작성자</th>
+								<th scope="col" width="25%">작성일</th>
+								<th scope="col" width="10%">조회수</th>
+							</tr>
+						</thead>
+						<tbody class="table-body table-group-divider">
+							<c:forEach var="qnaBoard" items="${list}">
+							<tr>
+								<td>${qnaBoard.qna_id}</td>
+								<td><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></td>
+								<td>${qnaBoard.mem_id}</td>
+								<td>${qnaBoard.qna_reg_date}</td>
+								<td>${qnaBoard.qna_hit}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					
+					<%-- 작은 화면용 테이블 --%>
+					<table class="table table-hover table-group-divider" id="t2">
+						<c:forEach var="qnaBoard" items="${list}">
+						<tr>
+							<td>
+								<div><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></div>
+								<span class="t-sub-info">${qnaBoard.mem_id}</span> &nbsp; 
+								<span class="t-sub-info">${qnaBoard.qna_reg_date}</span> &nbsp;
+								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${qnaBoard.qna_hit}</span>
+							</td>
+						</c:forEach>
+					</table>
+				</c:if>
+			</div><%-- table 끝 --%>
+			
+			<%-- 로그인 안 되어 있으면 태그가 보여지긴 하는데 비활성화 --%>
+			<div class="align-right">
+				<input class="btn btn-primary" type="button" value="글쓰기" id="write_btn"
+						onclick="location.href='writeForm.do'"
+					<c:if test="${empty mem_num}">disabled="disabled"</c:if>/>
+			</div>
+			
+			<%-- 페이지 번호 시작 --%>
+				<c:if test="${count>0}">
+				<div class="align-center">${page}</div>
+				</c:if>
+			<%-- 페이지 번호 끝 --%>
+			</div><!-- 사이드바 오른쪽 화면 끝 -->		
+		</div><!-- 컨텐트 메인 끝 -->
+	</div><!-- 페이지 메인 끝 -->
+	
 </body>
 </html>

@@ -16,15 +16,12 @@ public class WriteAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		/*
-		 * 로그인처리 예정
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_num = (Integer)session.getAttribute("mem_num");
 		
 		if(user_num == null) { //로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
-		 */
 		
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request);

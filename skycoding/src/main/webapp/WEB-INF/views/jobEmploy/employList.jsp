@@ -20,12 +20,10 @@
 <script src="https://kit.fontawesome.com/dce0734714.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="page-main">
-		<!-- header 시작 -->
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<!-- header 끝 -->
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<div class="page-main">
 		<!-- 사이드바 시작-->
-		<aside id="sidebar" class="sidebar">
+		<div id="sidebar" class="sidebar">
 	
 			<ul class="sidebar-nav" id="sidebar-nav">
 				<li class="nav-item"><a class="nav-link"
@@ -36,7 +34,7 @@
 					href="${pageContext.request.contextPath}/jobReview/reviewList.do"> <span>취업후기</span>
 				</a></li>
 			</ul>
-		</aside>
+		</div>
 		<!-- 사이드바 끝-->
 		
 		<div class="content-main"><!-- 전체 화면의 80% -->
@@ -110,7 +108,7 @@
 				</c:if>
 			</div><!-- 사이드바 오른쪽 화면 끝 -->	
 		</div><!-- 컨텐트 메인 끝 -->
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div><!-- 페이지 메인 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 </html>

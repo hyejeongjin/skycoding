@@ -16,14 +16,13 @@ public class UpdateAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		/*회원 처리 후 주석 풀 예정
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_num = (Integer)session.getAttribute("mem_num");
 		
 		if(user_num == null) { //로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
-		*/
+
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request); //파일이 있으니까 멀티파트리퀘스트
 		

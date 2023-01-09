@@ -2,12 +2,14 @@
 /*여기는 내가 추가한거*/
 /*공통
 ---------------------------*/
+.page-main{
+	margin-top:60px;
+}
 .content-main {
 	width: 87%;
-	/*#register-main을 content-main으로 묶었기 때문에 
-	register-main의 margin-top은 지우고 여기에 명시*/
-	margin: 60px auto;
-	padding: 50px 20px;
+	margin: auto;
+	overflow:hidden;
+	padding: 100px 20px;
 }
 
 .content-right {
@@ -1496,12 +1498,21 @@ h6 {
   transition: all 0.3s;
   border-top: 1px solid #cddfff;
 }
-
+#footer1_container{
+	width:90%;
+	margin:auto;
+}
+.footer1-right{
+	width:77%;
+	margin-right:0;
+}
+#footer1_right{
+	padding-left:24px;
+}
 .footer .copyright {
   text-align: center;
   color: #012970;
 }
-
 .footer .credits {
   padding-top: 5px;
   text-align: center;

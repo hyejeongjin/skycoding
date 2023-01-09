@@ -42,10 +42,10 @@ $(function(){
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자의 회원번호 일치(어차피 일치할 때만 보여지게 설정할 거라 else는 작성 안 함)
-						output += '<div style="float:right;">';
+						output += '<div style="float:right; margin-bottom:10px;">';
 						output += '<button type="button" class="modify-btn btn btn-primary" data-renum="'+item.qnaComm_id+'">수정</button>';
 						output += ' <button type="button" class="delete-btn btn btn-primary" data-renum="'+item.qnaComm_id+'">삭제</button>';
-						/*' <input type="button" data-renum="'+item.qnaComm_id+'" value="수정" class="modify-btn">';*/
+						/*사용안하는데 혹시 몰라서 주석' <input type="button" data-renum="'+item.qnaComm_id+'" value="수정" class="modify-btn">';*/
 					}
 					output += '</div>';
 					output += '<hr size="1" noshade="noshade" width="100%">';
@@ -155,13 +155,22 @@ $(function(){
 		//댓글 수정폼 UI(동적으로 만듦) //아래에서 .item에 붙일 건데 이게 있어야 할 자리에 수정폼을 보여지게 할 거라서 이건 숨김처리 할 거다
 		let modifyUI = '<form id="mre_form">';
 			modifyUI += '<input type="hidden" name="qnaComm_id" id="qnaComm_id" value="'+qnaComm_id+'">';
-			modifyUI += '<textarea rows="3" cols="50" name="qnaComm_content" id="mre_content" class="rep-content">'+qnaComm_content+'</textarea>';
 			modifyUI += '<div id="mre_first"><span class="letter-count">50/50</span></div>';
-			modifyUI += '<div id="mre_second" class="align-right">';
-			modifyUI += ' <input type="submit" value="수정">';
-			modifyUI += ' <input type="button" value="취소" class="re-reset">';
+			
+			modifyUI += '<div class="inner-text">';
+			modifyUI += '<textarea class="form-control rep-content inner-text" name="qnaComm_content" id="mre_content">'+qnaComm_content+'</textarea>';
+			
+			//modifyUI += '<textarea rows="3" cols="50" name="qnaComm_content" id="mre_content" class="rep-content">'+qnaComm_content+'</textarea>';
 			modifyUI += '</div>';
-			modifyUI += '<hr size="1" noshade width="96%">';
+
+
+			modifyUI += '<div id="mre_second" class="align-right">';
+			modifyUI += '<div style="float:right; margin-bottom:10px;">';
+			modifyUI += '<button type="submit" class="btn btn-primary">수정</button>';
+			modifyUI += ' <button type="button" class="re-reset btn btn-primary">취소</button>';
+			modifyUI += '</div>';
+			modifyUI += '</div>';
+			modifyUI += '<hr size="1" noshade width="100%">';
 			modifyUI += '</form>';
 			
 			//이전에 이미 수정 중인(수정폼이 활성화된) 댓글이 있을 경우 수정버튼을 클릭하면 숨긴 sub-item(153라인 참고)을 환원시키고 수정폼을 초기화함

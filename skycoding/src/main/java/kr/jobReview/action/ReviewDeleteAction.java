@@ -14,9 +14,9 @@ public class ReviewDeleteAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
-		if(user_num==null) {//로그인 안 된 경우
+		if(mem_num==null) {//로그인 안 된 경우
 			return "redirect:/member/loginForm.jsp";
 		}
 		//로그인 된 경우
@@ -24,7 +24,7 @@ public class ReviewDeleteAction implements Action{
 		ReviewDAO dao = ReviewDAO.getInstance();
 		ReviewVO review = dao.getReviewDetail(rev_id);
 		
-		if(user_num!=review.getMem_num()) {//작성자와 로그인한 사람이 불일치
+		if(mem_num!=review.getMem_num()) {//작성자와 로그인한 사람이 불일치
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		//작성자와 로그인한 사람이 일치

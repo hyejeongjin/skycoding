@@ -28,7 +28,7 @@ public class DeleteReplyAction implements Action{
 		QnaBoardReplyVO db_reply = qnaDao.getReplyBoard(qnaComm_id);
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_num = (Integer)session.getAttribute("mem_num");
 		if(user_num==null) { //로그인이 안 된 경우
 			mapAjax.put("result", "logout");
 		}else if(user_num!=null && user_num==db_reply.getMem_num()) {

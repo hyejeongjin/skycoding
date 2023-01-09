@@ -18,9 +18,9 @@ public class WriteReplyAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String,String> mapAjax = new HashMap<String,String>();
-		//회원 처리 후 주석 풀 예정
+		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_num = (Integer)session.getAttribute("mem_num");
 		if(user_num==null) { //로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else { //로그인 된 경우

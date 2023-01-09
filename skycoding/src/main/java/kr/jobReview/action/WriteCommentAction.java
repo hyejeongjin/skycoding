@@ -20,9 +20,9 @@ public class WriteCommentAction implements Action{
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
-		if(user_num==null) {//로그인 x
+		if(mem_num==null) {//로그인 x
 			mapAjax.put("result", "logout");
 		}else {//로그인 o
 			request.setCharacterEncoding("utf-8");
@@ -31,7 +31,7 @@ public class WriteCommentAction implements Action{
 			
 			ReviewCommentVO reviewComment = new ReviewCommentVO();
 			reviewComment.setCom_content(com_content);
-			reviewComment.setMem_num(user_num);
+			reviewComment.setMem_num(mem_num);
 			reviewComment.setRev_id(rev_id);
 			
 			ReviewDAO dao =  ReviewDAO.getInstance();

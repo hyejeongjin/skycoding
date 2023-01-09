@@ -21,7 +21,7 @@ public class DeleteFileAction implements Action{
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_num = (Integer)session.getAttribute("mem_num");
 		if(user_num==null) {//로그인 안 된 경우
 			mapAjax.put("result", "logout");
 		}else {//로그인 된 경우

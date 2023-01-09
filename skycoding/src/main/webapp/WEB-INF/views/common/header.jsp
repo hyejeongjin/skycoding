@@ -53,7 +53,7 @@
 									>질문게시판</a></li>
 								<li><a class="dropdown-item" href="#!">자유게시판</a></li>
 							</ul></li>
-						<li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/news/list.do">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link" href="#!">이벤트</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"

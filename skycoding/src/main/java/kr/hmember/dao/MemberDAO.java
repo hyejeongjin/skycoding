@@ -53,7 +53,7 @@ public class MemberDAO {
 
 
 			sql = "INSERT INTO hmember_detail (mem_num,mem_name,mem_pw,"
-					+ "mem_pwq,mem_pwa,mem_cell) VALUES (?,?,?,?,?,?)";
+					+ "mem_pwq,mem_pwa,mem_cell,mem_email) VALUES (?,?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, num);//회원번호
 			pstmt3.setString(2, hmember.getMem_name());
@@ -61,6 +61,7 @@ public class MemberDAO {
 			pstmt3.setInt(4, hmember.getMem_pwq());
 			pstmt3.setString(5, hmember.getMem_pwa());
 			pstmt3.setString(6, hmember.getMem_cell());
+			pstmt3.setString(7, hmember.getMem_email());
 			pstmt3.executeUpdate();
 
 			//모두 성공 시 commit
@@ -108,6 +109,7 @@ public class MemberDAO {
 				hmember.setMem_auth(rs.getInt("mem_auth"));
 				hmember.setMem_pw(rs.getString("mem_pw"));
 				hmember.setMem_cell(rs.getString("mem_cell"));//회원탈퇴 시 사용할 것
+				hmember.setMem_email(rs.getString("mem_email"));
 				hmember.setMem_photo(rs.getString("mem_photo"));
 			}
 		}catch(Exception e) {
@@ -158,11 +160,11 @@ public class MemberDAO {
 	}
 
 	//아이디 찾기
-	public MemberVO findId(String name, String cell) throws Exception{
+	public MemberVO findId(String email, String cell) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MemberVO mem_id = null;
+		MemberVO member = null;
 		String sql = null;
 		
 
@@ -173,27 +175,29 @@ public class MemberDAO {
 			//sql문 작성
 			sql = "SELECT mem_id FROM hmember m LEFT OUTER JOIN "
 					+ "hmember_detail d ON m.mem_num=d.mem_num "
-					+ "WHERE d.mem_name=? AND d.mem_cell=?";
+					+ "WHERE d.mem_email=? AND d.mem_cell=?";
 
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 
 			//?에 데이터 바인딩
-			pstmt.setString(1, name);
+			pstmt.setString(1, email);
 			pstmt.setString(2, cell);
 
 			//SQL문을 실행해서 결과행을 ResultSet에 담음
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				mem_id = new MemberVO();
-				rs.getString("mem_id");
+				member = new MemberVO();
+				member.setMem_email(email);
+				member.setMem_cell(cell);
+				member.setMem_id(rs.getString("mem_id"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		return mem_id;
+		return member;
 	}
 
 }

@@ -14,6 +14,7 @@ create table hmember_detail(
  mem_pwq number(1) not null,
  mem_pwa varchar2(50) not null,
  mem_cell varchar2(15) not null,
+ email varchar2(50) not null,
  mem_reg_date date default sysdate not null,
  mem_modify_date date,
  mem_photo varchar2(150),

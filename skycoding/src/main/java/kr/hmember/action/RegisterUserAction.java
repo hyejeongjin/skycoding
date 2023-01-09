@@ -25,6 +25,7 @@ public class RegisterUserAction implements Action{
 		hmember.setMem_pwq(Integer.parseInt(request.getParameter("mem_pwq")));
 		hmember.setMem_pwa(request.getParameter("mem_pwa"));
 		hmember.setMem_cell(request.getParameter("mem_cell"));
+		hmember.setMem_email(request.getParameter("mem_email"));
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		dao.insertMember(hmember);

@@ -110,6 +110,7 @@
 				</c:if>
 			</div><!-- 사이드바 오른쪽 화면 끝 -->	
 		</div><!-- 컨텐트 메인 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div><!-- 페이지 메인 끝 -->
 </body>
 </html>

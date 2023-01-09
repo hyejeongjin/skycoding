@@ -37,7 +37,7 @@
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">강의</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#!">HTML</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/course/htmlList.do">HTML</a></li>
 								<li><a class="dropdown-item" href="#!">CSS</a></li>
 								<li><a class="dropdown-item" href="#!">JAVA</a></li>
 								<li><a class="dropdown-item" href="#!">DB</a></li>
@@ -46,7 +46,11 @@
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#!">질문게시판</a></li>
+								<li><a class="dropdown-item" 
+									<c:if test="${!empty user_num && (user_auth == 1 || user_auth == 9)}"> 
+									href="${pageContext.request.contextPath}/board_qna/list.do"
+									</c:if>
+									>질문게시판</a></li>
 								<li><a class="dropdown-item" href="#!">자유게시판</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>

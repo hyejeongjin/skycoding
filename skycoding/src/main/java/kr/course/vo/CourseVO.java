@@ -2,7 +2,7 @@ package kr.course.vo;
 
 import java.sql.Date;
 
-public class CourseVo {
+public class CourseVO {
 	//컬럼명과 일치하게 만들어주기 , 데이터와 맵핑
 	   private int course_id;
 	   private int mem_num;

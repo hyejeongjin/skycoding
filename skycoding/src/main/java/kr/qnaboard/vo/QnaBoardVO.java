@@ -14,7 +14,7 @@ public class QnaBoardVO {
 
 	//컬럼에는 없는데 사용할 거라 넣음
 	private String mem_id; //hmember 속성(아이디)
-	private String photo; //hmember_detail 속성(프사)
+	private String mem_photo; //hmember_detail 속성(프사)
 
 	public int getQna_id() {
 		return qna_id;
@@ -88,12 +88,12 @@ public class QnaBoardVO {
 		this.mem_id = mem_id;
 	}
 	
-	public String getPhoto() {
-		return photo;
+	public String getMem_photo() {
+		return mem_photo;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setMem_photo(String mem_photo) {
+		this.mem_photo = mem_photo;
 	}
 	
 }

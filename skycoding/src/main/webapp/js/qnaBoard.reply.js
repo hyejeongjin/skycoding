@@ -29,24 +29,26 @@ $(function(){
 				
 				$(param.list).each(function(index,item){
 					let output = '<div class="item">';
-					output += '<h4>' + item.mem_id + '</h4>';
+					output += '<b><h5>' + item.mem_id + '</h5></b>';
 					output += '<div class="sub-item">';
 					output += '<p>' + item.qnaComm_content + '</p>';
 					
 					if(item.qnaComm_modify_date){ //수정한 경우
 						output += '<span class="modify-date">최근 수정일 : ' + item.qnaComm_modify_date + '</span>';
 					}else{ //수정 안 한 경우
-						output += '<span class="modify-date">등록일 : ' + item.qnaComm_reg_date + '</span>';
+						output += '<span class="reg-date">' + item.qnaComm_reg_date + '</span>';
 					}
 					
 					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
 					if(param.user_num == item.mem_num){
 						//로그인한 회원번호와 작성자의 회원번호 일치(어차피 일치할 때만 보여지게 설정할 거라 else는 작성 안 함)
-						output += ' <input type="button" data-renum="'+item.qnaComm_id+'" value="수정" class="modify-btn">';
-						output += ' <input type="button" data-renum="'+item.qnaComm_id+'" value="삭제" class="delete-btn">';
+						output += '<div style="float:right;">';
+						output += '<button type="button" class="modify-btn btn btn-primary" data-renum="'+item.qnaComm_id+'">수정</button>';
+						output += ' <button type="button" class="delete-btn btn btn-primary" data-renum="'+item.qnaComm_id+'">삭제</button>';
+						/*' <input type="button" data-renum="'+item.qnaComm_id+'" value="수정" class="modify-btn">';*/
 					}
-					
-					output += '<hr size="1" noshade width="100%">';
+					output += '</div>';
+					output += '<hr size="1" noshade="noshade" width="100%">';
 					output += '</div>';
 					output += '</div>';
 					
@@ -119,7 +121,7 @@ $(function(){
 	//댓글 작성 폼 초기화
 	function initForm(){
 		$('textarea').val('');
-		$('#re_first .letter-count').text('300/300');
+		$('#re_first .letter-count').text('50/50');
 	}	
 
 	//textarea에 내용 입력시 글자수 체크
@@ -127,11 +129,11 @@ $(function(){
 		//입력한 글자수 구함
 		let inputLength = $(this).val().length;
 		
-		if(inputLength > 300){ //300를 넘어선 경우
-			$(this).val($(this).val().substring(0,300)); //300자까지만 남기고 나머지는 잘라냄. 남긴 건 다시 textarea에 셋팅
-		}else{ //300자 이하인 경우
-			let remain = 300 - inputLength;
-			remain += '/300';
+		if(inputLength > 50){ //50를 넘어선 경우
+			$(this).val($(this).val().substring(0,50)); //50자까지만 남기고 나머지는 잘라냄. 남긴 건 다시 textarea에 셋팅
+		}else{ //50자 이하인 경우
+			let remain = 50 - inputLength;
+			remain += '/50';
 			if($(this).attr('id') == 'qnaComm_content'){
 				//등록폼 글자수
 				$('#re_first .letter-count').text(remain);
@@ -148,13 +150,13 @@ $(function(){
 		//댓글 번호
 		let qnaComm_id = $(this).attr('data-renum');
 		//댓글 내용		this는 수정버튼						//g:지정문자열 모두, i:대소문자 구별없이 검색
-		let qnaComm_content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+		let qnaComm_content = $(this).parents('.sub-item').find('p').html().replace(/<br>/gi,'\n');
 		
 		//댓글 수정폼 UI(동적으로 만듦) //아래에서 .item에 붙일 건데 이게 있어야 할 자리에 수정폼을 보여지게 할 거라서 이건 숨김처리 할 거다
 		let modifyUI = '<form id="mre_form">';
 			modifyUI += '<input type="hidden" name="qnaComm_id" id="qnaComm_id" value="'+qnaComm_id+'">';
 			modifyUI += '<textarea rows="3" cols="50" name="qnaComm_content" id="mre_content" class="rep-content">'+qnaComm_content+'</textarea>';
-			modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
+			modifyUI += '<div id="mre_first"><span class="letter-count">50/50</span></div>';
 			modifyUI += '<div id="mre_second" class="align-right">';
 			modifyUI += ' <input type="submit" value="수정">';
 			modifyUI += ' <input type="button" value="취소" class="re-reset">';
@@ -167,7 +169,7 @@ $(function(){
 			
 			//지금 클릭해서 수정하고자 하는 데이터는 감추기
 			//수정버튼(this(직계부모))을 감싸고 있는 div
-			$(this).parent().hide();
+			$(this).parents('.sub-item').hide();
 			
 			//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
 				//부모들 중에서라서 parents. 29라인 보면 item 이랑 sub-item이 있는데 얘네가 부모들이다
@@ -175,8 +177,8 @@ $(function(){
 			
 			//입력한 글자수 셋팅
 			let inputLength = $('#mre_content').val().length;
-			let remain = 300 - inputLength;
-			remain += '/300';
+			let remain = 50 - inputLength;
+			remain += '/50';
 			
 				//문서 객체에 반영
 			$('#mre_first .letter-count').text(remain);

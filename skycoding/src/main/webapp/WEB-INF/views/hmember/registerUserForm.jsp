@@ -109,6 +109,11 @@
 				$('#cell').val('').focus();
 				return false;
 			}
+			if ($('#email').val().trim() == '') {
+				alert('이메일을 입력하세요!');
+				$('#email').val('').focus();
+				return false;
+			}
 		});//end of submit
 
 	});
@@ -179,6 +184,12 @@ ul li {
 						<label for="cell">전화번호</label>
 						<div class="col-md-15">
 							<input type="text" class="form-control" id="cell" name="mem_cell">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="email">이메일</label>
+						<div class="col-md-15">
+							<input type="email" class="form-control" id="email" name="mem_email">
 						</div>
 					</div>
 					<button type="submit" class="btn btn-primary">회원가입</button>

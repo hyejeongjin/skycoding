@@ -11,10 +11,12 @@ public class MemberVO {
 	private int mem_pwq;
 	private String mem_pwa;
 	private String mem_cell;
+	private String mem_email;
 	private Date mem_reg_date;
 	private Date mem_modify_date;
 	private String mem_photo;
 	private String qna_detail;
+	
 
 
 	//비밀번호 일치 여부 체크
@@ -84,6 +86,12 @@ public class MemberVO {
 	}
 	public void setMem_cell(String mem_cell) {
 		this.mem_cell = mem_cell;
+	}
+	public String getMem_email() {
+		return mem_email;
+	}
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
 	}
 	public Date getMem_reg_date() {
 		return mem_reg_date;

@@ -43,15 +43,15 @@
 
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="${pageContext.request.contextPath}/image/mainimg01.jpg"
+						<img src="${pageContext.request.contextPath}/images/mainimg01.jpg"
 							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="${pageContext.request.contextPath}/image/mainimg02.jpg"
+						<img src="${pageContext.request.contextPath}/images/mainimg02.jpg"
 							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="${pageContext.request.contextPath}/image/mainimg04.jpg"
+						<img src="${pageContext.request.contextPath}/images/mainimg04.jpg"
 							class="d-block w-100">
 					</div>
 				</div>

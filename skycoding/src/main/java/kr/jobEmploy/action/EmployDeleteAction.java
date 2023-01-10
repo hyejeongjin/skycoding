@@ -25,7 +25,7 @@ public class EmployDeleteAction implements Action{
 		int emp_id = Integer.parseInt(request.getParameter("emp_id"));
 		EmployDAO dao = EmployDAO.getInstance();
 		EmployVO db_employ = dao.getEmployDetail(emp_id);
-		
+		  
 		//관리자가 아닌 경우
 		if(mem_auth!=9) {
 			return "/WEB-INF/views/common/notice.jsp";

@@ -1,5 +1,5 @@
 package kr.jobEmploy.action;
-
+  
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,6 +35,6 @@ public class EmployDetailAction implements Action{
 		request.setAttribute("employ", employ);
 		
 		return "/WEB-INF/views/jobEmploy/employDetail.jsp";
-	}
+	}  
 
 }

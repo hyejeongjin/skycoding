@@ -37,7 +37,7 @@ public class EmployDeleteFileAction implements Action{
 				FileUtil.removeFile(request, employ.getEmp_photo());
 				mapAjax.put("result", "success");
 			}
-		}
+		}  
 		//JSON 데이터 생성
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);

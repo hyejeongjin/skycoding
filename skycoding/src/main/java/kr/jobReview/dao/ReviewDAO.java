@@ -319,6 +319,35 @@ public class ReviewDAO {
 	}
 	
 	//댓글 목록
+	public List<ReviewCommentVO> getListReviewComment(int start, int end)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ReviewCommentVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부텈 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_review_comment j"
+					+ "JOIN hmember h USING(mem_num) ORDER BY j.com_id DESC)a) WHERE rnum>=? AND rnum<=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
 	
 	//댓글 상세
 	

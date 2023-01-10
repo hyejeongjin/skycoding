@@ -21,7 +21,7 @@ public class WriteCommentAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
-		
+		 
 		if(mem_num==null) {//로그인 x
 			mapAjax.put("result", "logout");
 		}else {//로그인 o

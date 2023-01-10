@@ -14,7 +14,7 @@
 
 .content-right {
 	width: 85%;
-	float: right;
+	float: right; 
 	padding: 20px 30px; /*상하 좌우*/
 	transition: all 0.3s; /*모든 것에 속도 움직임을 넣음*/
 }

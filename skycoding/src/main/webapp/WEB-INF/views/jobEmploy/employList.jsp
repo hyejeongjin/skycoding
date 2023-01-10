@@ -18,7 +18,7 @@
 <!-- 순서가 중요함(맨위에 있으면 스타일 달라짐) -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="https://kit.fontawesome.com/dce0734714.js" crossorigin="anonymous"></script>
-</head>
+</head> 
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="page-main">

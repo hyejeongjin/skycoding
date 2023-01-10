@@ -18,7 +18,7 @@ public class EmployVO {
 	
 	public int getMem_auth() {
 		return mem_auth;
-	}
+	} 
 	public void setMem_auth(int mem_auth) {
 		this.mem_auth = mem_auth;
 	}

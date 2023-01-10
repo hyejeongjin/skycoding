@@ -18,7 +18,7 @@ public class EmployDetailAction implements Action{
 		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
 		request.setAttribute("mem_auth", mem_auth);
 		
-		//글 번호 반환
+		//글 번호 반환 
 		int emp_id = Integer.parseInt(request.getParameter("emp_id"));
 		
 		EmployDAO dao = EmployDAO.getInstance();

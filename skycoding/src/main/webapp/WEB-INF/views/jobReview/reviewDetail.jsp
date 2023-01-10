@@ -86,7 +86,7 @@
 			<c:if test="${!empty review.rev_photo}">
 				<img src="${pageContext.request.contextPath}/upload/${review.rev_photo}" class="detail-img">
 			</c:if>
-			<div class="detail-content">
+			<div class="detail-content"> 
 				${review.rev_content}
 			</div>
 			<hr class="hr-style" size="1" width="100%">

@@ -17,7 +17,7 @@ public class ReviewDetailAction implements Action{
 		ReviewDAO dao = ReviewDAO.getInstance();
 		//조회수 증가
 		dao.updateReadCount(rev_id);
-		
+		  
 		//글상세보기
 		ReviewVO review = dao.getReviewDetail(rev_id);
 		review.setRev_title(StringUtil.useNoHtml(review.getRev_title()));

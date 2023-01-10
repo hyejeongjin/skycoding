@@ -24,7 +24,7 @@ public class ReviewDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+		 
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO job_review (rev_id,mem_num,rev_title,rev_photo,rev_content) VALUES "

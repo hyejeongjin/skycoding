@@ -22,7 +22,7 @@ public class ReviewListAction implements Action{
 		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
-		
+		 
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		//글목록 개수 구하기

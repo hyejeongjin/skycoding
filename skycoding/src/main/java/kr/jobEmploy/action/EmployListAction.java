@@ -22,7 +22,7 @@ public class EmployListAction implements Action{
 		//총 글 목록 개수 구하기
 		EmployDAO dao = EmployDAO.getInstance();
 		int count = dao.getEmployCount(keyfield, keyword);
-
+ 
 		//페이지처리
 		//keyfield,keyword,currentPage,count,rowCount,pageCount,url
 		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 8, 3, "employList.do");

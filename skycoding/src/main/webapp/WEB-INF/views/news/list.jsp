@@ -82,7 +82,7 @@
 					<c:forEach var="news" items="${list}">
 			<tr>
 				<td>${news.news_id}</td>
-				<td><a href="detail.do?board_num=${news.news_id}">${news.news_title}</a></td>
+				<td><a href="detail.do?news_id=${news.news_id}">${news.news_title}</a></td>
 				<td>${news.news_reg_date}</td>
 				<td>${news.news_hit}</td>
 			</tr>
@@ -104,7 +104,7 @@
 
 
 			
-	   	<!-- content 끝 -->
+		<!-- content 끝 -->
 	
 		<!-- End Pagination with icons -->
 		</div>

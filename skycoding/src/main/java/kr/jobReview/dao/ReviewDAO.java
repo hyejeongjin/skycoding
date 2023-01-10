@@ -319,7 +319,7 @@ public class ReviewDAO {
 	}
 	
 	//댓글 목록
-	public List<ReviewCommentVO> getListReviewComment(int start, int end)throws Exception {
+	public List<ReviewCommentVO> getListReviewComment(int start, int end, int rev_id)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -330,15 +330,31 @@ public class ReviewDAO {
 			//커넥션풀로부텈 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_review_comment j"
-					+ "JOIN hmember h USING(mem_num) ORDER BY j.com_id DESC)a) WHERE rnum>=? AND rnum<=?";
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_review_comment j "
+					+ "JOIN hmember h USING(mem_num) WHERE j.rev_id=? ORDER BY j.com_id DESC)a) WHERE rnum>=? AND rnum<=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			//SQL문 실행
-			pstmt.executeUpdate();
+			pstmt.setInt(1, rev_id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행해서 결과행들을 rs에 담음
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewCommentVO reviewComment = new ReviewCommentVO();
+				reviewComment.setCom_id(rs.getInt("com_id"));
+				reviewComment.setCom_content(rs.getString("com_content"));
+				reviewComment.setCom_reg_date(rs.getString("com_reg_date"));
+				//수정일은 not null이 아니기때문에 조건 체크
+				if(rs.getString("com_modify_date")!=null) {
+					reviewComment.setCom_modify_date(rs.getString("com_modify_date"));
+				}
+				reviewComment.setMem_num(rs.getInt("mem_num"));
+				reviewComment.setMem_id(rs.getString("mem_id"));
+				reviewComment.setRev_id(rs.getInt("rev_id"));
+				
+				list.add(reviewComment);
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {

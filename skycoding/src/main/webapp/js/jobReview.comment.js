@@ -5,10 +5,73 @@ $(function(){
 	
 	//댓글 목록
 	function selectList(pageNum){
+		currentPage = pageNum;
 		
+		//로딩 이미지 노출
+		$('#loading').show();
+		
+		$.ajax({
+			url:'listComment.do',
+			type:'post',
+			data:{pageNum:pageNum,rev_id:$('#rev_id').val()},
+			dataType:'json',
+			success:function(param){
+				$('#loading').hide();
+				count = param.count;
+				rowCount = param.rowCount;
+				
+				if(pageNum==1){
+					//처음 호출시는 목록을 표시하는 div에 내용물 제거
+					$('#output').empty();
+				}
+				$(param.list).each(function(index,item){
+					let output = '<div class="item">';
+					output += '<h4>' + item.mem_id + '</h4>';
+					output += '<div class="sub-item">';
+					output += '<p>' + item.com_content + '</p>';
+					
+					if(item.com_modify_date){
+						output += '<span class="modify-date">최근 수정일 : ' + item.com_modify_date + '</span>';
+					}else{
+						output += '<span class="modify-date">등록일 : ' + item.com_reg_date + '</span>';
+					}
+					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
+					if(param.mem_num==item.mem_num){
+						                               //커스텀 data- 속성으로 속성 만들기 가능
+						                               //data-comnum은 댓글 번호 표시(수정, 삭제시 댓글번호를 쉽게 읽어옴)
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="수정" class="modify-btn">';
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="삭제" class="delete-btn">';
+					}
+					output += '<hr size="1" noshade width="100%">';
+					output += '</div></div>';
+				
+					$('#output').append(output);
+				});//end of each
+				
+				//페이지버튼 처리
+				if(currentPage >= Math.ceil(count/rowCount)){//총 페이지 개수
+					//다음 페이지가 없음
+					$('.paging-button').hide();
+				}else{
+					//다음페이지가 존재
+					$('.paging-button').show();
+				}
+				
+			},
+			error(){
+				$('#loading').hide();
+				alert('네트워크 오류 발생');
+			}
+		});
 	}
 	
 	//페이지 처리 이벤트 연결(다음 댓글 보기 클릭시 데이터 추가) 
+	$('.paging-button').click(function(){
+		selectList(currentPage + 1);
+	});
+	
+	
+	
 	
 	//댓글 등록
 	$('#com_form').submit(function(event){

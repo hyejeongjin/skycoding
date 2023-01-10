@@ -70,7 +70,7 @@
 		
 		
 				<!-- table 시작 -->
-				<div class="table-content">
+				<div class="content-margin">
 				<c:if test="${count == 0}">
 				<table class="table table-group-divider align-center">
 					<tr>
@@ -114,13 +114,14 @@
 						</c:forEach>
 					</table>
 				</c:if>
-			</div><!-- table 끝 -->
+				</div><!-- table 끝 -->
+				<c:if test="${!empty mem_num}">
 				<div class="align-right">
 					<input class="btn btn-primary" type="button" value="글쓰기" id="write_btn"
-								onclick="location.href='reviewWriteForm.do'"
-								<c:if test="${empty mem_num}">disabled="disabled"</c:if>/><!-- 로그인 안된 경우 버튼 비활성화 -->
+								onclick="location.href='reviewWriteForm.do'">
+								
 				</div>
-			
+				</c:if>
 				<!-- 페이지 번호 시작 -->
 				<c:if test="${count>0}">
 				<div class="align-center">${page}</div>
@@ -128,5 +129,6 @@
 			</div><!-- 사이드바 오른쪽 화면 끝 -->	
 		</div><!-- 컨텐트 메인 끝 -->
 	</div><!-- 페이지 메인 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 </html>

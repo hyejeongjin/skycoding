@@ -128,6 +128,7 @@ public class EmployDAO {
 				EmployVO employ = new EmployVO();
 				employ.setEmp_id(rs.getInt("emp_id"));
 				employ.setEmp_title(StringUtil.useNoHtml(rs.getString("emp_title")));
+				employ.setEmp_photo(rs.getString("emp_photo"));
 				employ.setMem_id(rs.getString("mem_id"));
 				employ.setEmp_reg_date(rs.getDate("emp_reg_date"));
 				employ.setEmp_hit(rs.getInt("emp_hit"));

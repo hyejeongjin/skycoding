@@ -4,12 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import kr.controller.Action;
 import kr.jobEmploy.dao.EmployDAO;
 import kr.jobEmploy.vo.EmployVO;
-import kr.util.PagingUtil;
+import kr.util.PagingUtil2;
 
 public class EmployListAction implements Action{
 
@@ -24,12 +22,10 @@ public class EmployListAction implements Action{
 		//총 글 목록 개수 구하기
 		EmployDAO dao = EmployDAO.getInstance();
 		int count = dao.getEmployCount(keyfield, keyword);
-		
-	
 
 		//페이지처리
 		//keyfield,keyword,currentPage,count,rowCount,pageCount,url
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 5, "employList.do");
+		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 8, 3, "employList.do");
 		
 		//목록 구하기
 		List<EmployVO> list = null;

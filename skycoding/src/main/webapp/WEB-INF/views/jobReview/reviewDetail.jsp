@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/job_style.css">
 <!-- 순서가 중요함(맨위에 있으면 스타일 달라짐) -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jobReview.comment.js"></script>
 <script src="https://kit.fontawesome.com/dce0734714.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -43,7 +44,7 @@
 				<div class="detail-top">
 					<h2>${review.rev_title}</h2>
 					<!-- 로그인한 회원번호와 작성자 회원번호가 같아야만 수정, 삭제 가능 -->
-					<c:if test="${user_num==review.mem_num}">
+					<c:if test="${mem_num==review.mem_num}">
 					<div class="top-button">
 						<input type="button" value="수정" class="btn btn-primary btn-sm" 
 								onclick="location.href='reviewUpdateForm.do?rev_id=${review.rev_id}'">
@@ -89,38 +90,44 @@
 				${review.rev_content}
 			</div>
 			<hr class="hr-style" size="1" width="100%">
-			<div class="bottom-btn">
-				<div>${page}</div>
-				<input class="btn btn-primary list-btn" type="button" value="목록" onclick="location.href='reviewList.do'">
-			</div>
-			<!-- 댓글 시작 -->
-			<div id="comment_div">
-				<form id="com_form">
-					<input type="hidden" name="rev_id" value="${review.rev_id}" id="rev_id">
-					<textarea rows="3" cols="50" name="com_content" id="com_content" class="comment_content" 
-					<c:if test="${empty user_num}">disabled="disabled"</c:if>
-					><c:if test="${empty user_num}">로그인해야 작성할 수 있습니다</c:if></textarea>
-					<c:if test="${!empty user_num }">
-						<div id="com_first">
-							<span class="letter-count">300/300</span>
-						</div>
-						<div id="com_second">
-							<input type="submit" value="등록">
-						</div>
-					</c:if>
-				</form>
-			</div>
-			<!-- 댓글 목록 시작 -->
-			<span>댓글 #개</span>
-			<div id="com_output"></div>
-			<div>
-				<button type="button" class="paging-button"><i class="fa-solid fa-chevron-down"></i></button>				
-			</div>
-			<div id="loading" style="display:none;">
-				<img src="${pageContext.request.contextPath}/images/loading.gif" width="40" height="40">
-			</div>
-			<!-- 댓글 목록 끝 -->
-			<!-- 댓글 끝 -->
+			
+			
+			
+			<!-- 댓글 목록 출력 시작 -->
+					<div id="output"></div>
+					<div class="paging-button" style="display: none;">
+						<input class="btn btn-outline-secondary" type="button" value="더보기">
+					</div>
+					<div id="loading" style="display: none;">
+						<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">
+					</div>
+					<!-- 댓글 목록 출력 끝 -->
+
+					<!-- 댓글 시작 -->
+					<div id="reply_div">
+						<span class="com-title" style="font-size: 15pt">댓글</span>&nbsp; 
+						<span class="letter-count" id="com_first">300 / 300</span>
+						<form id="com_form">
+							<!-- submit하면 ajax 통신하도록 만듦. qnaBoard.reply.js에서 댓글 등록 부분 참고 -->
+							<input type="hidden" name="rev_id" value="${review.rev_id}"
+								id="rev_id">
+							<div class="inner-text">
+								<textarea class="form-control com-content inner-text"
+									name="com_content" id="com_content" placeholder="댓글을 입력하세요"
+									<c:if test="${empty mem_num}">disabled="disabled"</c:if>><c:if
+										test="${empty mem_num}">로그인 해야 작성할 수 있습니다.</c:if></textarea>
+									<c:if test="${!empty mem_num}">
+									<button type="submit" class="btn btn-outline-primary" id="inner-submit"><i class="fa-solid fa-paper-plane fa-2x"></i></button>
+									</c:if>
+							</div>
+						</form>
+					</div>
+					<!-- 댓글 끝 -->
+					<div class="bottom-btn">
+						<div>${page}</div>
+						<input class="btn btn-primary list-btn my-3" type="button" value="목록" onclick="location.href='reviewList.do'">
+					</div>
+					
 		</div><!-- 사이드바 오른쪽 화면 끝 -->	
 	</div><!-- 컨텐트 메인 끝 -->
 </div><!-- 페이지 메인 -->

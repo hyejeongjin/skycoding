@@ -43,7 +43,7 @@
 				<div class="detail-top">
 					<h2>${employ.emp_title}</h2>
 					<!-- 관리자만 수정, 삭제 가능 -->
-					<c:if test="${user_auth==9}">
+					<c:if test="${mem_auth==9}">
 					<div class="top-button">
 						<input type="button" value="수정" class="btn btn-primary btn-sm" 
 								onclick="location.href='employUpdateForm.do?emp_id=${employ.emp_id}'">
@@ -82,9 +82,6 @@
 				</ul>
 			</div>
 			<hr class="hr-style" size="1" width="100%">
-			<c:if test="${!empty employ.emp_photo}">
-				<img src="${pageContext.request.contextPath}/upload/${employ.emp_photo}" class="detail-img">
-			</c:if>
 			<div class="detail-content">
 				${employ.emp_content}
 			</div>
@@ -98,5 +95,6 @@
 		</div><!-- 사이드바 오른쪽 화면 끝 -->	
 	</div><!-- 컨텐트 메인 끝 -->
 </div><!-- 페이지 메인 -->
+<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 </html>

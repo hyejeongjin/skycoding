@@ -46,7 +46,7 @@
 
 /*취업현황 메인페이지 - 테이블
 ---------------------------*/
-.table-content{
+.content-margin{
 	margin:10px auto;
 }
 #t2 {
@@ -99,7 +99,7 @@
 	margin-top:30px;
 	padding-left:10px;
 	width:100%;
-	height:500px;
+	height:300px;
 }
 .detail-img{
 	max-width:500px;
@@ -163,45 +163,23 @@
 	text-align: left;
 }
 
-/*댓긓
+/*댓글
 ----------------------*/
-#comment_div{
-	padding:5px 10px 40px 10px;
-	margin-top:10px;
-	background-color: #EEEEEE;
+div.inner-text{
+  position:relative;
 }
-form#com_form{
-	width:650px;
+.inner-text{
+	height:130px;
 }
-span.letter-count{
-	font-size:10pt;
-	color:#999;
+#inner-submit{
+  position:absolute;
+  bottom:0px;
+  right:0px;
+  border:none;
 }
-textarea.comment-content{
-	width:90%;
-	height:50px;
-	margin:10px 10px;
-}
-div#com_first,div#mcom_first{
-	float:left;
-	width:70%;
-	padding-left:15px;
-	margin-bottom:10px;
-}
-div#com_second,div#mcom_second{
-	float:left;
-	width:19%;
-	margin-bottom:10px;
-}
-div#loading,div.paging-button{
-	text-align: center;
-}
-div#com_output{
-	clear:both;
-}
-form#mcom_form{
-	margin:5px;
-}
+
+
+
 /**
 * Template Name: NiceAdmin - v2.5.0
 * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -473,6 +451,9 @@ h6 {
   font-weight: 500;
   color: #012970;
   font-family: "Poppins", sans-serif;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-title span {

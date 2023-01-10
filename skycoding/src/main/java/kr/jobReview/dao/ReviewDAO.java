@@ -293,6 +293,30 @@ public class ReviewDAO {
 	}
 	
 	//댓글 개수
+	public int getReviewCommentCount(int rev_id)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT COUNT(*) FROM job_review_comment j JOIN hmember h USING(mem_num) "
+					+ "WHERE rev_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rev_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
 	//댓글 목록
 	

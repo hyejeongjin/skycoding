@@ -67,6 +67,7 @@
 				</div>
 		
 				<!-- 카드 시작 -->
+				<div class="content-margin">
 				<c:if test="${count == 0}">
 				<table class="table table-group-divider align-center">
 					<tr>
@@ -80,22 +81,23 @@
 					  <div class="col job-card">
 					    <div class="card h-100">
 					      <a href="employDetail.do?emp_id=${employ.emp_id}">
-					      <img src="${pageContext.request.contextPath}/images/employ.jpg" class="card-img-top" width="100%" height="100%">
+					      <img src="${pageContext.request.contextPath}/upload/${employ.emp_photo}" class="card-img-top" width="100%" height="100%">
 					      </a>
-					      <div class="card-body">
-					        <h5 class="card-title">${employ.mem_id}</h5>
-					        <p class="card-text">
-					        	${employ.emp_reg_date} &nbsp;${employ.emp_hit}
-					        </p>
-					      </div>
+						      <div class="card-body">
+						        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
+						        <p class="card-text">
+						        	${employ.emp_reg_date} &nbsp;${employ.emp_hit}
+						        </p>
+						      </div>
 					    </div>
 					  </div>
 					 </c:forEach>
 				</div>
 				</c:if>
+				</div>
 				<!-- 카드 끝 -->
 				
-				<c:if test="${user_auth==9}"><!-- 관리자만 버튼 활성화 -->
+				<c:if test="${mem_auth==9}"><!-- 관리자만 버튼 활성화 -->
 				<div class="align-right">
 					<input class="btn btn-primary" type="button" value="글쓰기" id="write_btn"
 								onclick="location.href='employWriteForm.do'">

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.jobReview.dao.ReviewDAO;
 import kr.jobReview.vo.ReviewVO;
-import kr.util.PagingUtil;
+import kr.util.PagingUtil2;
 
 public class ReviewListAction implements Action{
 
@@ -32,7 +32,7 @@ public class ReviewListAction implements Action{
 		
 		//페이지 처리
 		//         페이지버튼을 만드는 html 코드 반환
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10,5,"reviewList.do");
+		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 10,5,"reviewList.do");
 		request.setAttribute("page", page.getPage());
 		
 		//목록구하기

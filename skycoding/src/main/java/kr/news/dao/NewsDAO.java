@@ -157,5 +157,67 @@ public class NewsDAO {
 			}
 			return list;
 		}
-		
+		//글상세
+				public NewsVO getNews(int news_id)throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					NewsVO news = null;
+					String sql = null;
+					
+					try {
+						//커넥션풀로부터 커넥션을 할당
+						conn = DBUtil.getConnection();
+						//SQL문 작성
+						sql = "SELECT * FROM news "
+								+ "WHERE news_id=?";
+						//PreparedStatement 객체 생성
+						pstmt = conn.prepareStatement(sql);
+						//?에 데이터 바인딩
+						pstmt.setInt(1, news_id);
+						//SQL문을 실행해서 결과행을 ResultSet에 담음
+						rs = pstmt.executeQuery();
+						
+						if(rs.next()) {
+							news = new NewsVO();
+							news.setNews_id(rs.getInt("news_id"));
+							news.setNews_title(rs.getString("news_title"));
+							news.setNews_content(rs.getString("news_content"));
+							news.setNews_hit(rs.getInt("news_hit"));
+							news.setNews_reg_date(rs.getDate("news_reg_date"));
+							news.setNews_modify_date(rs.getDate("news_modify_date"));
+							news.setNews_photo(rs.getString("news_photo"));
+						}
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(rs, pstmt, conn);
+					}
+					return news;
+				}
+				
+				//조회수 증가
+				public void updateReadcount(int news_id)
+						                       throws Exception{
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					String sql = null;
+					
+					try {
+						//커넥션풀로부터 커넥션을 할당
+						conn = DBUtil.getConnection();
+						//SQL문 작성
+						sql = "UPDATE news SET news_hit=news_hit+1 WHERE news_id=?";
+						//PreparedStatement 객체 생성
+						pstmt = conn.prepareStatement(sql);
+						//?에 데이터를 바인딩
+						pstmt.setInt(1, news_id);
+						//SQL문 실행
+						pstmt.executeUpdate();
+					}catch(Exception e) {
+						throw new Exception(e);
+					}finally {
+						DBUtil.executeClose(null, pstmt, conn);
+					}
+				}
 }

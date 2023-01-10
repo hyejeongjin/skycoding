@@ -47,7 +47,7 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" 
-									<c:if test="${!empty user_num && (user_auth == 1 || user_auth == 9)}"> 
+									<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
 									href="${pageContext.request.contextPath}/board_qna/list.do"
 									</c:if>
 									>질문게시판</a></li>

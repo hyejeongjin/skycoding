@@ -6,7 +6,7 @@ public class PagingUtil2 {
 	private StringBuffer page;// 페이지 표시 문자열
 
 	/**
-	 * currentPage : 현재페이지
+	 * currentPage : 현재페이지 
 	 * count : 전체 게시물 수
 	 * rowCount : 한 페이지의  게시물의 수
 	 * pageCount : 한 화면에 보여줄 페이지 수

@@ -28,7 +28,7 @@ public class WriteReplyAction implements Action{
 			request.setCharacterEncoding("utf-8");
 			
 			QnaBoardReplyVO reply = new QnaBoardReplyVO();
-			//회원처리 풀면 user_num넣어주기
+			
 			reply.setMem_num(user_num); //세션에서 빼낸 회원번호(댓글 작성자)를 넣어줌
 			reply.setQnaComm_content(request.getParameter("qnaComm_content"));
 			reply.setQna_id(Integer.parseInt(request.getParameter("qna_id")));

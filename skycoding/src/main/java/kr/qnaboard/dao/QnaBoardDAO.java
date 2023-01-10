@@ -50,8 +50,7 @@ public class QnaBoardDAO {
 	}
 	
 	//총 레코드 수(검색 레코드 수) //목록작업 위해 레코드 필요
-public int getBoardCount(String keyfield, String keyword)throws Exception{
-		
+	public int getBoardCount(String keyfield, String keyword)throws Exception{	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

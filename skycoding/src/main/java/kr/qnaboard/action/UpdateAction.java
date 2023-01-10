@@ -20,7 +20,7 @@ public class UpdateAction implements Action{
 		Integer user_num = (Integer)session.getAttribute("mem_num");
 		
 		if(user_num == null) { //로그인이 되지 않은 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 
 		//로그인 된 경우
@@ -33,13 +33,11 @@ public class UpdateAction implements Action{
 		//수정전 데이터 호출
 		QnaBoardVO db_board = qnaDao.getBoard(qna_id);
 		
-		/*회원 처리 후 주석 풀 예정
 		if(user_num != db_board.getMem_num()) {
 			//로그인한 회원번호와 작성자 회원번호가 불일치
-			FileUtil.removeFile(request, filename);//업로드된 파일이 있으면 파일을 삭제
+			FileUtil.removeFile(request, qna_photo);//업로드된 파일이 있으면 파일을 삭제
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		*/
 		
 		//로그인한 회원번호와 작성자 회원번호가 일치
 		QnaBoardVO qnaBoard = new QnaBoardVO();

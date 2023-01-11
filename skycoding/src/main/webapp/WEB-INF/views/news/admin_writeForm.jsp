@@ -15,7 +15,7 @@
 
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/course-style.css" >
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/news_tyle.css" >
   <script type="text/javascript">	
   $(function(){
 		$('#write_form').submit(function(){

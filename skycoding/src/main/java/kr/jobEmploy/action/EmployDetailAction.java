@@ -1,5 +1,8 @@
 package kr.jobEmploy.action;
   
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +29,7 @@ public class EmployDetailAction implements Action{
 		dao.UpdateReadCount(emp_id);
 		
 		EmployVO employ = dao.getEmployDetail(emp_id);
+		
 		
 		//HTML태그를 허용하지 않음
 		employ.setEmp_title(StringUtil.useNoHtml(employ.getEmp_title()));

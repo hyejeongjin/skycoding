@@ -93,7 +93,7 @@
 			
 			
 			
-			<!-- 댓글 목록 출력 시작 -->
+					<!-- 댓글 목록 출력 시작 -->
 					<div id="output"></div>
 					<div class="paging-button" style="display: none;">
 						<input class="btn btn-outline-secondary" type="button" value="더보기">
@@ -104,13 +104,14 @@
 					<!-- 댓글 목록 출력 끝 -->
 
 					<!-- 댓글 시작 -->
-					<div id="reply_div">
-						<span class="com-title" style="font-size: 15pt">댓글</span>&nbsp; 
-						<span class="letter-count" id="com_first">300 / 300</span>
+					<div id="comment_div">
 						<form id="com_form">
+							<div id="com_title">
+								<span class="com-title" style="font-size: 15pt;">댓글</span>&nbsp; 
+								<span class="letter-count" id="com_first">300 / 300</span>
+							</div>
 							<!-- submit하면 ajax 통신하도록 만듦. qnaBoard.reply.js에서 댓글 등록 부분 참고 -->
-							<input type="hidden" name="rev_id" id="rev_id" value="${review.rev_id}"
-								id="rev_id">
+							<input type="hidden" name="rev_id" id="rev_id" value="${review.rev_id}">
 							<div class="inner-text">
 								<textarea class="form-control com-content inner-text"
 									name="com_content" id="com_content" placeholder="댓글을 입력하세요"

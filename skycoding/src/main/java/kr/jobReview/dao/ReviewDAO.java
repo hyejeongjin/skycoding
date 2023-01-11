@@ -279,7 +279,7 @@ public class ReviewDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO job_review_comment (com_id,com_content,mem_num,rev_id) VALUES "
-					+ "(job_review_seq.nextval,?,?,?)";
+					+ "(job_review_comment_seq.nextval,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reviewComment.getCom_content());
 			pstmt.setInt(2, reviewComment.getMem_num());
@@ -299,11 +299,11 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		String sql = null;
 		int count = 0;
-		
+		 
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT COUNT(*) FROM job_review_comment j JOIN hmember h USING(mem_num) "
-					+ "WHERE rev_id=?";
+					+ "WHERE j.rev_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rev_id);
 			rs = pstmt.executeQuery();
@@ -340,10 +340,11 @@ public class ReviewDAO {
 			pstmt.setInt(3, end);
 			//SQL문 실행해서 결과행들을 rs에 담음
 			rs = pstmt.executeQuery();
+			list = new ArrayList<ReviewCommentVO>();
 			while(rs.next()) {
 				ReviewCommentVO reviewComment = new ReviewCommentVO();
 				reviewComment.setCom_id(rs.getInt("com_id"));
-				reviewComment.setCom_content(rs.getString("com_content"));
+				reviewComment.setCom_content(StringUtil.useBrNoHtml(rs.getString("com_content")));
 				reviewComment.setCom_reg_date(rs.getString("com_reg_date"));
 				//수정일은 not null이 아니기때문에 조건 체크
 				if(rs.getString("com_modify_date")!=null) {
@@ -366,9 +367,52 @@ public class ReviewDAO {
 	
 	
 	//댓글 상세
+	//작성자회원번호를 알아내기 위해(로그인한 사람과 일치하는지 확인)
+	public ReviewCommentVO getReviewComment(int com_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewCommentVO reviewComment = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT *FROM job_review_comment WHERE com_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, com_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reviewComment = new ReviewCommentVO();
+				reviewComment.setCom_id(rs.getInt("com_id"));
+				reviewComment.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reviewComment;
+	}
 	
 	//댓글 수정
-	
+	public void updateReviewComment(ReviewCommentVO reviewComment)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE job_review_comment SET com_content=? WHERE com_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewComment.getCom_content());
+			pstmt.setInt(2, reviewComment.getCom_id());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//댓글 삭제
 	

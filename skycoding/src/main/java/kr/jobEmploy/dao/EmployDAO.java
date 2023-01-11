@@ -143,6 +143,8 @@ public class EmployDAO {
 		return list;
 	}
 	
+	
+	
 	//글상세정보
 	public EmployVO getEmployDetail(int emp_id)throws Exception{
 		Connection conn = null;

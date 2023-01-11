@@ -39,11 +39,13 @@ $(function(){
 					if(param.mem_num==item.mem_num){
 						                               //커스텀 data- 속성으로 속성 만들기 가능
 						                               //data-comnum은 댓글 번호 표시(수정, 삭제시 댓글번호를 쉽게 읽어옴)
-						output += ' <input type="button" data-comnum="'+item.com_id+'" value="수정" class="modify-btn">';
-						output += ' <input type="button" data-comnum="'+item.com_id+'" value="삭제" class="delete-btn">';
+						output += '<div class="comment-btn">';
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="수정" class="modify-btn align-right btn btn-secondary btn-sm">';
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="삭제" class="delete-btn align-right btn btn-secondary btn-sm">';
+						output += '</div>';
 					}
-					output += '<hr size="1" noshade width="100%">';
 					output += '</div></div>';
+					output += '<hr size="1" noshade width="100%">';
 				
 					$('#output').append(output);
 				});//end of each
@@ -62,7 +64,7 @@ $(function(){
 				$('#loading').hide();
 				alert('네트워크 오류 발생');
 			}
-		});
+		});//end of ajax
 	}
 	
 	//페이지 처리 이벤트 연결(다음 댓글 보기 클릭시 데이터 추가) 
@@ -75,6 +77,7 @@ $(function(){
 	
 	//댓글 등록
 	$('#com_form').submit(function(event){
+		//기본이벤트 제거
 		event.preventDefault();
 		
 		if($('#com_content').val().trim()==''){
@@ -99,6 +102,7 @@ $(function(){
 					initForm();
 					//댓글 작성을 성공하면 새로 삽입한 댓글을 포함해서
 					//첫번째 페이지의 댓글을 다시 호출함
+					selectList(1);
 				}else{
 					alert('댓글 등록 오류 발생');
 				}
@@ -137,8 +141,31 @@ $(function(){
 		}
 	});
 	
+								
 	
-	//댓글 수정 버튼 클릭시 수정폼 초기화
+	//댓글 수정 버튼 클릭시 수정폼 노출
+	$(document).on('click',function(){
+		//댓글번호
+		let com_id = $(this).attr('data-comnum');	
+		//댓글 내용
+		let com_comment = $(this).parent().find('p').html().replace(/<br>/gi,'\n');	
+		                                                            //g:지정문자열 모두, i:대소문자 무시
+		//댓글 수정폼 UI
+		let modifyUI = '<form id="mcom_form">';
+		modifyUI = '<div id="com_title">';
+		modifyUI = '<span class="com-title" style="font-size: 15pt;">댓글</span>&nbsp;>';
+		modifyUI = '<span class="letter-count" id="com_first">300 / 300</span>';
+		modifyUI += '<input type="hidden" name="com_id" id="com_id" value="'+com_id+'">';
+		modifyUI += '<div class="inner-text">';
+		modifyUI += '<textarea rows="3" cols="50" name="com_content" id="mcom_content" class="com-content form-control inner-text">'+content+'</textarea>';
+		modifyUI += '<input type="submit" value="수정" class="btn btn-outline-primary>';
+		modifyUI += '<input type="button" value="취소" class="btn btn-outline-primary com-reset>';
+		modifyUI += '</div>';//end of inner-test
+		modifyUI += '</div>';
+		modifyUI += '<hr size="1" width="96%" noshade>';
+		modifyUI += '</form>';
+		                                                            
+	});
 
 
 	//수정폼에서 취소 버튼 클릭시 수정폼 초기화

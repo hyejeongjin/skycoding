@@ -31,14 +31,14 @@
 					<c:if test="${mem_auth==9}">
 					<div class="top-button" align="right" >
 						<input type="button" value="수정" class="btn btn-primary btn-sm" 
-								onclick="location.href='newsUpdateForm.do?news_id=${news.news_id}'">
+								onclick="location.href='updateForm.do?news_id=${news.news_id}'">
 						<input type="button" value="삭제" class="btn btn-primary btn-sm" id="delete-btn">
 						<script type="text/javascript">
 							$(function(){
 								$('#delete-btn').click(function(){
 									let choice = confirm('정말 삭제하시겠습니까?');
 									if(choice){
-										location.replace('newsDelete.do?news_id=${news.news_id}');
+										location.replace('delete.do?news_id=${news.news_id}');
 									}
 								});
 							});
@@ -77,11 +77,12 @@
 	<hr class="hr-style" size="1" width="100%">
 			<div class="bottom-btn">
 				<div>${page}</div>
-				<input class="btn btn-primary list-btn" type="button" value="목록" onclick="location.href='newsList.do'">
+				<input class="btn btn-primary list-btn" type="button" value="목록" onclick="location.href='list.do'">
 	</div>
 </div>
 </div>
 </div>
 </div>
+	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 </html>

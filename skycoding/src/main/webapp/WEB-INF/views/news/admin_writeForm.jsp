@@ -16,8 +16,13 @@
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" >
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/course-style.css" >
-  <script type="text/javascript">	$(function(){
+  <script type="text/javascript">	
+  $(function(){
 		$('#write_form').submit(function(){
+			if($('input[type=radio]:checked').length<1){
+				alert('필독 표시여부를 지정하세요!');
+				return false;
+			}
 			if($('#title').val().trim()==''){
 				alert('제목을 입력하세요!');
 				$('#title').val('').focus();
@@ -51,16 +56,25 @@
    
               <form action="admin_write.do" method="post" id="write_form" 
 		                       enctype="multipart/form-data">
+		                    <div class="form-check form-check-inline">
+                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                       <label class="form-check-label" for="inlineCheckbox1">필독표시</label>
+                              </div>
+                             <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                  <label class="form-check-label" for="inlineCheckbox2">필독 미표시</label>
+                              </div>
 		    	
 			
                 <div class="row mb-3">
                   <div class="col-sm-12" >
                     <input type="text" name="news_title" id="news_title" class="form-control" placeholder="제목을 입력해주세요">
+                   
                   </div>
                 </div>
                 <div class="row mb-3" >
                   <div class="col-sm-12">
-                    <input class="form-control" name="news_photo" id="news_photo" type="file" id="formFile">
+                    <input class="form-control" name="news_photo" id="news_photo" type="file" id="news_photo">
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -70,6 +84,7 @@
                 </div>
                 
                 <div class="text-end">
+          
                   <button type="button" class="btn btn-secondary">취소</button>
                   <button type="submit" class="btn btn-primary" >등록</button>
                 </div>
@@ -86,6 +101,7 @@
     </section>
 
   </main><!-- End #main -->
+  	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </div>
 </body>
 </html>

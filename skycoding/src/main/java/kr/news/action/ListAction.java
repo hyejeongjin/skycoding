@@ -2,13 +2,14 @@ package kr.news.action;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.news.dao.NewsDAO;
 import kr.news.vo.NewsVO;
 import kr.controller.Action;
-import kr.util.PagingUtil;
+import kr.util.PagingUtil2;
 
 
 public class ListAction implements Action{

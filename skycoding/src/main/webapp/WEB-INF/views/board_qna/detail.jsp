@@ -25,17 +25,16 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<!-- 사이드바 시작 -->
 		<aside id="sidebar" class="sidebar">
-			<ul class="sidebar-nav" id="sidebar-nav">
-				<li class="nav-item"><a class="nav-link collapsed"
+		   <ul class="sidebar-nav" id="sidebar-nav">
+				<li class="nav-item"><a class="nav-link"
 					href="${pageContext.request.contextPath}/board_qna/list.do"> <span>질문게시판</span>
 				</a></li>
-
-				<!-- 자유게시판 경로추가 예정 -->
-				<li class="nav-item"><a class="nav-link" 
-					href="${pageContext.request.contextPath}/board_free/list.do"> <span>자유게시판</span>
+	
+				<li class="nav-item"><a class="nav-link collapsed" 
+					href="${pageContext.request.contextPath}/board_free/list.do"> <span>자유게시판</span> 
 				</a></li>
 			</ul>
-		</aside>
+		 </aside>
 		<!-- 사이드바 끝 -->
 
 		<div class="content-main"><!-- 전체 화면의 80% -->

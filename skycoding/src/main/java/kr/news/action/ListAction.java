@@ -12,7 +12,7 @@ import kr.news.vo.NewsVO;
 import kr.controller.Action;
 import kr.util.PagingUtil2;
 
- 
+
 public class ListAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

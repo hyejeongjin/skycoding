@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.news.dao.NewsDAO;
 import kr.news.vo.NewsVO;
- 
+
 public class UpdateFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

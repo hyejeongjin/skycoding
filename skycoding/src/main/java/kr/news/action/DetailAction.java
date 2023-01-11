@@ -8,7 +8,7 @@ import kr.news.dao.NewsDAO;
 import kr.news.vo.NewsVO;
 import kr.controller.Action;
 import kr.util.StringUtil;
- 
+
 public class DetailAction implements Action{
 
 	@Override

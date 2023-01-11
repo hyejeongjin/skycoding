@@ -29,7 +29,9 @@ public class DeleteReplyAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("mem_num");
-		if(user_num==null) { //로그인이 안 된 경우
+		Integer user_auth = (Integer)session.getAttribute("mem_auth");
+		
+		if(user_num==null || user_auth == 0) { //로그인이 안 된 경우
 			mapAjax.put("result", "logout");
 		}else if(user_num!=null && user_num==db_reply.getMem_num()) {
 			//로그인 되어있고 회원번호와 댓글작성자 회원번호가 일치하는 경우

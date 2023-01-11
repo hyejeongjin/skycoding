@@ -21,7 +21,9 @@ public class WriteReplyAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("mem_num");
-		if(user_num==null) { //로그인이 되지 않은 경우
+		Integer user_auth = (Integer)session.getAttribute("mem_auth");
+		
+		if(user_num==null || user_auth == 0) { //로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else { //로그인 된 경우
 			//전송된 데이터 인코딩 처리

@@ -1,4 +1,4 @@
-package kr.qnaboard.action;
+package kr.freeboard.action;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.qnaboard.vo.QnaBoardVO;
 import kr.controller.Action;
-import kr.qnaboard.dao.QnaBoardDAO;
+import kr.freeboard.dao.FreeBoardDAO;
+import kr.freeboard.vo.FreeBoardVO;
 import kr.util.PagingUtil2;
 
 public class ListAction implements Action{
@@ -29,7 +29,7 @@ public class ListAction implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		QnaBoardDAO dao = QnaBoardDAO.getInstance();
+		FreeBoardDAO dao = FreeBoardDAO.getInstance();
 		int count = dao.getBoardCount(keyfield, keyword);
 		
 		//페이지 처리
@@ -40,7 +40,7 @@ public class ListAction implements Action{
 										 Integer.parseInt(pageNum),
 										 count,20,10,"list.do");
 		
-		List<QnaBoardVO> list= null;
+		List<FreeBoardVO> list= null;
 		if(count > 0) {
 			list = dao.getListBoard(page.getStartRow(),
 									page.getEndRow(),
@@ -52,7 +52,7 @@ public class ListAction implements Action{
 		request.setAttribute("page", page.getPage());
 		
 		
-		return "/WEB-INF/views/board_qna/list.jsp";
+		return "/WEB-INF/views/board_free/list.jsp";
 	}
 
 }

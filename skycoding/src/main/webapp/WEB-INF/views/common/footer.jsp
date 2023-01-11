@@ -24,20 +24,10 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link">커뮤니티</a>
 							<a class="nav-link"
-								<c:if test="${empty mem_num}">
-								href="${pageContext.request.contextPath}/hmember/loginForm.do"
-								</c:if>
-								<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
-								href="${pageContext.request.contextPath}/board_qna/list.do"
-								</c:if>>질문게시판</a>
+							   href="${pageContext.request.contextPath}/board_qna/list.do">질문게시판</a>
+							
 							<a class="nav-link" 
-								<c:if test="${empty mem_num}">
-								href="${pageContext.request.contextPath}/hmember/loginForm.do"
-								</c:if>
-								<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
-								href="${pageContext.request.contextPath}/board_free/list.do"
-								</c:if>
-							>자유게시판</a>
+							   href="${pageContext.request.contextPath}/board_free/list.do">자유게시판</a>
 						</li>
 				</ul>	
 				

@@ -14,7 +14,7 @@
   <!-- Vendor CSS Files -->
   <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/css/mypage-style.css" rel="stylesheet">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>

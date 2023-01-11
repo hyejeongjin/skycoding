@@ -28,7 +28,7 @@ public class MypageDAO {
 		int num = 0; //시퀀스 번호 저장
 		
 		try {
-			//커넥션풀로부터 커넥션 할당
+			//커넥션풀로부터 커넥션  할당
 			conn = DBUtil.getConnection();
 			//오토 커밋 해제
 			conn.setAutoCommit(false);

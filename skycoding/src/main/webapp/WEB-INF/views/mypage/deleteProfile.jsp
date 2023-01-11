@@ -30,7 +30,7 @@
 				onclick="location.href='${pageContext.request.contextPath}/main/main.do'">		   	
     </section>
   </main><!-- End #main --> 
-
+  
 </body>
 </html>
 </c:if>

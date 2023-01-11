@@ -14,7 +14,7 @@ public class DeleteProfileAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = 
-				(Integer)session.getAttribute("user_num");
+				(Integer)session.getAttribute("mem_num");
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.jsp";
 		}
@@ -29,7 +29,7 @@ public class DeleteProfileAction implements Action{
 		
 		//로그인한 아이디
 		String user_id = 
-				(String)session.getAttribute("user_id");
+				(String)session.getAttribute("mem_id");
 		
 		MypageDAO dao = MypageDAO.getInstance();
 		MypageVO db_member = dao.checkMember(id);

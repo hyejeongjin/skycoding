@@ -15,7 +15,7 @@ public class ModifyPwAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = 
-				(Integer)session.getAttribute("user_num");
+				(Integer)session.getAttribute("mem_num");
 		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.jsp";
 		}
@@ -33,7 +33,7 @@ public class ModifyPwAction implements Action{
 		String passwd = request.getParameter("passwd");
 		
 		//현재 로그인 한 아이디
-		String user_id = (String)session.getAttribute("user_id");
+		String user_id = (String)session.getAttribute("mem_id");
 		
 		MypageDAO dao = MypageDAO.getInstance();
 		MypageVO member = dao.checkMember(id);

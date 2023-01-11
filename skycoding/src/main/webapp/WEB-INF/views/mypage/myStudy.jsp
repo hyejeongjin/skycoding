@@ -85,6 +85,7 @@
               </nav><!-- End Pagination with icons -->
     </div>
   </main><!-- End #main -->
+  <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 
 </html>

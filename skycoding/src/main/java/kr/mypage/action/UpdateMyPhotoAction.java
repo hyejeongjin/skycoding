@@ -26,7 +26,7 @@ public class UpdateMyPhotoAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = 
-				(Integer)session.getAttribute("user_num");
+				(Integer)session.getAttribute("mem_num");
 		if(user_num==null) {//로그인이 되지 않은 경우
 			mapAjax.put("result", "logout");
 		}else {//로그인 된 경우
@@ -44,7 +44,7 @@ public class UpdateMyPhotoAction implements Action{
 			dao.updateMyPhoto(photo, user_num);
 			
 			//세션에 저장된 프로필 사진 정보 갱신
-			session.setAttribute("user_photo", photo);
+			session.setAttribute("mem_photo", photo);
 			
 			//이전 프로필 이미지 삭제
 			FileUtil.removeFile(request, db_member.getPhoto());

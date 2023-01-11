@@ -6,7 +6,7 @@ CREATE TABLE EVENT(
     event_attr number(1) not null,
     event_deadline varchar2(10) not null,
     event_reg_date date default SYSDATE not null,
-    event_hit number not null,
+    event_hit number(5) default 0 not null,
     event_photo varchar2(150) not null,
     event_content varchar2(4000) not null,
     event_detail_content varchar2(4000) not null,

@@ -47,11 +47,21 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" 
+									<c:if test="${empty mem_num}">
+									href="${pageContext.request.contextPath}/hmember/loginForm.do"
+									</c:if>
 									<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
 									href="${pageContext.request.contextPath}/board_qna/list.do"
 									</c:if>
 									>질문게시판</a></li>
-								<li><a class="dropdown-item" href="#!">자유게시판</a></li>
+								<li><a class="dropdown-item" 
+									<c:if test="${empty mem_num}">
+									href="${pageContext.request.contextPath}/hmember/loginForm.do"
+									</c:if>
+									<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
+									href="${pageContext.request.contextPath}/board_free/list.do"
+									</c:if>
+									>자유게시판</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/news/list.do">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link" href="#!">이벤트</a></li>

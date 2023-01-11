@@ -21,13 +21,17 @@ public class DetailAction implements Action{
 		qnaDao.updateReadcount(qna_id);
 
 		QnaBoardVO qnaBoard = qnaDao.getBoard(qna_id); //getBoard에 qna_id를 넘겨주면 QnaBoardVO 하나를 반환
-
+		QnaBoardVO pnBoard = qnaDao.prevNext(qna_id);
+		
+		
 		//HTML 태그를 허용하지 않음
 		qnaBoard.setQna_title(StringUtil.useNoHtml(qnaBoard.getQna_title()));
 		//HTML 태그를 허용하지 않으면서 줄바꿈 처리
 		qnaBoard.setQna_content(StringUtil.useBrNoHtml(qnaBoard.getQna_content()));
 
 		request.setAttribute("qnaBoard", qnaBoard);
+		request.setAttribute("pnBoard", pnBoard);
+		
 
 		return "/WEB-INF/views/board_qna/detail.jsp";
 	}

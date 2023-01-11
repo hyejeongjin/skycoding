@@ -23,10 +23,24 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="list-style-type: none;">
 						<li class="nav-item dropdown">
 							<a class="nav-link">커뮤니티</a>
-							<a class="nav-link" href="#">HTML</a>
-							<a class="nav-link" href="#">CSS</a>
+							<a class="nav-link"
+								<c:if test="${empty mem_num}">
+								href="${pageContext.request.contextPath}/hmember/loginForm.do"
+								</c:if>
+								<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
+								href="${pageContext.request.contextPath}/board_qna/list.do"
+								</c:if>>질문게시판</a>
+							<a class="nav-link" 
+								<c:if test="${empty mem_num}">
+								href="${pageContext.request.contextPath}/hmember/loginForm.do"
+								</c:if>
+								<c:if test="${!empty mem_num && (mem_auth == 1 || mem_auth == 9)}"> 
+								href="${pageContext.request.contextPath}/board_free/list.do"
+								</c:if>
+							>자유게시판</a>
 						</li>
-				</ul>
+				</ul>	
+				
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="list-style-type: none;">
 						<li class="nav-item dropdown">
 							<a class="nav-link" href="#">공지사항</a>

@@ -17,7 +17,7 @@ public class UpdateFormAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("mem_num");
 		if(user_num == null) { //로그인 되지 않은 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		
 		//로그인 된 경우

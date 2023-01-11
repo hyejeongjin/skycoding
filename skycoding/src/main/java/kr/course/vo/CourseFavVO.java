@@ -3,7 +3,7 @@ package kr.course.vo;
 
 public class CourseFavVO {
 	private int like_num;
-	private int couse_id;
+	private int course_id;
 	private int mem_num;
 	public int getLike_num() {
 		return like_num;
@@ -11,11 +11,11 @@ public class CourseFavVO {
 	public void setLike_num(int like_num) {
 		this.like_num = like_num;
 	}
-	public int getCouse_id() {
-		return couse_id;
+	public int getCourse_id() {
+		return course_id;
 	}
-	public void setCouse_id(int couse_id) {
-		this.couse_id = couse_id;
+	public void setCourse_id(int course_id) {
+		this.course_id = course_id;
 	}
 	public int getMem_num() {
 		return mem_num;
@@ -23,4 +23,5 @@ public class CourseFavVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
+	
 }

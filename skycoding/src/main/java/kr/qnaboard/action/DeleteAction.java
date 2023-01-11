@@ -19,7 +19,7 @@ public class DeleteAction implements Action{
 		Integer user_auth = (Integer)session.getAttribute("mem_auth");
 		
 		if(user_num == null) { //로그인 되지 않은 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		
 		//로그인 된 경우

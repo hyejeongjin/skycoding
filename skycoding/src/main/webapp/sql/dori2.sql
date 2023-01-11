@@ -21,7 +21,7 @@ create sequence course_seq;
       
 --강의 좋아요
 create table course_like(
- like_num number not null,
+ like_num number,
  course_id number not null,
  mem_num number not null,
  constraint course_like_pk primary key (like_num),

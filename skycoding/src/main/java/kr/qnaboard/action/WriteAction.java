@@ -20,7 +20,7 @@ public class WriteAction implements Action {
 		Integer user_num = (Integer)session.getAttribute("mem_num");
 		
 		if(user_num == null) { //로그인이 되지 않은 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		
 		//로그인 된 경우
@@ -29,7 +29,7 @@ public class WriteAction implements Action {
 		qnaboard.setQna_title(multi.getParameter("qna_title"));
 		qnaboard.setQna_content(multi.getParameter("qna_content"));
 		qnaboard.setQna_photo(multi.getFilesystemName("qna_photo"));
-		//qnaboard.setMem_num(user_num); //로그인 처리 완료하면 주석 풀 예정
+		qnaboard.setMem_num(user_num);
 
 
 		QnaBoardDAO dao = QnaBoardDAO.getInstance();

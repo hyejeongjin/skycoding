@@ -50,8 +50,7 @@ public class QnaBoardDAO {
 	}
 	
 	//총 레코드 수(검색 레코드 수) //목록작업 위해 레코드 필요
-public int getBoardCount(String keyfield, String keyword)throws Exception{
-		
+	public int getBoardCount(String keyfield, String keyword)throws Exception{	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -189,6 +188,67 @@ public int getBoardCount(String keyfield, String keyword)throws Exception{
 		}
 		return qnaBoard;
 	}
+	
+	
+	
+	
+	
+	//이전글, 다음글
+	public QnaBoardVO prevNext(int qna_id) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		QnaBoardVO pnBoard = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();	
+			//SQL문 작성
+			sql = "SELECT * FROM (" 
+				+ "SELECT qna_id,qna_title,"
+			    + "lag(qna_id,1) over(order by qna_id) prev,"
+			    + "lag(qna_title,1) over(order by qna_id) prev_title,"
+			    + "lead(qna_id,1) over(order by qna_id) next,"
+			    + "lead(qna_title,1) over(order by qna_id) next_title "
+			    + "FROM qna_detail) q WHERE q.qna_id=?";
+					
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, qna_id);
+			//SQL문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				pnBoard = new QnaBoardVO();
+				pnBoard.setQna_id(rs.getInt("qna_id"));
+				pnBoard.setQna_title(rs.getString("qna_title"));
+				pnBoard.setPrev(rs.getInt("prev"));
+				pnBoard.setPrev_title(rs.getString("prev_title"));
+				pnBoard.setNext(rs.getInt("next"));
+				pnBoard.setNext_title(rs.getString("next_title"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return pnBoard;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	//조회수 증가
 	public void updateReadcount(int qna_id) throws Exception{

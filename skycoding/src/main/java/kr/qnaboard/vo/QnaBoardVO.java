@@ -4,17 +4,55 @@ import java.sql.Date;
 
 public class QnaBoardVO {
 	private int qna_id;
-	private int mem_num;
+	private int mem_num; //hmember 속성(회원번호)
 	private String qna_title;
 	private String qna_content;
 	private Date qna_reg_date;
 	private Date qna_modify_date;
 	private int qna_hit;
 	private String qna_photo;
-
-	//컬럼에는 없는데 사용할 거라 넣음
+	
+	//컬럼에는 없는데 사용하려고 넣음
 	private String mem_id; //hmember 속성(아이디)
 	private String mem_photo; //hmember_detail 속성(프사)
+	
+	//컬럼에는 없는데 이전글,다음글 처리하려고 넣음
+	private int next;
+	private String next_title;
+	private int prev;
+	private String prev_title;
+
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+
+	public String getNext_title() {
+		return next_title;
+	}
+
+	public void setNext_title(String next_title) {
+		this.next_title = next_title;
+	}
+
+	public int getPrev() {
+		return prev;
+	}
+
+	public void setPrev(int prev) {
+		this.prev = prev;
+	}
+
+	public String getPrev_title() {
+		return prev_title;
+	}
+
+	public void setPrev_title(String prev_title) {
+		this.prev_title = prev_title;
+	}
 
 	public int getQna_id() {
 		return qna_id;

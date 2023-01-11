@@ -40,12 +40,12 @@ $(function(){
 		<!-- 사이드바 시작 -->
 		 <aside id="sidebar" class="sidebar">
 		   <ul class="sidebar-nav" id="sidebar-nav">
-				<li class="nav-item"><a class="nav-link collapsed"
+				<li class="nav-item"><a class="nav-link"
 					href="${pageContext.request.contextPath}/board_qna/list.do"> <span>질문게시판</span>
 				</a></li>
 	
-				<!-- 자유게시판 경로추가 예정 -->
-				<li class="nav-item"><a class="nav-link" href="#"> <span>자유게시판</span> 
+				<li class="nav-item"><a class="nav-link collapsed" 
+					href="${pageContext.request.contextPath}/board_free/list.do"> <span>자유게시판</span> 
 				</a></li>
 			</ul>
 		 </aside>
@@ -146,6 +146,6 @@ $(function(){
 			</div><!-- 사이드바 오른쪽 화면 끝 -->		
 		</div><!-- 컨텐트 메인 끝 -->
 	</div><!-- 페이지 메인 끝 -->
-	
+	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 </html>

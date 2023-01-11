@@ -10,4 +10,4 @@ CREATE TABLE news (
 	news_modify_date	date NULL,
     constraint news_pk primary key (news_id)
 );
-create sequence news_seq;
+create sequence news_seq; 

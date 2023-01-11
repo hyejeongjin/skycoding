@@ -1,72 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>작성게시글</title>
+  <title>관심강좌</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/css/mypage-style.css" rel="stylesheet">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 </head>
 
 
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">작성게시글</span>
-      </a>
-    </div>
-    
-  </header>
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
-          <i class="bi bi-person-circle"></i>
-          <span>프로필</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-book-half"></i>
-          <span>내 학습</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-pencil-square"></i>
-          <span>작성 게시글</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-bookmark-heart-fill"></i>
-          <span>관심 강좌</span>
-        </a>
-      </li>
-    </ul>
-  </aside><!-- End Sidebar-->
+  <jsp:include page="/WEB-INF/views/common/mybookmarkmain.jsp"/>
 
   <main id="main" class="main">    
 
@@ -107,12 +65,6 @@
       </div>
     </section>
 
-	<section class="section">
-	    <span class="likecourse-button" style="float:right;">
-          <button type="button" class="btn btn-secondary">글쓰기</button>
-        </span>
-    </section><br><br>
-        
     <div class="text-center">
       <!-- Pagination with icons -->
       <nav aria-label="Page navigation example">

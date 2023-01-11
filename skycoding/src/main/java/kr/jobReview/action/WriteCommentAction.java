@@ -26,13 +26,11 @@ public class WriteCommentAction implements Action{
 			mapAjax.put("result", "logout");
 		}else {//로그인 o
 			request.setCharacterEncoding("utf-8");
-			int rev_id = Integer.parseInt(request.getParameter("rev_id"));
-			String com_content = request.getParameter("com_content");
 			
 			ReviewCommentVO reviewComment = new ReviewCommentVO();
-			reviewComment.setCom_content(com_content);
 			reviewComment.setMem_num(mem_num);
-			reviewComment.setRev_id(rev_id);
+			reviewComment.setCom_content(request.getParameter("com_content"));
+			reviewComment.setRev_id(Integer.parseInt(request.getParameter("rev_id")));
 			
 			ReviewDAO dao =  ReviewDAO.getInstance();
 			dao.insertReviewComment(reviewComment);

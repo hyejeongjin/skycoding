@@ -28,10 +28,11 @@ public class UpdateReplyAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("mem_num");
+		Integer user_auth = (Integer)session.getAttribute("mem_auth");
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();
 		
-		if(user_num == null) { //로그인 안 되어있는 경우
+		if(user_num == null || user_auth == 0) { //로그인 안 되어있는 경우
 			mapAjax.put("result", "logout");
 		}else if(user_num!=null && user_num == db_reply.getMem_num()){
 			//로그인이 되어있고 로그인한 회원번호와 작성자 회원번호가 일치

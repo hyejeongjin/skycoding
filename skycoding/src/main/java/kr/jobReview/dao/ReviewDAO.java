@@ -280,7 +280,7 @@ public class ReviewDAO {
 		try {
 			conn = DBUtil.getConnection();
 			sql = "INSERT INTO job_review_comment (com_id,com_content,mem_num,rev_id) VALUES "
-					+ "(job_review_seq.nextval,?,?,?)";
+					+ "(job_review_comment_seq.nextval,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reviewComment.getCom_content());
 			pstmt.setInt(2, reviewComment.getMem_num());
@@ -300,11 +300,11 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		String sql = null;
 		int count = 0;
-		
+		 
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT COUNT(*) FROM job_review_comment j JOIN hmember h USING(mem_num) "
-					+ "WHERE rev_id=?";
+					+ "WHERE j.rev_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rev_id);
 			rs = pstmt.executeQuery();
@@ -320,7 +320,7 @@ public class ReviewDAO {
 	}
 	
 	//댓글 목록
-	public List<ReviewCommentVO> getListReviewComment(int start, int end)throws Exception {
+	public List<ReviewCommentVO> getListReviewComment(int start, int end, int rev_id)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -331,15 +331,32 @@ public class ReviewDAO {
 			//커넥션풀로부텈 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_review_comment j"
-					+ "JOIN hmember h USING(mem_num) ORDER BY j.com_id DESC)a) WHERE rnum>=? AND rnum<=?";
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_review_comment j "
+					+ "JOIN hmember h USING(mem_num) WHERE j.rev_id=? ORDER BY j.com_id DESC)a) WHERE rnum>=? AND rnum<=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
-			//SQL문 실행
-			pstmt.executeUpdate();
+			pstmt.setInt(1, rev_id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행해서 결과행들을 rs에 담음
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ReviewCommentVO>();
+			while(rs.next()) {
+				ReviewCommentVO reviewComment = new ReviewCommentVO();
+				reviewComment.setCom_id(rs.getInt("com_id"));
+				reviewComment.setCom_content(StringUtil.useBrNoHtml(rs.getString("com_content")));
+				reviewComment.setCom_reg_date(rs.getString("com_reg_date"));
+				//수정일은 not null이 아니기때문에 조건 체크
+				if(rs.getString("com_modify_date")!=null) {
+					reviewComment.setCom_modify_date(rs.getString("com_modify_date"));
+				}
+				reviewComment.setMem_num(rs.getInt("mem_num"));
+				reviewComment.setMem_id(rs.getString("mem_id"));
+				reviewComment.setRev_id(rs.getInt("rev_id"));
+				
+				list.add(reviewComment);
+			}
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -351,9 +368,52 @@ public class ReviewDAO {
 	
 	
 	//댓글 상세
+	//작성자회원번호를 알아내기 위해(로그인한 사람과 일치하는지 확인)
+	public ReviewCommentVO getReviewComment(int com_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewCommentVO reviewComment = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT *FROM job_review_comment WHERE com_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, com_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reviewComment = new ReviewCommentVO();
+				reviewComment.setCom_id(rs.getInt("com_id"));
+				reviewComment.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reviewComment;
+	}
 	
 	//댓글 수정
-	
+	public void updateReviewComment(ReviewCommentVO reviewComment)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE job_review_comment SET com_content=? WHERE com_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewComment.getCom_content());
+			pstmt.setInt(2, reviewComment.getCom_id());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//댓글 삭제
 	

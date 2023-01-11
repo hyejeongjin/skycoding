@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>커뮤니티</title>
+<title>질문게시판 글쓰기</title>
 
 <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -38,83 +38,59 @@
 </script>
 </head>
 <body>
+<div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="list.do">
-          <i class="bi bi-grid"></i>
-          <span>질문글</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <span>자유글</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
-<!-- End Sidebar-->
 
-<!-- Start #main -->
-<!-- 헤더 제외 전체 row -->
-<div class="row">
-<!-- 좌측 여백col -->
-<div class="col-3"></div>
-<!-- 폼 col -->
-<div class="col-8">
-  <main id="register-main" class="register-main">
+	<div class="content-main">
+  		<main id="register-main" class="register-main">
+			<div class="pagetitle">
+				<h1>질문게시판 작성</h1>
+			</div>
 
-		<section class="section">
-				<div class="pagetitle">
-					<h2>질문글 글쓰기</h2>
-				</div>
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title"></h5>
+				<section class="section">
+					<div class="row">
+						<div class="col-lg-12">
 
-							<form id="write_form" action="write.do" method="post"
-								enctype="multipart/form-data">
-								<div class="row mb-3">
-									<div class="col-sm-12">
-										<input type="text" name="qna_title" id="qna_title"
-											class="form-control" maxlength="50" placeholder="제목을 입력해주세요">
-									</div>
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title"></h5>
+
+									<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
+										<div class="row mb-3">
+											<div class="col-sm-12">
+												<input type="text" name="qna_title" id="qna_title" class="form-control" maxlength="50" placeholder="제목을 입력해주세요">
+											</div>
+										</div>
+
+										<div class="row mb-3">
+											<div class="col-sm-12">
+												<input class="form-control" name="qna_photo" id="qna_photo" type="file" id="formFile">
+											</div>
+										</div>
+
+										<div class="row mb-3">
+											<div class="col-sm-12">
+												<textarea class="form-control" name="qna_content" id="qna_content" style="height: 300px" placeholder="내용을 입력해주세요"></textarea>
+											</div>
+										</div>
+
+										<div class="text-end">
+											<input type="button" value="취소" class="btn btn-secondary" onclick="location.href='list.do'">
+											<input type="submit" value="등록" class="btn btn-primary">
+										</div>
+
+									</form>
+									
 								</div>
-
-								<div class="row mb-3">
-									<div class="col-sm-12">
-										<input class="form-control" name="qna_photo" id="qna_photo"
-											type="file" id="formFile">
-									</div>
-								</div>
-
-								<div class="row mb-3">
-									<div class="col-sm-12">
-										<textarea class="form-control" name="qna_content"
-											id="qna_content" style="height: 300px"
-											placeholder="내용을 입력해주세요"></textarea>
-									</div>
-								</div>
-
-								<div class="text-end">
-									<button type="button" class="btn btn-secondary"
-										onclick="location.href='list.do'">취소</button>
-									<button type="submit" class="btn btn-primary">등록</button>
-								</div>
-
-							</form>
+							</div>
+							
 						</div>
 					</div>
+				</section>
 
-		</section>
-
-	</main><!-- End #main -->
-	</div>
-	<!-- 우측 여백 col -->
-	<div class="col-1"></div>
-</div>
+			</main><!-- end of register-main -->
+		</div><!-- end of content-main -->
+	</div><!-- end of page-main -->
+	
 </body>
 </html>

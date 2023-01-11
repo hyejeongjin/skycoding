@@ -27,7 +27,7 @@ CREATE TABLE freeComment
     freeComm_modify_date	DATE,
     CONSTRAINT PK_freeComment PRIMARY KEY (freeComm_id),
     CONSTRAINT FK_freeComment_mem_num FOREIGN KEY (mem_num) REFERENCES hmember (mem_num),
-    CONSTRAINT FK_freeComment_free_id FOREIGN KEY (free_id) REFERENCES free_seq (free_id)
+    CONSTRAINT FK_freeComment_free_id FOREIGN KEY (free_id) REFERENCES free_detail (free_id)
 );
 
 CREATE SEQUENCE freeComment_seq;

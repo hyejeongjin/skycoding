@@ -87,7 +87,13 @@
 			</div>
 			<hr class="hr-style" size="1" width="100%">
 			<div class="bottom-btn">
-				<div>${page}</div>
+				<!-- 이전글 다음글 버튼 시작 -->
+				<div>
+			
+					<button type="button" value="이전" onclick=""></button>
+					<button type="button" value="다음"></button>
+				</div>
+				<!-- 이전글 다음글 버튼 끝 -->
 				<input class="btn btn-primary list-btn" type="button" value="목록" onclick="location.href='employList.do'">
 			</div>
 		

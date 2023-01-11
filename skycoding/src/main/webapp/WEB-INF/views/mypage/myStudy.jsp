@@ -1,104 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>관심강좌</title>
+  <title>내학습</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/assets/css/mypage-style.css" rel="stylesheet">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+
 </head>
 
 
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">관심강좌</span>
-      </a>
-    </div>
-    
-  </header>
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
-          <i class="bi bi-person-circle"></i>
-          <span>프로필</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-book-half"></i>
-          <span>내 학습</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-pencil-square"></i>
-          <span>작성 게시글</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-bookmark-heart-fill"></i>
-          <span>관심 강좌</span>
-        </a>
-      </li>
-    </ul>
-  </aside><!-- End Sidebar-->
+  <jsp:include page="/WEB-INF/views/common/mystudymain.jsp"/>
 
   <main id="main" class="main">    
 
 
 		
 	<section class="section">
-	    <span class="likecourse-button">
-          <button type="button" class="btn btn-secondary" style="margin-right:0.5em;"><i class="bi bi-check-lg"></i>전체선택</button>
-          <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i>삭제</button>
-        </span>	
+		<h6>정렬기준</h6>
+	    <select class="form-select" style="width:160px; float:left;">
+	      <option selected value="1">최근신청순</option>
+	      <option value="2">가나다순</option>
+	    </select>	
 	    <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right;">
 	        <input type="text" name="query" style="width:200px;" placeholder="강의명 검색">
 	        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
 	    </form> <!-- End Search Bar -->    
-	</section><br>
+	</section><br><br><br>
 
     
     <section class="section clear:both"> 
       <div class="row align-items-top">
         <div class="col-lg-4">
-          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
           <div class="card">
             <img src="assets/img/product-1.jpg" class="card-img-top" style="height:300px;">
           </div>
         </div>
         <div class="col-lg-4">
-          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
           <div class="card">
             <img src="assets/img/product-2.jpg" class="card-img-top" style="height:300px;">
           </div>
         </div>
         <div class="col-lg-4">
-          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
           <div class="card">
             <img src="assets/img/product-3.jpg" class="card-img-top" style="height:300px;">
           </div>

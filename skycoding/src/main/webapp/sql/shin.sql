@@ -1,4 +1,4 @@
---커뮤니티 질문글 상세
+--커뮤니티 질문게시판 상세
 create table qna_detail(
  qna_id number not null,
  mem_num number not null,
@@ -13,7 +13,7 @@ create table qna_detail(
 );
 create sequence qna_detail_seq;
   
---커뮤니티 질문글 댓글
+--커뮤니티 질문게시판 댓글
 create table qnaComment(
  qnaComm_id number not null,
  mem_num number not null,

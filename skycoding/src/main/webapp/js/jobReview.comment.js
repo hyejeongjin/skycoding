@@ -5,13 +5,79 @@ $(function(){
 	
 	//댓글 목록
 	function selectList(pageNum){
+		currentPage = pageNum;
 		
+		//로딩 이미지 노출
+		$('#loading').show();
+		
+		$.ajax({
+			url:'listComment.do',
+			type:'post',
+			data:{pageNum:pageNum,rev_id:$('#rev_id').val()},
+			dataType:'json',
+			success:function(param){
+				$('#loading').hide();
+				count = param.count;
+				rowCount = param.rowCount;
+				
+				if(pageNum==1){
+					//처음 호출시는 목록을 표시하는 div에 내용물 제거
+					$('#output').empty();
+				}
+				$(param.list).each(function(index,item){
+					let output = '<div class="item">';
+					output += '<h4>' + item.mem_id + '</h4>';
+					output += '<div class="sub-item">';
+					output += '<p>' + item.com_content + '</p>';
+					
+					if(item.com_modify_date){
+						output += '<span class="modify-date">최근 수정일 : ' + item.com_modify_date + '</span>';
+					}else{
+						output += '<span class="modify-date">등록일 : ' + item.com_reg_date + '</span>';
+					}
+					//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
+					if(param.mem_num==item.mem_num){
+						                               //커스텀 data- 속성으로 속성 만들기 가능
+						                               //data-comnum은 댓글 번호 표시(수정, 삭제시 댓글번호를 쉽게 읽어옴)
+						output += '<div class="comment-btn">';
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="수정" class="modify-btn align-right btn btn-secondary btn-sm">';
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="삭제" class="delete-btn align-right btn btn-secondary btn-sm">';
+						output += '</div>';
+					}
+					output += '</div></div>';
+					output += '<hr size="1" noshade width="100%">';
+				
+					$('#output').append(output);
+				});//end of each
+				
+				//페이지버튼 처리
+				if(currentPage >= Math.ceil(count/rowCount)){//총 페이지 개수
+					//다음 페이지가 없음
+					$('.paging-button').hide();
+				}else{
+					//다음페이지가 존재
+					$('.paging-button').show();
+				}
+				
+			},
+			error(){
+				$('#loading').hide();
+				alert('네트워크 오류 발생');
+			}
+		});//end of ajax
 	}
 	
 	//페이지 처리 이벤트 연결(다음 댓글 보기 클릭시 데이터 추가) 
+	$('.paging-button').click(function(){
+		selectList(currentPage + 1);
+	});
+	
+	
+	
 	
 	//댓글 등록
 	$('#com_form').submit(function(event){
+		//기본이벤트 제거
 		event.preventDefault();
 		
 		if($('#com_content').val().trim()==''){
@@ -36,6 +102,7 @@ $(function(){
 					initForm();
 					//댓글 작성을 성공하면 새로 삽입한 댓글을 포함해서
 					//첫번째 페이지의 댓글을 다시 호출함
+					selectList(1);
 				}else{
 					alert('댓글 등록 오류 발생');
 				}
@@ -74,8 +141,31 @@ $(function(){
 		}
 	});
 	
+								
 	
-	//댓글 수정 버튼 클릭시 수정폼 초기화
+	//댓글 수정 버튼 클릭시 수정폼 노출
+	$(document).on('click',function(){
+		//댓글번호
+		let com_id = $(this).attr('data-comnum');	
+		//댓글 내용
+		let com_comment = $(this).parent().find('p').html().replace(/<br>/gi,'\n');	
+		                                                            //g:지정문자열 모두, i:대소문자 무시
+		//댓글 수정폼 UI
+		let modifyUI = '<form id="mcom_form">';
+		modifyUI = '<div id="com_title">';
+		modifyUI = '<span class="com-title" style="font-size: 15pt;">댓글</span>&nbsp;>';
+		modifyUI = '<span class="letter-count" id="com_first">300 / 300</span>';
+		modifyUI += '<input type="hidden" name="com_id" id="com_id" value="'+com_id+'">';
+		modifyUI += '<div class="inner-text">';
+		modifyUI += '<textarea rows="3" cols="50" name="com_content" id="mcom_content" class="com-content form-control inner-text">'+content+'</textarea>';
+		modifyUI += '<input type="submit" value="수정" class="btn btn-outline-primary>';
+		modifyUI += '<input type="button" value="취소" class="btn btn-outline-primary com-reset>';
+		modifyUI += '</div>';//end of inner-test
+		modifyUI += '</div>';
+		modifyUI += '<hr size="1" width="96%" noshade>';
+		modifyUI += '</form>';
+		                                                            
+	});
 
 
 	//수정폼에서 취소 버튼 클릭시 수정폼 초기화

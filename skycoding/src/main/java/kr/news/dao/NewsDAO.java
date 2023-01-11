@@ -365,7 +365,7 @@ public class NewsDAO {
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			
-			return list;
+			return list; 
 		}
 		
 }

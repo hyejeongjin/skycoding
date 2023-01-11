@@ -87,7 +87,7 @@ public class MypageDAO {
 			//데이터가 보여야 id 중복 체크 가능함
 			sql = "SELECT * FROM hmember m LEFT OUTER JOIN "
 				+ "hmember_detail d ON m.mem_num=d.mem_num "
-				+ "WHERE m.id=?";
+				+ "WHERE mem_id=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

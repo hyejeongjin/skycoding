@@ -289,33 +289,24 @@ public class NewsDAO {
 		public void deleteNews(int news_id)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			PreparedStatement pstmt2 = null;
-			PreparedStatement pstmt3 = null;
+			
 			String sql = null;
 			
 			try {
 				//커넥션풀로부터 커넥션을 할당
 				conn = DBUtil.getConnection();
-				//오토커밋 해제
-				conn.setAutoCommit(false);
 				
 				//부모글 삭제
 				sql = "DELETE FROM news WHERE news_id=?";
-				pstmt3 = conn.prepareStatement(sql);
-				pstmt3.setInt(1, news_id);
-				pstmt3.executeUpdate();
-				
-				//예외 발생 없이 정상적으로 SQL문이 실행
-				conn.commit();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, news_id);
+				pstmt.executeUpdate();
 			}catch(Exception e) {
-				//예외 발생
-				conn.rollback();
 				throw new Exception(e);
 			}finally {
-				DBUtil.executeClose(null, pstmt3, null);
-				DBUtil.executeClose(null, pstmt2, null);
 				DBUtil.executeClose(null, pstmt, conn);
 			}
+		
 		}
 		
 		

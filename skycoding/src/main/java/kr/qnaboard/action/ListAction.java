@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.qnaboard.vo.QnaBoardVO;
 import kr.controller.Action;
 import kr.qnaboard.dao.QnaBoardDAO;
-import kr.util.PagingUtil;
+import kr.util.PagingUtil2;
 
 public class ListAction implements Action{
 
@@ -27,7 +27,7 @@ public class ListAction implements Action{
 		//keyfield,keyword,currentPage,count,rowCount,pageCount,url 순으로 작성
 		//keyfield,keyword를 넣는 이유 : 얘네를 유지한 상태로 페이지 처리를 해야 하기 때문에
 		//rowCount:한 페이지 당 보여줄 게시물 개수, PageCount:아래쪽에 보이는 페이지 개수 
-		PagingUtil page = new PagingUtil(keyfield,keyword,
+		PagingUtil2 page = new PagingUtil2(keyfield,keyword,
 										 Integer.parseInt(pageNum),
 										 count,20,10,"list.do");
 		

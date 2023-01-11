@@ -317,55 +317,6 @@ public class NewsDAO {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
-		public List<NewsVO> getHitsTotalNewsList(int start, int end)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = null;
-			List<NewsVO> list = null;
-			
-			
-			try {
-				// 커넥션 풀로부터 커넥션 할당
-				conn = DBUtil.getConnection();
-				
-				// SQL문장 작성
-				sql = "select * from (select a.*, rownum rnum from "
-						+ "(select * from news b join member m on b.mem_num = m.mem_num order by b.hits desc, b.news_id desc) a) "
-						+ "where rnum >=? and rnum <=?";
-				
-				// PreparedStatement 객체 생성
-				pstmt = conn.prepareStatement(sql);
-				
-				// ? 에 데이터 바인딩
-				pstmt.setInt(1, start);
-				pstmt.setInt(2, end);
-				
-				// sql 문을 실행하고 rs에 결과행 담기
-				rs = pstmt.executeQuery();
-				
-				list = new ArrayList<NewsVO>();
-				
-				while(rs.next()) {
-					NewsVO news = new NewsVO();
-			
-					news.setNews_id(rs.getInt("news_id"));
-					news.setNews_attr(rs.getInt("news_attr"));
-					news.setNews_title(StringUtil.useNoHtml(rs.getString("news_title")));
-					news.setNews_hit(rs.getInt("news_hit"));
-					news.setNews_reg_date(rs.getDate("news_reg_date"));
-					news.setNews_modify_date(rs.getDate("news_modify_date"));
-
-					list.add(news);
-				}
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				// 자원정리
-				DBUtil.executeClose(rs, pstmt, conn);
-			}
-			
-			return list; 
-		}
+		
 		
 }

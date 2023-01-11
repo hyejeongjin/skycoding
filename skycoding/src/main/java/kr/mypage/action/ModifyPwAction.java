@@ -33,7 +33,7 @@ public class ModifyPwAction implements Action{
 		String passwd = request.getParameter("passwd");
 		
 		//현재 로그인 한 아이디
-		String user_id = (String)session.getAttribute("user_id");
+		String user_id = (String)session.getAttribute("mem_id");
 		
 		MypageDAO dao = MypageDAO.getInstance();
 		MypageVO member = dao.checkMember(id);

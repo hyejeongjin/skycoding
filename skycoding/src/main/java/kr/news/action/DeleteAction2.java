@@ -10,7 +10,7 @@ import kr.news.vo.NewsVO;
 import kr.util.FileUtil;
 import kr.controller.Action;
 
-public class DeleteAction implements Action{
+public class DeleteAction2 implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();

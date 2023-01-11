@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-
+ 
 public class AdminWriteFormAction implements Action{
 
 	@Override

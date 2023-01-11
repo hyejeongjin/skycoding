@@ -12,7 +12,7 @@ import kr.news.dao.NewsDAO;
 import kr.news.vo.NewsVO;
 import kr.controller.Action;
 import kr.util.FileUtil;
-
+ 
 public class UpdateAction implements Action{
 
 	@Override

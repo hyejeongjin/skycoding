@@ -15,7 +15,8 @@ public class MypageDAO {
 		return instance;
 	}
 	private MypageDAO() {}
-	
+
+	/*
 	//회원가입
 	public void insertMember(MypageVO member)
 			                            throws Exception{
@@ -115,6 +116,7 @@ public class MypageDAO {
 		}
 		return member;
 	}
+	
 	//회원상세 정보
 	public MypageVO getMember(int mem_num)throws Exception{
 		Connection conn = null;
@@ -159,6 +161,7 @@ public class MypageDAO {
 		}
 		return member;
 	}
+	*/
 	//회원정보 수정
 	public void updateMember(MypageVO member)
 			                             throws Exception{

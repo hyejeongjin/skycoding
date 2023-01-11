@@ -41,7 +41,7 @@ public class MypageDAO {
 				num = rs.getInt(1);
 			}
 			
-			sql = "INSERT INTO hmember (mem_num,id) VALUES"
+			sql = "INSERT INTO hmember (mem_num,mem_id) VALUES"
 				+ " (?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, num);//시퀀스(회원번호)
@@ -100,7 +100,7 @@ public class MypageDAO {
 				member.setMem_num(rs.getInt("mem_num"));
 				member.setId(rs.getString("mem_id"));
 				member.setAuth(rs.getInt("mem_auth"));
-				member.setPasswd(rs.getString("mem_passwd"));
+				member.setPasswd(rs.getString("mem_pw"));
 				member.setPhoto(rs.getString("mem_photo"));
 				member.setEmail(rs.getString("mem_email"));//회원탈퇴시 필요
 			}

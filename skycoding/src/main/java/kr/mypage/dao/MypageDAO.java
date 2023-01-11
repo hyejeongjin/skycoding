@@ -116,7 +116,51 @@ public class MypageDAO {
 		}
 		return member;
 	}
-	
+	*/
+
+	   //ID 중복 체크 및 로그인 처리
+	   public MypageVO checkMember(String id)throws Exception{
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      MypageVO hmember = null;
+	      String sql = null;
+
+	      try {
+	         //커넥션풀로부터 커넥션 할당
+	         conn = DBUtil.getConnection();
+
+	         //sql문 작성
+	         sql = "SELECT * FROM hmember m LEFT OUTER JOIN "
+	               + "hmember_detail d ON m.mem_num=d.mem_num "
+	               + "WHERE m.mem_id=?";
+
+	         //PreparedStatement 객체 생성
+	         pstmt = conn.prepareStatement(sql);
+
+	         //?에 데이터 바인딩
+	         pstmt.setString(1, id);
+
+	         //SQL문을 실행해서 결과행을 ResultSet에 담음
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            hmember = new MypageVO();
+	            hmember.setMem_num(rs.getInt("mem_num"));
+	            hmember.setId(rs.getString("mem_id"));
+	            hmember.setAuth(rs.getInt("mem_auth"));
+	            hmember.setPasswd(rs.getString("mem_pw"));
+	            hmember.setPhone(rs.getString("mem_cell"));//회원탈퇴 시 사용할 것
+	            hmember.setEmail(rs.getString("mem_email"));
+	            hmember.setPhoto(rs.getString("mem_photo"));
+	         }
+	      }catch(Exception e) {
+	         throw new Exception(e);
+	      }finally {
+	         DBUtil.executeClose(rs, pstmt, conn);
+	      }
+	      return hmember;
+	   }
+	   
 	//회원상세 정보
 	public MypageVO getMember(int mem_num)throws Exception{
 		Connection conn = null;
@@ -141,18 +185,16 @@ public class MypageDAO {
 			if(rs.next()) {
 				member = new MypageVO();
 				member.setMem_num(rs.getInt("mem_num"));
-				member.setId(rs.getString("id"));
-				member.setAuth(rs.getInt("auth"));
-				member.setPasswd(rs.getString("passwd"));
-				member.setName(rs.getString("name"));
-				member.setPhone(rs.getString("phone"));
-				member.setEmail(rs.getString("email"));
-				member.setZipcode(rs.getString("zipcode"));
-				member.setAddress1(rs.getString("address1"));
-				member.setAddress2(rs.getString("address2"));
-				member.setPhoto(rs.getString("photo"));
-				member.setReg_date(rs.getDate("reg_date"));//가입일
-				member.setModify_date(rs.getDate("modify_date"));//수정일
+				member.setId(rs.getString("mem_id"));
+				member.setAuth(rs.getInt("mem_auth"));
+				member.setPasswd(rs.getString("mem_pw"));
+				member.setName(rs.getString("mem_name"));
+				
+				member.setPhone(rs.getString("mem_cell"));
+				member.setEmail(rs.getString("mem_email"));
+				member.setPhoto(rs.getString("mem_photo"));
+				member.setReg_date(rs.getDate("mem_reg_date"));//가입일
+				member.setModify_date(rs.getDate("mem_modify_date"));//수정일				
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -161,7 +203,7 @@ public class MypageDAO {
 		}
 		return member;
 	}
-	*/
+	
 	//회원정보 수정
 	public void updateMember(MypageVO member)
 			                             throws Exception{

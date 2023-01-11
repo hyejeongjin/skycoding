@@ -2,6 +2,7 @@ package kr.news.action;
 import javax.servlet.http.HttpServletRequest;
 
 
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -37,6 +38,8 @@ public class AdminWriteAction implements Action{
 		news.setNews_title(multi.getParameter("news_title"));
 		news.setNews_content(multi.getParameter("news_content"));
 		news.setNews_photo(multi.getFilesystemName("news_photo"));
+		news.setNews_attr(Integer.parseInt(
+	            multi.getParameter("news_attr")));
 	
 	
 		NewsDAO dao = NewsDAO.getInstance();

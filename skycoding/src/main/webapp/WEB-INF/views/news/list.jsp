@@ -72,7 +72,9 @@
 							<c:forEach var="news" items="${list}"><!-- var는 자바빈(VO) -->
 							<tr>
 								<th scope="row">${news.news_id}</th>
-								<th>${news.news_attr}</th>
+								<th>
+									<c:if test="${news.news_attr == 0}">필독</c:if>
+								</th>
 								<td><a class="title-link" href="detail.do?news_id=${news.news_id}">${news.news_title}</a></td>
 								<td>${news.news_reg_date}</td>
 								<td>${news.news_hit}</td>

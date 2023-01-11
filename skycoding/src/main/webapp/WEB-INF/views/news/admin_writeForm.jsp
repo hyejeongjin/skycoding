@@ -57,11 +57,11 @@
               <form action="admin_write.do" method="post" id="write_form" 
 		                       enctype="multipart/form-data">
 		                    <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                     <input class="form-check-input" type="radio" id="inlineCheckbox1" name="news_attr" value="0">
                        <label class="form-check-label" for="inlineCheckbox1">필독표시</label>
                               </div>
                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                 <input class="form-check-input" type="radio" id="inlineCheckbox2" name="news_attr" value="1">
                                   <label class="form-check-label" for="inlineCheckbox2">필독 미표시</label>
                               </div>
 		    	

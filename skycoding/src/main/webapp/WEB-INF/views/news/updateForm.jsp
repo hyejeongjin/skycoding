@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8">    
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>공지사항 글수정</title>
 <!-- Google Fonts -->

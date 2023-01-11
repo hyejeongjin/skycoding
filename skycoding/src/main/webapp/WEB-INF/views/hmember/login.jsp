@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:choose>
-<c:when test="${auth == 1}">
+<c:when test="${auth == 0}">
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +24,16 @@
 <body>
 <div class="container">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<script>
+	alert('탈퇴한 회원입니다.');
+	location.href='${pageContext.request.contextPath}/main/main.do';
+</script>
 </c:when>
-<%-- auth가 1이 아닌 경우 --%>
+<%-- auth가 0이 아닌 경우 --%>
 	<c:otherwise>
 	<script>
 		alert('아이디 또는 비밀번호가 불일치합니다.');

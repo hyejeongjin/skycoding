@@ -60,7 +60,7 @@
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/jobEmploy/employList.do">취업현황</a></li>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/jobReview/reviewList.do">취업후기</a></li>
 							</ul></li>
-						<li class="nav-item"><a class="nav-link" href="/mypage/profilePage.do">마이페이지(임시)</a></li>	
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage/profilePage.do">마이페이지(임시)</a></li>	
 					</ul>
 
 					<c:if test="${!empty mem_num}">

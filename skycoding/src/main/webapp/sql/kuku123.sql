@@ -1,7 +1,7 @@
 CREATE TABLE news (
 
 	news_id	number(8)		NOT NULL,
-	news_attr	number(1)	DEFAULT 1	NOT NULL,
+	news_attr	number(1)		NOT NULL,
 	news_title	varchar2(150)		NOT NULL,
 	news_content	clob		NOT NULL,
 	news_photo	varchar2(150)		NULL,

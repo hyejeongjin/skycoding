@@ -19,8 +19,10 @@ public class MainAction implements Action{
 		CourseDAO courseDAO = CourseDAO.getInstance();
 	
 		List<CourseVO> courseList = 
-				courseDAO.getListCourse(1, 5,null, null,1, "1");//표시 강의만 반환 //String sort값 가져와야됨 null(X)문자이므로 ""사용
+				courseDAO.getListCourse(1, 6,null, null,1, "1");//표시 강의만 반환 //String sort값 가져와야됨 null(X)문자이므로 ""사용
+		
 		request.setAttribute("courseList", courseList);
+		
 		return "/WEB-INF/views/main/main.jsp";
 	}
 

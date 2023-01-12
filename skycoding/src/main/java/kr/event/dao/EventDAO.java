@@ -89,4 +89,92 @@ public class EventDAO {
 		//courseMap 반환
 		return courseMap;
 	}
+	
+
+	//페이징 처리할 이벤트글 목록 가져오기 0:종료  1:진행중
+	public List<EventVO> getEventList(int startNum, int endNum, String keyfield, String keyword, int attr)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<EventVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			//속성(attr)값에 따라 셀렉되는 레코드를 구별
+			sql = "SELECT * FROM (SELECT rownum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
+					+ "JOIN COURSE c ON event.event_course_id = c.course_id ORDER BY event.event_reg_date DESC) e "
+					+ "WHERE e.event_attr = "+attr+") WHERE rownum >=? AND rownum <=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			//페이지 시작점과 끝점 데이터 바인딩
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<EventVO>();
+			while(rs.next()) {
+				EventVO event = new EventVO();
+				
+				event.setEvent_id(rs.getInt("event_id"));
+				event.setMem_num(rs.getInt("mem_num"));
+				event.setEvent_attr(rs.getInt("event_attr"));
+				event.setEvent_deadline(rs.getString("event_deadline"));
+				event.setEvent_hit(rs.getInt("event_hit"));
+				event.setEvent_photo(rs.getString("event_photo"));
+				event.setEvent_reg_date(rs.getDate("event_reg_date"));
+				event.setEvent_course_id(rs.getInt("event_course_id"));
+				event.setEvent_course_name(rs.getString("course_name"));
+				
+				list.add(event);
+			}
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+
+	//상세 페이지 날짜(마감일까지 남은 일수) 구하는 메서드(ParseException 발생 가능)
+	public Integer getDiffDate(int event_id) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		SimpleDateFormat format = null;
+		String event_getDeadline = null;
+		java.util.Date today = null;
+		Integer diffDay = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT event_deadline FROM EVENT WHERE event_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_id);
+			rs = pstmt.executeQuery();
+			
+			//마감일 값 추출
+			if(rs.next()) {
+				event_getDeadline = rs.getString("event_deadline");
+			}
+			
+			//현재 날짜를 deadline의 포맷에 맞게 변환
+			format = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date event_deadline = format.parse(event_getDeadline);
+			today = new java.util.Date();
+			
+			//두 날짜 간의 일수 차이
+			long diffSec = (event_deadline.getTime() - today.getTime()) / 1000;
+			diffDay = (int)(diffSec / (24*60*60));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return diffDay;
+	}
+		
 }

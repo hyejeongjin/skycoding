@@ -26,7 +26,7 @@
   
   //학습중 강좌 담기 이벤트 처리
   $(function(){
-  	$('#item_cart').submit(function(event){
+  	$('#item_cart').click(function(event){
 			//기본 이벤트 제거
 			event.preventDefault();
 			let form_data = $(this).serialize();
@@ -121,7 +121,7 @@
            <input type="hidden" id="course_id" value="${course.course_id}">
           <img id="output_fav" src="${pageContext.request.contextPath}/images/like01.png" width="50"> 	
           <div class="text-end">
-            <button type="submit" class="btn btn-primary" id ="item_cart" >수강신청</button>
+            <button type="button" class="btn btn-primary" id ="item_cart" >수강신청</button>
             
           </div>
         </div>

@@ -25,9 +25,8 @@ public class CartDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO course_cart (cart_num,course_id,"
-				+ ",mem_num) VALUES ("
-				+ "course_cart_seq.nextval,?,?)";
+			sql = "INSERT INTO course_cart (cart_num,course_id,mem_num) "
+					+ "VALUES (course_cart_seq.nextval,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

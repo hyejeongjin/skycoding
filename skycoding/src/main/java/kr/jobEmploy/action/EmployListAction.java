@@ -25,7 +25,7 @@ public class EmployListAction implements Action{
  
 		//페이지처리
 		//keyfield,keyword,currentPage,count,rowCount,pageCount,url
-		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 8, 3, "employList.do");
+		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 12, 3, "employList.do");
 		
 		//목록 구하기
 		List<EmployVO> list = null;

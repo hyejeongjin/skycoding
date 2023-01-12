@@ -10,6 +10,7 @@ import java.util.List;
 import kr.jobReview.vo.ReviewCommentVO;
 import kr.jobReview.vo.ReviewVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class ReviewDAO {
@@ -346,10 +347,10 @@ public class ReviewDAO {
 				ReviewCommentVO reviewComment = new ReviewCommentVO();
 				reviewComment.setCom_id(rs.getInt("com_id"));
 				reviewComment.setCom_content(StringUtil.useBrNoHtml(rs.getString("com_content")));
-				reviewComment.setCom_reg_date(rs.getString("com_reg_date"));
+				reviewComment.setCom_reg_date(DurationFromNow.getTimeDiffLabel(rs.getString("com_reg_date")));// '~분전'으로 표시 
 				//수정일은 not null이 아니기때문에 조건 체크
 				if(rs.getString("com_modify_date")!=null) {
-					reviewComment.setCom_modify_date(rs.getString("com_modify_date"));
+					reviewComment.setCom_modify_date(DurationFromNow.getTimeDiffLabel(rs.getString("com_modify_date")));
 				}
 				reviewComment.setMem_num(rs.getInt("mem_num"));
 				reviewComment.setMem_id(rs.getString("mem_id"));

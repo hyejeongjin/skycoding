@@ -132,6 +132,38 @@ public class EventDAO {
 		return event;
 	}
 
+	//진행중 또는 종료된 이벤트 게시글의 수를 구하는 메소드
+	public int getTotalEvent(int attr)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			if(attr == 1) {							//진행 이벤트일 경우 추가될 sql문
+				sub_sql += "WHERE event_attr = 1";
+			}else if(attr == 0){					//종료 이벤트일 겨이우 추가될 sql문
+				sub_sql += "WHERE event_attr = 0";
+			}
+			sql = "SELECT COUNT(*) FROM EVENT " + sub_sql;
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	
 	//페이징 처리할 이벤트글 목록 가져오기 0:종료  1:진행중
 	public List<EventVO> getEventList(int startNum, int endNum, String keyfield, String keyword, int attr)throws Exception{
 		Connection conn = null;
@@ -270,16 +302,42 @@ public class EventDAO {
 						+ "WHERE event_id = ?";
 				
 				pstmt = conn.prepareStatement(sql);
+				
 				pstmt.setInt(1, event.getEvent_attr());
 				pstmt.setString(2, event.getEvent_deadline());
 				pstmt.setString(3, event.getEvent_photo());
 				pstmt.setString(4, event.getEvent_content());
 				pstmt.setString(5, event.getEvent_detail_content());
 				pstmt.setInt(6, event.getEvent_id());
+				
+				pstmt.executeUpdate();
 			} catch (Exception e) {
 				throw new Exception(e);
 			}finally {
 				DBUtil.executeClose(rs, pstmt, conn);
+			}
+		}
+		
+
+		//이벤트 등록 파일 삭제
+		public void deleteEventFile(int event_id)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "UPDATE EVENT SET event_photo='' WHERE event_id=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, event_id);
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
 		

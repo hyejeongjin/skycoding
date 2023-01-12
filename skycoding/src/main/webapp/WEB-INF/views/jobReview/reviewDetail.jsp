@@ -96,7 +96,7 @@
 					<!-- 댓글 목록 출력 시작 -->
 					<div id="output"></div>
 					<div class="paging-button" style="display: none;">
-						<input class="btn btn-outline-secondary" type="button" value="더보기">
+						<input class="btn btn-outline-secondary" type="button" value="+">
 					</div>
 					<div id="loading" style="display: none;">
 						<img src="${pageContext.request.contextPath}/images/loading.gif" width="50" height="50">

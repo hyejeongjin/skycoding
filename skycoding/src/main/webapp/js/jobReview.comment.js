@@ -144,35 +144,100 @@ $(function(){
 								
 	
 	//댓글 수정 버튼 클릭시 수정폼 노출
-	$(document).on('click',function(){
+	$(document).on('click','.modify-btn',function(){
 		//댓글번호
 		let com_id = $(this).attr('data-comnum');	
 		//댓글 내용
-		let com_comment = $(this).parent().find('p').html().replace(/<br>/gi,'\n');	
-		                                                            //g:지정문자열 모두, i:대소문자 무시
+		let com_content = $(this).parents('.sub-item').find('p').html().replace(/<br>/gi,'\n');	
+		                                                                      //g:지정문자열 모두, i:대소문자 무시
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mcom_form">';
-		modifyUI = '<div id="com_title">';
-		modifyUI = '<span class="com-title" style="font-size: 15pt;">댓글</span>&nbsp;>';
-		modifyUI = '<span class="letter-count" id="com_first">300 / 300</span>';
+		modifyUI += '<div id="com_title">';
+		modifyUI += '<span class="letter-count" id="mcom_first">300 / 300</span>';
 		modifyUI += '<input type="hidden" name="com_id" id="com_id" value="'+com_id+'">';
+		modifyUI += '</div>';//end of com_title
 		modifyUI += '<div class="inner-text">';
-		modifyUI += '<textarea rows="3" cols="50" name="com_content" id="mcom_content" class="com-content form-control inner-text">'+content+'</textarea>';
-		modifyUI += '<input type="submit" value="수정" class="btn btn-outline-primary>';
-		modifyUI += '<input type="button" value="취소" class="btn btn-outline-primary com-reset>';
+		modifyUI += '<textarea rows="3" cols="50" name="com_content" id="mcom_content" class="com-content form-control inner-text">'+com_content+'</textarea>';
+		modifyUI += '<div class="comment-btn">';
+		modifyUI += ' <input type="submit" value="수정" class="btn btn-secondary btn-sm align-right">';
+		modifyUI += ' <input type="button" value="취소" class="btn btn-secondary btn-sm align-right com-reset">';
+		modifyUI += '</div>';//end of comment-btn
 		modifyUI += '</div>';//end of inner-test
-		modifyUI += '</div>';
-		modifyUI += '<hr size="1" width="96%" noshade>';
 		modifyUI += '</form>';
-		                                                            
+		
+		//이전에 이미 수정한 댓글이 있을 경우 수정버튼을 클릭하면 숨김. sub-item버튼을 환원시키고 수정폼을 초기화함
+		initModifyForm();
+		
+		//지금 수정해서 클릭하고자 하는 데이터는 감추기
+		//수정버튼을 감싸고 있는 div
+		$(this).parents('.sub-item').hide();//잠깐 안보이게 숨기기
+		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출  
+		$(this).parents('.item').append(modifyUI); 
+		
+		//수정폼을 가져올 때 입력한 글자수 셋팅
+		let inputLength = $('#mcom_content').val().length;
+		let remain = 300 - inputLength;
+		remain += ' / 300';
+		//문서 객체에 반영
+		$('#mcom_first').text(remain);                                                      
 	});
 
 
 	//수정폼에서 취소 버튼 클릭시 수정폼 초기화
-
+	$(document).on('click','.com-reset',function(){
+		initModifyForm();
+	});
+	
 	//댓글 수정폼 초기화
+	function initModifyForm(){
+		$('.sub-item').show();
+		$('#mcom_form').remove();		
+	}
 	
 	//댓글 수정
+	$(document).on('submit','#mcom_form',function(event){
+		//기본이벤트 제거
+		event.preventDefault();
+		
+		if($('#mcom_content').val().trim()==''){
+			alert('내용을 입력하세요');
+			$('#mcom_content').val('').focus();
+			return false;
+		}
+		//폼 이하의 데이터를 반환
+		let form_data = $(this).serialize();
+		
+		//서버와 통신
+		$.ajax({
+			url:'updateComment.do',
+			type:'post',
+			data:form_data,
+			dataType:'json',
+			success:function(param){
+				if(param.result == 'logout'){
+					alert('로그인해야 수정할 수 있습니다.');
+				}else if(param.result == 'success'){
+					$('#mcom_form').parent().find('p').html($('#mcom_content').val()
+								.replace(/</g,'&lt;').replace(/>/g,'&gt;')
+								.replace(/\n/g,'<br>'));
+					$('#mcom_form').parent().find('.modify-date')
+								.text('최근 수정일 : 5초미만');			
+					
+					//수정폼 삭제 및 초기화
+					initModifyForm();
+				}else if(param.result == 'wrongAccess'){
+					alert('타인의 글을 수정할 수 없습니다.');
+				}else{
+					alert('댓글 수정 오류 발생');
+				}
+			},
+			error:function(){
+				alert('네트워크 오류 발생');
+			}
+		});
+	});
+	
+	
 	
 	//댓글 삭제
 	

@@ -106,6 +106,7 @@
 }
 .bottom-btn{
 	display:flex;
+	margin-right: 10px;
 }
 .bottom-btn .list-btn{
 	margin-left:auto;
@@ -203,10 +204,12 @@ div.inner-text{
 
 .comment-btn{
 	float:right;
+	margin:10px 0;
 }
 #output .item{
 	padding:10px 15px;
 }
+
 /**
 * Template Name: NiceAdmin - v2.5.0
 * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -654,7 +657,7 @@ h6 {
 #sub-select {
 	display: flex;
 	align-items: flex-end;
-	margin-top: 70px;
+	margin-top: 20px;
 }
   
   

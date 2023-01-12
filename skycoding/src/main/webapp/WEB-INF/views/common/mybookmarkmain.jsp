@@ -29,7 +29,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/member/myBookmark.do">
+        <a class="nav-link" href="${pageContext.request.contextPath}/mypage/myBookmark.do">
           <i class="bi bi-bookmark-heart-fill"></i>
           <span>관심 강좌</span>
         </a>

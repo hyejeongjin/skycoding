@@ -4,15 +4,17 @@ import java.sql.Date;
 
 public class CourseVO {
 	//컬럼명과 일치하게 만들어주기 , 데이터와 맵핑
-	   private int course_id;
-	   private int mem_num;
-	   private String course_name;
-	   private int course_hit;
-	   private String course_content;
-	   private Date report_date;
-	   private String course_tr;
-	   private int course_cate;
-	   private String course_photo;
+	private int course_id;
+	private int mem_num;
+	private String course_name;
+	private int course_hit;
+	private String course_content;
+	private Date report_date;
+	private String course_tr;
+	private int course_cate;
+	private String course_photo;
+	private int like_count;
+	
 	public int getCourse_id() {
 		return course_id;
 	}
@@ -67,5 +69,12 @@ public class CourseVO {
 	public void setCourse_photo(String course_photo) {
 		this.course_photo = course_photo;
 	}
-
+	public int getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(int like_count) {
+		this.like_count = like_count;
+	}
+	
 }
+

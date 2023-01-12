@@ -4,26 +4,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import kr.controller.Action;
 
-public class CourseWriteFormAction implements Action {
+
+
+public class CourseApplicationAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer user_num = 
 				(Integer)session.getAttribute("mem_num");
-		if(user_num == null) {//로그인 되지 않은 경우
+		if(user_num==null) {//로그인이 되지 않은 경우
 			return "redirect:/member/loginForm.do";
 		}
+		//로그인 된 경우
 		
-		Integer user_auth = 
-				(Integer)session.getAttribute("mem_auth");
-		if(user_auth<9) {//관리자로 로그인하지 않은 경우
-			return "/WEB-INF/views/common/notice.jsp";
-		}
-		//관리자로 로그인한 경우
-		return "/WEB-INF/views/course/writeForm.jsp";
+		int course_id = Integer.parseInt(request.getParameter("course_id"));
+		request.setAttribute("course_id", course_id);
+		
+		return "/WEB-INF/views/course/application.jsp";
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
-import kr.util.PagingUtil;
+import kr.util.PagingUtil2;
 
 
 public class CourseListAction implements Action {
@@ -22,32 +22,40 @@ public class CourseListAction implements Action {
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
+		String sort = request.getParameter("sort");
+		if(sort == null) sort="1";
+		
+		//총 강의 목록 개수 구하기
 		CourseDAO dao = CourseDAO.getInstance();
 		int count = dao.getCourseCount(keyfield, keyword,Integer.parseInt(course_cate));
 		
 		//페이지처리
 		//keyfield,keyword,currentPage,count,rowCount,
 		//pageCount,url
-		PagingUtil page = 
-				new PagingUtil(keyfield,keyword,
+		PagingUtil2 page = 
+				new PagingUtil2(keyfield,keyword,
 						      Integer.parseInt(course_cate),
-						          count,20,10,"list.do");
+						          count,8,3,"list.do");
 		
 		List<CourseVO> courseList = null;
 		if(count > 0) {
 			courseList= dao.getListCourse(page.getStartRow(),
 					                page.getEndRow(),
-					                keyfield,keyword, Integer.parseInt(course_cate));
+					                keyfield,keyword, Integer.parseInt(course_cate),sort);
+			
+			
 		}
-		
 		request.setAttribute("count", count);
 		request.setAttribute("list", courseList);
 		request.setAttribute("page", page.getPage());
+
 		
 		
 		return "/WEB-INF/views/course/list.jsp";
 	}
 
 }
+
+
 
 

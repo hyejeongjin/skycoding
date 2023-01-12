@@ -13,7 +13,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->   
+  <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" >
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/course-style.css" >
   <script type="text/javascript">
@@ -51,12 +51,12 @@
 </head>
 
 <body>
-<!-- Start #main -->
+<!-- 메인 시작 -->
   <main id="register-main" class="register-main">
  
     <div class="pagetitle">
       <h1>강의 등록하기</h1>
-    </div><!-- End Page Title -->
+    </div><!-- 타이틀끝 -->
     
   
     <section class="section">
@@ -112,7 +112,7 @@
                 </div>
                 
                 <div class="text-end">
-                  <button type="button" class="btn btn-secondary">취소</button>
+                  <button type="button" class="btn btn-secondary" onclick='history.go(-1)'>취소</button>
                   <button type="submit" class="btn btn-primary" >등록</button>
                 </div>
 
@@ -127,7 +127,7 @@
       
     </section>
 
-  </main><!-- End #main -->
+  </main><!-- 메인 끝 -->
 
 </body>
 </html>

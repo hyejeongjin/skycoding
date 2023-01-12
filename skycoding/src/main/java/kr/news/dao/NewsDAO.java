@@ -77,7 +77,7 @@ public class NewsDAO {
 					else if(keyfield.equals("2")) sub_sql += "WHERE news_content LIKE ?";
 				}
 				
-				
+				      
 				//SQL문 작성 
 				sql = "SELECT COUNT(*) FROM news " + sub_sql;
 				//PreparedStatement 객체 생성

@@ -176,5 +176,44 @@ public class EventDAO {
 		}
 		return diffDay;
 	}
+	//상세 페이지 - 해당 이벤트 아이디, 속성, 글 강의제목, 등록날짜, 요약내용, 세부내용 불러오기
+	public EventVO getDetailEvent(int event_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		EventVO event = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT e.event_id, e.event_course_id, e.event_reg_date, e.event_photo, e.event_deadline, "
+					+ "e.event_attr, e.event_detail_content, e.event_content, c.course_name "
+					+ "FROM EVENT e JOIN COURSE c ON e.event_course_id = c.course_id "
+					+ "WHERE e.event_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				event = new EventVO();
+				
+				event.setEvent_id(rs.getInt("event_id"));
+				event.setEvent_course_id(rs.getInt("event_course_id"));
+				event.setEvent_attr(rs.getInt("event_attr"));
+				event.setEvent_deadline(rs.getString("event_deadline"));;
+				event.setEvent_reg_date(rs.getDate("event_reg_date"));
+				event.setEvent_photo(rs.getString("event_photo"));
+				event.setEvent_content(rs.getString("event_content"));
+				event.setEvent_detail_content(rs.getString("event_detail_content"));
+				event.setEvent_course_name(rs.getString("course_name"));
+			}
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return event;
+	}
+	
 		
 }

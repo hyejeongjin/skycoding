@@ -13,16 +13,16 @@ import kr.util.PagingUtil2;
 
 public class CourseListAction implements Action {
 
-	@Override
+	@Override             
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//카테고리 번호 반환
+		//카테고리 번호 반환        
 		String course_cate = request.getParameter("course_cate");
 		if(course_cate == null) course_cate = "1";
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
-		//dropdown sort 추가 
+		//dropdown sort 추가     
 		String sort = request.getParameter("sort");
 		if(sort == null) sort="1";
 		

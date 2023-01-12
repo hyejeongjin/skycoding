@@ -97,7 +97,7 @@ public class CourseDAO {
 	}
 	
 	//관리자/사용자 - 검색 강의 목록 , 전체 강의 목록 (최신순)
-	//dropdown String sort 변수 추가 
+	//dropdown String sort 변수 추가     
 	public List<CourseVO> getListCourse(int start, int end, 
 			String keyfield, String keyword,
 			int course_cate, String sort) throws Exception{

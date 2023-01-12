@@ -89,7 +89,8 @@ public class EmployDAO {
 	}
 	
 	//검색글 목록
-	public List<EmployVO> getEmployList(int start,int end,String keyfield,String keyword)throws Exception{
+	public List<EmployVO> getEmployList(int start,int end,
+					String keyfield,String keyword,String sort)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -108,11 +109,19 @@ public class EmployDAO {
 				else if(keyfield.equals("2")) sub_sql += "WHERE j.emp_content LIKE ?";
 				else if(keyfield.equals("3")) sub_sql += "WHERE h.mem_id LIKE ?";
 			}
+			//dropdown sort 변수 추가
+			if(sort.equals("1")){
+				sort = "j.emp_id DESC";
+			}else if(sort.equals("2")) {
+				sort = "j.emp_hit DESC";
+			}else {
+				sort = "j.emp_id DESC";
+			}
 			
 			//SQL문 작성
 			//hmember에서는 id, hmember_detail에서는 photo
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_employ j JOIN hmember h USING(mem_num) "
-					+sub_sql+" ORDER BY j.emp_id DESC)a) WHERE rnum>= ? AND rnum <= ?";
+					+sub_sql+" ORDER BY "+sort+")a) WHERE rnum>= ? AND rnum <= ?";
 			//preparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

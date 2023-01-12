@@ -3,20 +3,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" 
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-<style type="text/css">
-    .notice_title{
-        text-align:center;
-        font-size: 17px;
-    }
-    .notice_content{font-size:12px;}
-    .notice_container{
-        padding:20px;
-        background-color: gray;
-        line-height: 20px;
-        color:white;
-        position: absolute; bottom: 0;
-    }
-</style>
+<link href="${pageContext.request.contextPath}/assets/css/event-style.css" rel="stylesheet">
 	<div class="notice_container">
 		<h3 class="notice_title">이벤트 주의사항</h3>
 		<p class="notice_content"><br>
@@ -32,5 +19,5 @@
 		마케팅 수신 거부로 인한 누락은 당사에서 책임지지 않습니다.<br>
 		<br>
 		[기타 문의]<br>
-		-기타 프로모션에 대한 문의는 💌<span class="notice_address">skycoding@sist.co.kr</span>💌 로 문의 주시면 답변해 드립니다.</p>
+		-기타 프로모션에 대한 문의는 💌<span class="notice_address">test@semitest.com</span>💌 로 문의 주시면 답변해 드립니다.</p>
 	</div>

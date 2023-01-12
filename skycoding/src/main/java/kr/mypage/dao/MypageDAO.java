@@ -294,7 +294,7 @@ public class MypageDAO {
 				sql = "SELECT * FROM (SELECT a.* "
 					+ "FROM (SELECT * FROM course c JOIN hmember m "
 					+ "USING(mem_num) JOIN course_like l USING(course_id) "
-					+ "WHERE l.mem_num=? ORDER BY course_id DESC)a) ";
+					+ "WHERE l.mem_num=? ORDER BY like_num DESC)a) ";
 				//PrepardStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩

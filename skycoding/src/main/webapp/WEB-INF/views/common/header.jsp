@@ -23,9 +23,9 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 		<div class="container px-4 px-lg-5" style="float: none; margin: auto;">
 			<nav class="navbar navbar-expand-lg navbar-light">
-				<a class="navbar-brand" href="main.do"
+				<a class="navbar-brand" href="#"
 					style="font-size: 26px; font-weight: 600; color: #012970; font-family: Nunito, sans-serif;">하늘코딩</a>
-				<button class="navbar-toggler" type="button"
+				<button class="navbar-toggler" type="button" 
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
 					aria-label="Toggle navigation">
@@ -33,6 +33,8 @@
 				</button> 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/main/main.do">HOME</a></li>
+
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">강의</a>

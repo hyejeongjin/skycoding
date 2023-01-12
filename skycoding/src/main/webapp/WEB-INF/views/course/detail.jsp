@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -22,7 +22,40 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/course-style.css" >
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.fav.js"></script>
-
+  <script type="text/javascript">
+  
+  //학습중 강좌 담기 이벤트 처리
+  $(function(){
+  	$('#item_cart').submit(function(event){
+			//기본 이벤트 제거
+			event.preventDefault();
+			let form_data = $(this).serialize();
+			
+			//서버와 통신
+			$.ajax({
+				url:'../cart/write.do',
+				type:'post',
+				data:form_data,
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'logout'){
+						alert('로그인 후 사용하세요!');
+					}else if(param.result == 'success'){
+						alert('수강신청 성공');
+						location.href='../cart/list.do';
+					}else{
+						alert('수강신청 오류');
+					}
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
+				}
+			});
+		});
+		
+	});
+  
+  </script>
 </head>
 
 
@@ -88,7 +121,8 @@
            <input type="hidden" id="course_id" value="${course.course_id}">
           <img id="output_fav" src="${pageContext.request.contextPath}/images/like01.png" width="50"> 	
           <div class="text-end">
-            <button type="submit" class="btn btn-primary" onclick="location.href='application.do?course_id=${course.course_id}'">수강신청</button>
+            <button type="submit" class="btn btn-primary" id ="item_cart" >수강신청</button>
+            
           </div>
         </div>
       </div>

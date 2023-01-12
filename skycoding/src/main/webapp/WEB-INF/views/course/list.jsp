@@ -45,25 +45,25 @@
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-                            <!-- 주소 skycoding으로 변경 -->
+                            
         <a class="nav-link " href="/skycoding/course/list.do?course_cate=1">
           <span>HTML</span>
         </a>
       </li>
 
-      <li class="nav-item">          <!-- 주소 skycoding으로 변경 -->
+      <li class="nav-item">          
         <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=2">
           <span>CSS</span>
         </a>
       </li>
       
-      <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->
+      <li class="nav-item">           
         <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=3">
           <span>JAVA</span>
         </a>
       </li>
       
-      <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->
+      <li class="nav-item">           
         <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=4">
           <span>DB</span>
         </a>
@@ -104,11 +104,18 @@
 
     <!-- 강의 메인 시작 -->
     <h5 style="clear:right">전체${count}개</h5>
-
+    <c:if test="${count == 0}">
+		<table class="table table-group-divider align-center">
+			<tr>
+				<td>표시할 강의가 없습니다</td>
+			</tr>
+		</table>
+	</c:if>
+	
     <c:if test="${count > 0}">
     <section class="section">
       <div class="row align-items-top">
-        <div class="col-lg-6">
+        <div class="row-cols-lg-6">
         <c:forEach var="course" items="${list}">
           <div class="card" onclick="location.href='detail.do?course_id=${course.course_id}'">
           	

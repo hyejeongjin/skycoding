@@ -34,25 +34,25 @@
     <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-                             <!-- 주소 skycoding으로 변경 -->
+                             
         <a class="nav-link " href="/skycoding/course/list.do?course_cate=1">
           <span>HTML</span>
         </a>
       </li>
 
-      <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->
+      <li class="nav-item">           
         <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=2">
           <span>CSS</span>
         </a>
       </li>
       
-      <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->               
+      <li class="nav-item">                        
         <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=3">
           <span>JAVA</span>
         </a>
       </li>
       
-      <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->
+      <li class="nav-item">           
         <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=4">
           <span>DB</span>
         </a>

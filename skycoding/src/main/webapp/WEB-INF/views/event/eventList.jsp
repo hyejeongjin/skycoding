@@ -80,7 +80,7 @@
   	                    <fmt:parseNumber var="deadline" value="${deadlineDate.time/(1000*60*60*24)}" integerOnly="true"/>
 	                  	<!-- 마감까지 남은 날짜 계산 -->
 	                  <p class="event_btn btn btn-primary float-end disabled">마감
-	                  	<span class="event_rest_date">${deadline - today}</span>일 전
+	                  	<span class="event_rest_date">${deadline - today + 1}</span>일 전
 	                  </p>
 	                </div>
 	              </div>

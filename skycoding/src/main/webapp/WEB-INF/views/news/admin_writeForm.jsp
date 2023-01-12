@@ -64,7 +64,7 @@
                                  <input class="form-check-input" type="radio" id="inlineCheckbox2" name="news_attr" value="1">
                                   <label class="form-check-label" for="inlineCheckbox2">필독 미표시</label>
                               </div>
-		    	
+		    	  
 			
                 <div class="row mb-3">
                   <div class="col-sm-12" >

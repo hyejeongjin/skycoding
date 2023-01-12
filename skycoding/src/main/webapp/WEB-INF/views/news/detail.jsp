@@ -73,7 +73,7 @@
 		<div class="detail-content">
 			${news.news_content}
 		</div>
-		
+		  
 	<hr class="hr-style" size="1" width="100%">
 			<div class="bottom-btn">
 				<div>${page}</div>

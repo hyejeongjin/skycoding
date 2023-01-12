@@ -27,7 +27,7 @@ public class ListAction implements Action{
 		
 		NewsDAO dao = NewsDAO.getInstance();
 		int count = dao.getNewsCount(keyfield, keyword);
-		
+		  
 		//페이지 처리
 		//keyfield,keyword,currentPage,count,rowCount,
 		//pageCount,url

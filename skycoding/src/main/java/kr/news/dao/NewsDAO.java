@@ -111,7 +111,7 @@ public class NewsDAO {
 			String sql = null;
 			String sub_sql = "";//검색시 사용
 			int cnt = 0;
-			
+			  
 			try {
 				//커넥션풀로부터 커넥션을 할당
 				conn = DBUtil.getConnection();

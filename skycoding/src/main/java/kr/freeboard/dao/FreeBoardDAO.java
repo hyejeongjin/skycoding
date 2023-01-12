@@ -93,7 +93,8 @@ public class FreeBoardDAO {
 	}
 	
 	//글목록(검색글 목록)
-	public List<FreeBoardVO> getListBoard(int start, int end, String keyfield, String keyword)throws Exception{
+	public List<FreeBoardVO> getListBoard(int start, int end, String keyfield, String keyword,
+			int free_cate, String sort)throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -115,8 +116,19 @@ public class FreeBoardDAO {
 				
 			}
 			
+			//dropdown if에 sort 변수 추가
+			if(sort.equals("1")) {
+				sort = "free_id DESC";
+			}else if(sort.equals("2")) {
+				sort = "free_hit DESC";
+			}else {
+				sort = "free_id DESC";
+			}
+			
+			//전체/검색 강의 보기
+			//dropdown orderby 옆에 sort 변수 추가
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM free_detail f JOIN "
-					+ "hmember m USING(mem_num) " + sub_sql + " ORDER BY f.free_id DESC)a) "
+					+ "hmember m USING(mem_num) " + sub_sql + " ORDER BY " +sort+")a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);

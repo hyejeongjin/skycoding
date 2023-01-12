@@ -93,7 +93,8 @@ public class QnaBoardDAO {
 	}
 	
 	//글목록(검색글 목록)
-	public List<QnaBoardVO> getListBoard(int start, int end, String keyfield, String keyword)throws Exception{
+	public List<QnaBoardVO> getListBoard(int start, int end, String keyfield, String keyword,
+			int qna_cate, String sort)throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -115,8 +116,17 @@ public class QnaBoardDAO {
 				
 			}
 			
+			//dropdown if에 sort 변수 추가
+			if(sort.equals("1")) {
+				sort = "qna_id DESC";
+			}else if(sort.equals("2")) {
+				sort = "qna_hit DESC";
+			}else {
+				sort = "qna_id DESC";
+			}
+			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM qna_detail q JOIN "
-					+ "hmember m USING(mem_num) " + sub_sql + " ORDER BY q.qna_id DESC)a) "
+					+ "hmember m USING(mem_num) " + sub_sql + " ORDER BY "+sort+")a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -189,10 +199,6 @@ public class QnaBoardDAO {
 		return qnaBoard;
 	}
 	
-	
-	
-	
-	
 	//이전글, 다음글
 	public QnaBoardVO prevNext(int qna_id) throws Exception{
 		Connection conn = null;
@@ -236,19 +242,6 @@ public class QnaBoardDAO {
 		}
 		return pnBoard;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	//조회수 증가
 	public void updateReadcount(int qna_id) throws Exception{

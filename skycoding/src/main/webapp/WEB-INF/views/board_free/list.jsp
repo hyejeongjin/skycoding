@@ -20,6 +20,7 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+<!--검색창-->
 $(function(){
 	$('#search_form').submit(function(){
 		if($('#keyword').val().trim()==''){
@@ -27,6 +28,13 @@ $(function(){
 			$('#keyword').val('').focus();
 			return false;
 		}	
+	});
+});
+
+<!--dropdown 정렬-->
+$(function(){
+	$('#form-select2').change(function(){
+		location.href='list.do?sort='+$(this).val();
 	});
 });
 </script>
@@ -74,15 +82,15 @@ $(function(){
 				</div>
 				<!-- 검색폼 끝 -->
 	
-				<%--조회순, 최신순 정렬 시작 --%>
+				<!-- dropdwon 시작 -->
 				<div id="sub-select" class="content1">
-					<span id="list-num">전체 ${count}개</span>
-					<select class="form-select" id="form-select2" name="keyfield2" aria-label="form-select">
-						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>최신순</option>
-						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
+					<span id="list-num">전체 ${count}개</span> 
+					<select class="form-select" name="sort" id="form-select2">
+						<option value="1" <c:if test="${param.sort == 1}">selected</c:if>>최신순</option>
+						<option value="2" <c:if test="${param.sort == 2}">selected</c:if>>조회순</option>
 					</select>
 				</div>
-				<%--조회순, 최신순 정렬 끝 --%>
+				<!-- dropdwon 끝 -->
 		
 				<%-- table 시작 --%>
 				<div class="table-content">

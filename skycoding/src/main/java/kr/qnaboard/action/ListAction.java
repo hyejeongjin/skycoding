@@ -26,8 +26,16 @@ public class ListAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null)pageNum = "1"; //첫페이지에서
 		
+		//카테고리 번호 반환        
+		String qna_cate = request.getParameter("qna_cate");
+		if(qna_cate == null) qna_cate = "1";
+		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		
+		//dropdown sort 추가     
+		String sort = request.getParameter("sort");
+		if(sort == null) sort="1";
 		
 		QnaBoardDAO dao = QnaBoardDAO.getInstance();
 		int count = dao.getBoardCount(keyfield, keyword);
@@ -39,12 +47,12 @@ public class ListAction implements Action{
 		PagingUtil2 page = new PagingUtil2(keyfield,keyword,
 										 Integer.parseInt(pageNum),
 										 count,20,10,"list.do");
-		
+		//dropdown
 		List<QnaBoardVO> list= null;
 		if(count > 0) {
 			list = dao.getListBoard(page.getStartRow(),
-									page.getEndRow(),
-									keyfield,keyword);
+									page.getEndRow(),			//dropdown sort 추가
+									keyfield,keyword,Integer.parseInt(qna_cate),sort);
 		}
 		
 		request.setAttribute("count", count);

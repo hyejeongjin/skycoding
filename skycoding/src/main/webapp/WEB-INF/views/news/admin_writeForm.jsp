@@ -85,7 +85,7 @@
                 
                 <div class="text-end">
           
-                  <button type="button" class="btn btn-secondary">취소</button>
+                  <button type="button" class="btn btn-secondary" value="목록" onclick="location.href='list.do'">취소</button>
                   <button type="submit" class="btn btn-primary" >등록</button>
                 </div>
 

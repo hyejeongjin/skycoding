@@ -73,8 +73,8 @@ public class NewsDAO {
 				
 				if(keyword != null && !"".equals(keyword)) {
 					//검색글 개수
-					if(keyfield.equals("1")) sub_sql += "WHERE b.news_title LIKE ?";
-					else if(keyfield.equals("2")) sub_sql += "WHERE b.news_content LIKE ?";
+					if(keyfield.equals("1")) sub_sql += "WHERE news_title LIKE ?";
+					else if(keyfield.equals("2")) sub_sql += "WHERE news_content LIKE ?";
 				}
 				
 				
@@ -84,7 +84,7 @@ public class NewsDAO {
 				pstmt = conn.prepareStatement(sql);
 
 				if(keyword !=null && !"".equals(keyword)) {
-					pstmt.setString(2, "%" + keyword + "%");
+					pstmt.setString(1, "%" + keyword + "%");
 				}
 				
 

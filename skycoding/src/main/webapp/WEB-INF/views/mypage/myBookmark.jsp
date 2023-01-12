@@ -23,8 +23,8 @@
 </head>
 
 <script type="text/javascript">
-	/*체크박스 전체선택 및 전체해제*/
 	$(document).ready(function() {
+		/*체크박스 전체선택 및 전체해제*/
 		$("#allbtn").click(function() {
 			var chks = document.getElementsByName("cbox");
 			var chksChecked = 0;
@@ -46,6 +46,22 @@
 				}
 			}
 		});
+		
+		/*삭제 버튼 눌렸을 때 선택된 체크박스가 없을 때의 처리*/
+		$("#delbtn").click(function(){
+			var chks = document.getElementsByName("cbox");
+			var chksChecked = 0;
+			for(var i=0; i<chks.length; i++) {			
+				if(chks[i].checked) {
+					chksChecked++;
+				}
+			}
+			if(chksChecked==0) {
+				alert("삭제할 항목이 없습니다.");
+				return false;
+			}
+		});
+		
 	});
 </script>
 
@@ -53,27 +69,26 @@
   <jsp:include page="/WEB-INF/views/common/mybookmarkmain.jsp"/>
 
   <main id="main" class="main">    
-
-
-		
+	<form action="deleteCourseLike.do">		
 	<section class="section">
 	    <span class="likecourse-button">
           <button type="button" id="allbtn" class="btn btn-secondary" style="margin-right:0.5em;"><i class="bi bi-check-lg"></i>전체선택</button>
-          <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i>삭제</button>
-        </span>	
+          <button type="submit" id="delbtn" class="btn btn-danger"><i class="bi bi-x-lg"></i>삭제</button>
+        </span>
+        <!--	
 	    <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right;">
 	        <input type="text" name="query" style="width:200px;" placeholder="강의명 검색">
-	        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-	    </form> <!-- End Search Bar -->    
+	        <button type="button" title="Search"><i class="bi bi-search"></i></button>
+	    </form> <!-- End Search Bar -->  
 	</section><br>
 
     
     <!-- 여기서부터 본문 내용 시작 -->
-    <section class="section clear:both"> 
+    <section class="section clear:both">
       <div class="row align-items-top">
       	<c:forEach var="courselike" items="${courselikeList}">
 	      	<div class="col-lg-4">
-	          <input type="checkbox" name="cbox" style="zoom:1.5;">
+	          <input type="checkbox" name="cbox" value="${courselike.course_id}" style="zoom:1.5;">
 	          <div class="card">
 	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}" target="_blank">
 	          		<img src="${pageContext.request.contextPath}/upload/${courselike.course_photo}" class="card-img-top" style="height:300px;">
@@ -83,6 +98,7 @@
       	</c:forEach>                                                  
       </div>
     </section>
+    </form>
 
     <div class="text-center">
       <!-- Pagination with icons -->

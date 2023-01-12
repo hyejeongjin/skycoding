@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.mypage.vo.MypageVO;
 import kr.mypage.vo.MycourselikeVO;
+import kr.mypage.vo.MycourselistVO;
 import kr.util.DBUtil;
 
 public class MypageDAO {
@@ -345,5 +346,49 @@ public class MypageDAO {
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
+		}
+		
+		//내가 신청한 강좌 목록
+		public List<MycourselistVO> getListCourse(int mem_num)
+				            		   throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<MycourselistVO> list = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.* "
+					+ "FROM (SELECT * FROM course c JOIN hmember m "
+					+ "USING(mem_num) JOIN course_cart t USING(course_id) "
+					+ "WHERE t.mem_num=? ORDER BY reg_date DESC)a) ";
+				//PrepardStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mem_num);
+				
+				//SQL문을 실행해서 결과행들을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				list = new ArrayList<MycourselistVO>();
+				while(rs.next()) {
+					MycourselistVO course_list = new MycourselistVO();
+					course_list.setCourse_id(rs.getInt("course_id"));
+					course_list.setCourse_name(rs.getString("course_name"));
+					course_list.setReg_date(rs.getDate("reg_date"));
+					course_list.setCourse_photo(rs.getString("course_photo"));
+					course_list.setMem_num(rs.getInt("mem_num"));
+					
+					list.add(course_list);
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
 		}
 }

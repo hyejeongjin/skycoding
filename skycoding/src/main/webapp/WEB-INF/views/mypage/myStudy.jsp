@@ -45,6 +45,16 @@
     
     <section class="section clear:both"> 
       <div class="row align-items-top">
+      	<c:forEach var="courselist" items="${courseList}">
+	        <div class="col-lg-4">
+	          <div class="card">
+	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselist.course_id}">
+	          		<img src="${pageContext.request.contextPath}/upload/${courselist.course_photo}" class="card-img-top" style="height:300px;">
+	          	</a>
+	          </div>
+	        </div>      	
+      	</c:forEach>
+      	<!-- 
         <div class="col-lg-4">
           <div class="card">
             <img src="assets/img/product-1.jpg" class="card-img-top" style="height:300px;">
@@ -59,7 +69,8 @@
           <div class="card">
             <img src="assets/img/product-3.jpg" class="card-img-top" style="height:300px;">
           </div>
-        </div>                                                   
+        </div>
+         -->                                                   
       </div>
     </section>
 

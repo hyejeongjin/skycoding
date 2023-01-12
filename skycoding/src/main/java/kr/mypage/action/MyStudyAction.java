@@ -1,11 +1,14 @@
 package kr.mypage.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.mypage.dao.MypageDAO;
+import kr.mypage.vo.MycourselistVO;
 import kr.mypage.vo.MypageVO;
 
 public class MyStudyAction implements Action{
@@ -20,11 +23,17 @@ public class MyStudyAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		//로그인이 된 경우
+		//로그인이 된 경우(혜정님 MemberDAO, MemberVo 가져옴)
 		MypageDAO dao = MypageDAO.getInstance();
 		MypageVO member = dao.getMember(user_num);
 		
+		//내가 신청한 강좌 목록
+		MypageDAO courseDao = MypageDAO.getInstance();
+		List<MycourselistVO> courseList = 
+				courseDao.getListCourse(user_num);
+		
 		request.setAttribute("member", member);
+		request.setAttribute("courseList", courseList);
 		
 		return "/WEB-INF/views/mypage/myStudy.jsp";
 	}

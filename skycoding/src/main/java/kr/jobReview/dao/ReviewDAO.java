@@ -81,7 +81,7 @@ public class ReviewDAO {
 	
 	//검색글 목록
 	                                    //테이블에서 가져올 열 번호 
-	public List<ReviewVO> getReviewList(int start,int end,String keyfield,String keyword)throws Exception {
+	public List<ReviewVO> getReviewList(int start,int end,String keyfield,String keyword,String sort)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -98,9 +98,17 @@ public class ReviewDAO {
 				else if(keyfield.equals("2")) sub_sql += "WHERE j.rev_content Like ?";//내용
 				else if(keyfield.equals("3")) sub_sql += "WHERE h.mem_id Like ?";//작성자
 			}
+			//dropdown 
+			if(sort.equals("1")) {
+				sort = "j.rev_id DESC";
+			}else if(sort.equals("2")) {
+				sort = "j.rev_hit DESC";
+			}else {
+				sort = "j.rev_id DESC";
+			}
 			
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM job_review j "
-					+ "JOIN hmember h USING(mem_num) "+sub_sql+" ORDER BY j.rev_id DESC)a) "
+					+ "JOIN hmember h USING(mem_num) "+sub_sql+" ORDER BY "+sort+")a) "
 					+ "WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 			

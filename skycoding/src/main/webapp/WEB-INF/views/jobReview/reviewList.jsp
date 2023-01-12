@@ -25,7 +25,7 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<!-- header 끝 -->
 		<!-- 사이드바 시작-->
-		<aside id="sidebar" class="sidebar">
+		<div id="sidebar" class="sidebar">
 	
 			<ul class="sidebar-nav" id="sidebar-nav">
 				<li class="nav-item"><a class="nav-link collapsed"
@@ -36,10 +36,10 @@
 					href="${pageContext.request.contextPath}/jobReview/reviewList.do"> <span>취업후기</span>
 				</a></li>
 			</ul>
-		</aside>
+		</div>
 		<!-- 사이드바 끝-->
 		
-		<div class="content-main"><!-- 전체 화면의 80% -->
+		<div class="content-main"><!-- 전체 화면의 87% -->
 			<!-- 사이드바 오른쪽 화면 시작 -->
 			<div class="content-right">
 				<!-- 검색폼 시작 -->
@@ -60,15 +60,23 @@
 				</div>
 				<!-- 검색폼 끝 -->
 		
+				<!-- dropdwon 시작 -->
 				<div id="sub-select" class="content1">
 					<span id="list-num">전체 ${count}개</span>
-					<select class="form-select" id="form-select2" name="keyfield2" aria-label="form-select">
+					<select class="form-select" id="list_sort" name="sort" aria-label="form-select">
 						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>최신순</option>
 						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
 					</select>
 				</div>
-		
-		
+				<script>
+					$(function(){
+						$('#list_sort').change(function(){
+							location.href='reviewList.do?sort='+$(this).val();
+						});
+					});
+				</script>
+				<!-- dropdwon 끝 -->
+				
 				<!-- table 시작 -->
 				<div class="content-margin">
 				<c:if test="${count == 0}">

@@ -458,6 +458,9 @@ h6 {
 #job_cards{
 	margin-top:10px;
 }
+#job_cards a{
+	cursor:pointer;
+}
 .job-card{
 	margin-bottom:30px;
 }

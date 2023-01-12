@@ -25,6 +25,9 @@ public class ReviewListAction implements Action{
 		 
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		String sort = request.getParameter("sort");
+		if(sort==null) sort="1";
+		
 		//글목록 개수 구하기
 		ReviewDAO dao = ReviewDAO.getInstance();
 		int count = dao.getReviewCount(keyfield, keyword);
@@ -38,7 +41,7 @@ public class ReviewListAction implements Action{
 		//목록구하기
 		List<ReviewVO> list = null;
 		if(count>0) {
-			list = dao.getReviewList(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list = dao.getReviewList(page.getStartRow(), page.getEndRow(), keyfield, keyword,sort);
 		}
 		request.setAttribute("list", list);
 		

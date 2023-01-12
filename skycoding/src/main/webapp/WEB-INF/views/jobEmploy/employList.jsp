@@ -70,7 +70,7 @@
 				<script>
 				$(function(){
 			  		$('#list_sort').change(function(){
-			  			location.href='employList.do?course_cate=${param.course_cate}&sort='+$(this).val();
+			  			location.href='employList.do?sort='+$(this).val();
 			  		});
 			  	});
 				</script>

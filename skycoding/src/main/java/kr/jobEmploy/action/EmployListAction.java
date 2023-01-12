@@ -18,6 +18,8 @@ public class EmployListAction implements Action{
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		String sort = request.getParameter("sort");
+		if(sort==null) sort="1";
 		
 		//총 글 목록 개수 구하기
 		EmployDAO dao = EmployDAO.getInstance();
@@ -30,7 +32,7 @@ public class EmployListAction implements Action{
 		//목록 구하기
 		List<EmployVO> list = null;
 		if(count>0) {
-			list = dao.getEmployList(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list = dao.getEmployList(page.getStartRow(), page.getEndRow(), keyfield, keyword,sort);
 		}
 		
 		request.setAttribute("count", count);

@@ -63,6 +63,10 @@
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/jobReview/reviewList.do">취업후기</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage/profilePage.do">마이페이지(임시)</a></li>	
+						
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/event/eventList.do?attr=1&attr=0">이벤트</a>
+						</li>
 					</ul>
 
 					<c:if test="${!empty mem_num}">

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.freeboard.vo.FreeBoardVO;
-import kr.qnaboard.vo.QnaBoardReplyVO;
+import kr.freeboard.vo.FreeBoardReplyVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
 import kr.util.StringUtil;
@@ -311,7 +311,7 @@ public class FreeBoardDAO {
 			if(freeBoard.getFree_photo()!=null) {
 				pstmt.setString(++cnt, freeBoard.getFree_photo());
 			}
-			pstmt.setInt(++cnt, freeBoard.getFree_id()); //if문이 실행 안 되면 Qna_id가 4번이 아니라 3번이라 이런식으로 처리 
+			pstmt.setInt(++cnt, freeBoard.getFree_id()); //if문이 실행 안 되면 Free_id가 4번이 아니라 3번이라 이런식으로 처리 
 
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -361,7 +361,6 @@ public class FreeBoardDAO {
 		}
 	}
 
-	/*
 	//댓글 등록
 	public void insertReplyBoard(FreeBoardReplyVO freeBoardReply)throws Exception{
 		System.out.println(freeBoardReply);
@@ -374,9 +373,9 @@ public class FreeBoardDAO {
 			sql = "INSERT INTO freeComment (freeComm_id,freeComm_content,mem_num,free_id) "
 					+ "VALUES(freeComment_seq.nextval,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, freeBoardReply.getQnaComm_content());
+			pstmt.setString(1, freeBoardReply.getFreeComm_content());
 			pstmt.setInt(2, freeBoardReply.getMem_num());
-			pstmt.setInt(3, freeBoardReply.getQna_id());
+			pstmt.setInt(3, freeBoardReply.getFree_id());
 
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -520,7 +519,6 @@ public class FreeBoardDAO {
 		}
 	}
 	
-	*/
 }
 
 

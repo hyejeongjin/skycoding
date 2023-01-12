@@ -31,3 +31,17 @@ CREATE TABLE freeComment
 );
 
 CREATE SEQUENCE freeComment_seq;
+
+--학습중강좌
+create table course_cart(
+ cart_num number,
+ course_id number not null,
+ reg_date date default sysdate not null,
+ mem_num number not null,
+ constraint cart_pk primary key (cart_num),
+ constraint cart_item_fk1 foreign key (course_id)
+                          references course (course_id),
+ constraint cart_item_fk2 foreign key (mem_num)
+                          references hmember (mem_num)
+);
+create sequence course_cart_seq;

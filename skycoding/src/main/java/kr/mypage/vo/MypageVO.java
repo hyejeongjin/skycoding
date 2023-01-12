@@ -4,23 +4,20 @@ import java.sql.Date;
 
 public class MypageVO {
 	private int mem_num;
-	private String id;
-	private int auth;
-	private String name;
-	private String passwd;
-	private String email;
-	private String phone;
-	private String zipcode;
-	private String address1;
-	private String address2;
-	private String photo;
-	private Date reg_date;
-	private Date modify_date;
+	private String mem_id;
+	private int mem_auth;
+	private String mem_name;
+	private String mem_pw;
+	private String mem_cell;
+	private String mem_email;
+	private Date mem_reg_date;
+	private Date mem_modify_date;
+	private String mem_photo;
 	
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
 		//회원 등급(auth) : 0탈퇴회원,1정지회원,2일반회원,9관리자
-		if(auth > 1 && passwd.equals(userPasswd)) {
+		if(mem_auth >= 1 && mem_pw.equals(userPasswd)) {
 			//비밀번호 일치
 			return true;
 		}
@@ -35,41 +32,42 @@ public class MypageVO {
 		this.mem_num = mem_num;
 	}
 	public String getId() {
-		return id;
+		return mem_id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.mem_id = id;
 	}
 	public int getAuth() {
-		return auth;
+		return mem_auth;
 	}
 	public void setAuth(int auth) {
-		this.auth = auth;
+		this.mem_auth = auth;
 	}
 	public String getName() {
-		return name;
+		return mem_name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.mem_name = name;
 	}
 	public String getPasswd() {
-		return passwd;
+		return mem_pw;
 	}
 	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+		this.mem_pw = passwd;
 	}
 	public String getEmail() {
-		return email;
+		return mem_email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		this.mem_email = email;
 	}
 	public String getPhone() {
-		return phone;
+		return mem_cell;
 	}
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.mem_cell = phone;
 	}
+	/*
 	public String getZipcode() {
 		return zipcode;
 	}
@@ -88,22 +86,23 @@ public class MypageVO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
+	*/
 	public String getPhoto() {
-		return photo;
+		return mem_photo;
 	}
 	public void setPhoto(String photo) {
-		this.photo = photo;
+		this.mem_photo = photo;
 	}
 	public Date getReg_date() {
-		return reg_date;
+		return mem_reg_date;
 	}
 	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+		this.mem_reg_date = reg_date;
 	}
 	public Date getModify_date() {
-		return modify_date;
+		return mem_modify_date;
 	}
 	public void setModify_date(Date modify_date) {
-		this.modify_date = modify_date;
+		this.mem_modify_date = modify_date;
 	}
 }

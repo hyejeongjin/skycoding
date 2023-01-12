@@ -1,5 +1,4 @@
-
-3+<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -44,7 +43,7 @@
 <body>
 	<div class="main-page container">
 		<div class="btn_nav container">
-				<c:if test="${user_auth == 9}">
+				<c:if test="${mem_auth == 9}">
                 <input class="btn btn-outline-warning btn-md float-start" type="button" value="이벤트 등록" style="display:block"
                 			onclick="location.href='registerEventForm.do'">
                 </c:if>

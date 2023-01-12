@@ -17,14 +17,14 @@ public class RegisterEventFormAction implements Action{
 		
 		//강의 course_id 목록을 넘겨받아야함
 		HttpSession session = request.getSession();
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
 		//관리자로 로그인했을 경우에만 
-		if(user_num == 61 && user_auth == 9) {
+		if(mem_num == 61 && mem_auth == 9) {
 			//관리자가 등록한 강의의 강의 고유번호, 강의 이름 얻어오기
 			EventDAO dao = EventDAO.getInstance();
-			Map<String, String> courseMap = dao.getCourse(user_num);
+			Map<String, String> courseMap = dao.getCourse(mem_num);
 			
 			request.setAttribute("courseMap", courseMap);
 		}

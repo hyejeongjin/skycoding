@@ -20,11 +20,11 @@ public class RegisterEventAction implements Action{
 		
 		//세션에서 user_num 얻어오기
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
 		MultipartRequest multi = FileUtil.createFile(request);
 		EventVO eventVo = new EventVO();
-		eventVo.setMem_num(user_num);
+		eventVo.setMem_num(mem_num);
 		eventVo.setEvent_course_id(Integer.parseInt(multi.getParameter("course_id")));
 		eventVo.setEvent_attr(Integer.parseInt(multi.getParameter("attr")));
 		eventVo.setEvent_deadline(multi.getParameter("deadline"));
@@ -37,7 +37,7 @@ public class RegisterEventAction implements Action{
 		eventDao.registerEvent(eventVo);
 		
 		request.setAttribute("eventVo", eventVo);
-		request.setAttribute("user_num", user_num);
+		request.setAttribute("mem_num", mem_num);
 		
 		return "/WEB-INF/views/event/registerEvent.jsp";
 	}

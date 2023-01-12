@@ -74,7 +74,7 @@
 		</p>
 		<p>${event.event_detail_content}</p>
 	</div>
-	<c:if test="${sessionScope.user_auth == 9 }">
+	<c:if test="${sessionScope.mem_auth == 9 }">
 	<c:if test="${event_diffDay>=0}">
 	<input id="deatil_modify_btn" type="button" value="수정" onclick="location.href='modifyEventForm.do?event_id=${event.event_id}'">
 	</c:if>

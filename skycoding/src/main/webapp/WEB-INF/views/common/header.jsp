@@ -54,7 +54,7 @@
 									href="${pageContext.request.contextPath}/board_free/list.do">자유게시판</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/news/list.do">공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" href="#!">이벤트</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/event/eventList.do?attr=1&attr=0">이벤트</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">취업센터</a>
@@ -63,10 +63,6 @@
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/jobReview/reviewList.do">취업후기</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage/profilePage.do">마이페이지(임시)</a></li>	
-						
-						<li class="nav-item">
-							<a class="nav-link" href="${pageContext.request.contextPath}/event/eventList.do?attr=1&attr=0">이벤트</a>
-						</li>
 					</ul>
 
 					<c:if test="${!empty mem_num}">

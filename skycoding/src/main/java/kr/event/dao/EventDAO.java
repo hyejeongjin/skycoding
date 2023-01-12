@@ -90,6 +90,47 @@ public class EventDAO {
 		return courseMap;
 	}
 	
+	//event_id 조회해서 하나의 이벤트 글 가져오기
+	public EventVO getEvent(int event_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		EventVO event = null;
+		try {
+			//커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT * FROM EVENT WHERE event_id = ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//데이터 바인딩
+			pstmt.setInt(1, event_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				event = new EventVO();
+				
+				event.setEvent_id(rs.getInt("event_id"));
+				event.setMem_num(rs.getInt("mem_num"));
+				event.setEvent_course_id(rs.getInt("event_course_id"));
+				event.setEvent_attr(rs.getInt("event_attr"));
+				event.setEvent_deadline(rs.getString("event_deadline"));
+				event.setEvent_reg_date(rs.getDate("event_reg_date"));
+				event.setEvent_hit(rs.getInt("event_hit"));
+				event.setEvent_photo(rs.getString("event_photo"));
+				event.setEvent_content(rs.getString("event_content"));
+				event.setEvent_detail_content(rs.getString("event_detail_content"));
+			}
+		}catch(Exception e){
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return event;
+	}
 
 	//페이징 처리할 이벤트글 목록 가져오기 0:종료  1:진행중
 	public List<EventVO> getEventList(int startNum, int endNum, String keyfield, String keyword, int attr)throws Exception{
@@ -215,5 +256,31 @@ public class EventDAO {
 		return event;
 	}
 	
+	//이벤트 등록글 수정
+		public void updateEvent(EventVO event)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "UPDATE EVENT SET event_attr=?,event_deadline=?,"
+						+ "event_photo=?,event_content=?,event_detail_content=? "
+						+ "WHERE event_id = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, event.getEvent_attr());
+				pstmt.setString(2, event.getEvent_deadline());
+				pstmt.setString(3, event.getEvent_photo());
+				pstmt.setString(4, event.getEvent_content());
+				pstmt.setString(5, event.getEvent_detail_content());
+				pstmt.setInt(6, event.getEvent_id());
+			} catch (Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+		}
 		
 }

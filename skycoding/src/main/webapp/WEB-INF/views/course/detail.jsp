@@ -28,18 +28,7 @@
 
 <body>
   <!-- 헤더  -->
-  
-    <header id="header" class="header fixed-top d-flex align-items-center">
-  
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="detail.do?course_id=${course.course_id}" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">강의상세</span>
-      </a>
-    </div>
-
-  </header><!-- 헤더 끝 -->
- 
-
+   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <!--  사이드바  -->
   
     <aside id="sidebar" class="sidebar">
@@ -126,7 +115,7 @@
 
   </main>
   <!-- 메인 끝  -->
-  
+  <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

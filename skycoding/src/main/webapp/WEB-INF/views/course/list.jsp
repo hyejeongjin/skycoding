@@ -20,7 +20,9 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/course-style.css" >
 
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <c:if test="${count > 0}">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.fav.js"></script>
+  </c:if>
   <script type="text/javascript">
   
   <!--dropdwon-->
@@ -35,19 +37,9 @@
 
 
 <body>
-<!-- 헤더 -->    
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="/myUITest/course/list.do?cate=1" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">강의</span>
-      </a>
-    </div>
-  </header>
-    <!-- 헤더 끝 -->
-  
-   
 
+   <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+ 
   <!-- 사이드바 -->
   
   <aside id="sidebar" class="sidebar">
@@ -147,7 +139,7 @@
 		</c:if>
               <!-- 페이지 처리 끝 -->
     </div>
-   
+   <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 
     
   </main>

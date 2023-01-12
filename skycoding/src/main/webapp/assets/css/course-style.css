@@ -1288,5 +1288,16 @@ h6 {
 	cursor:pointer;
 }
 
+#footer1_container{
+   width:90%;
+   margin:auto;
+}
+.footer1-right{
+   width:77%;
+   margin-right:0;
+}
+#footer1_right{
+   padding-left:24px;
+}
 
 

@@ -3,8 +3,11 @@ package kr.mypage.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.mypage.vo.MypageVO;
+import kr.mypage.vo.MycourselikeVO;
 import kr.util.DBUtil;
 
 public class MypageDAO {
@@ -273,9 +276,54 @@ public class MypageDAO {
 				DBUtil.executeClose(null, pstmt2, null);
 				DBUtil.executeClose(null, pstmt, conn);
 			}
+		}		
+		
+		//내가 선택한 좋아요 목록
+		public List<MycourselikeVO> getListCourseFav(int start,
+				                        int end,int mem_num)
+				            		   throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<MycourselikeVO> list = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+					+ "FROM (SELECT * FROM course c JOIN hmember m "
+					+ "USING(mem_num) JOIN course_like l USING(course_id) "
+					+ "WHERE l.mem_num=? ORDER BY course_id DESC)a) "
+					+ "WHERE rnum >= ? AND rnum <= ?";
+				//PrepardStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				//SQL문을 실행해서 결과행들을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				list = new ArrayList<MycourselikeVO>();
+				while(rs.next()) {
+					MycourselikeVO course_like = new MycourselikeVO();
+					course_like.setCourse_id(rs.getInt("course_id"));
+					course_like.setCourse_name(rs.getString("course_name"));
+					course_like.setReport_date(rs.getDate("report_date"));
+					course_like.setCourse_photo(rs.getString("course_photo"));
+					course_like.setMem_num(rs.getInt("mem_num"));
+					
+					list.add(course_like);
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return list;
 		}
-	
+		
 }
-
-
-

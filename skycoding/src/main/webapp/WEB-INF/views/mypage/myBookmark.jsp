@@ -42,8 +42,21 @@
 	</section><br>
 
     
+    <!-- 여기서부터 본문 내용 시작 -->
     <section class="section clear:both"> 
       <div class="row align-items-top">
+      	<c:forEach var="courselike" items="${courselikeList}">
+	      	<div class="col-lg-4">
+	          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
+	          <div class="card">
+	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}" target="_blank">
+	          		<img src="${courselike.course_photo}" class="card-img-top" style="height:300px;">
+	          	</a>            
+	          </div>      		
+	      	</div>      		
+      	</c:forEach>
+
+      	<!-- 
         <div class="col-lg-4">
           <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
           <div class="card">
@@ -61,7 +74,8 @@
           <div class="card">
             <img src="assets/img/product-3.jpg" class="card-img-top" style="height:300px;">
           </div>
-        </div>                                                   
+        </div>
+         -->                                                   
       </div>
     </section>
 

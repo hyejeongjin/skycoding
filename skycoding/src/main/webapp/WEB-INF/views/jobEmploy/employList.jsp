@@ -37,7 +37,7 @@
 		</div>
 		<!-- 사이드바 끝-->
 		
-		<div class="content-main"><!-- 전체 화면의 80% -->
+		<div class="content-main"><!-- 전체 화면의 87% -->
 			<!-- 사이드바 오른쪽 화면 시작 -->
 			<div class="content-right">
 				<!-- 검색폼 시작 -->
@@ -58,13 +58,23 @@
 				</div>
 				<!-- 검색폼 끝 -->
 		
+				<!-- dropdwon 시작 -->
 				<div id="sub-select" class="content1">
 					<span id="list-num">전체 ${count}개</span>
-					<select class="form-select" id="form-select2" name="keyfield2" aria-label="form-select">
-						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>최신순</option>
-						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
+					<select class="form-select" id="list_sort" name="sort" aria-label="form-select">
+						<option value="1" <c:if test="${param.sort==1}">selected</c:if>>최신순</option>
+						<option value="2" <c:if test="${param.sort==2}">selected</c:if>>조회순</option>
 					</select>
 				</div>
+				
+				<script>
+				$(function(){
+			  		$('#list_sort').change(function(){
+			  			location.href='employList.do?course_cate=${param.course_cate}&sort='+$(this).val();
+			  		});
+			  	});
+				</script>
+			    <!-- dropdwon 끝 -->
 		
 				<!-- 카드 시작 -->
 				<div class="content-margin">
@@ -83,14 +93,14 @@
 					      <a href="employDetail.do?emp_id=${employ.emp_id}">
 					      <img src="${pageContext.request.contextPath}/upload/${employ.emp_photo}" class="card-img-top" width="100%" height="100%">
 					      </a>
-						      <div class="card-body">
-						        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
-						        <p class="card-text">
-						        	${employ.emp_reg_date} &nbsp;${employ.emp_hit}
-						        </p>
-						      </div>
-					    </div>
-					  </div>
+					      <div class="card-body">
+					        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
+					        <p class="card-text">
+					        	${employ.emp_reg_date} &nbsp;${employ.emp_hit}
+					        </p>
+					      </div>
+				    	</div>
+				  	  </div>
 					 </c:forEach>
 				</div>
 				</c:if>

@@ -220,8 +220,7 @@ $(function(){
 					$('#mcom_form').parent().find('p').html($('#mcom_content').val()
 								.replace(/</g,'&lt;').replace(/>/g,'&gt;')
 								.replace(/\n/g,'<br>'));
-					$('#mcom_form').parent().find('.modify-date')
-								.text('최근 수정일 : 5초미만');			
+							
 					
 					//수정폼 삭제 및 초기화
 					initModifyForm();

@@ -8,6 +8,27 @@
 /*--------------------------------------------------------------
 # 내가 추가한 부분
 --------------------------------------------------------------*/
+.page-main{
+	margin-top:60px;
+}
+.content-main {
+	width: 87%;
+	margin: auto;
+	overflow:hidden;
+	padding: 100px 20px;
+}
+
+.content-right {
+	width: 85%;
+	float: right; 
+	padding: 20px 30px; /*상하 좌우*/
+	transition: all 0.3s; /*모든 것에 속도 움직임을 넣음*/
+}
+
+
+
+
+
 /*footer*/
 #footer1_container{
    width:90%;
@@ -73,7 +94,6 @@ h6 {
 @media (max-width: 1199px) {
   #main {
     padding: 20px;
-    margin-left: 300px;
   }
 }
 
@@ -451,31 +471,25 @@ h6 {
 }
 
 .search-bar {
-  min-width: 360px;
+  max-width: 500px;
+  margin:auto;
   padding: 20px 0px;
 }
 
-@media (max-width: 1199px) {
-  .search-bar {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
-    background: white;
-    z-index: 9999;
-    transition: 0.3s;
-    visibility: hidden;
-    opacity: 0;
-  }
+@media ( max-width : 759px) {
+	.search-bar {
+		min-width: 85%;
+		margin: auto;
+		padding: 20px 0px;
+	}
+}
 
   .search-bar-show {
     top: 60px;
     visibility: visible;
     opacity: 1;
   }
-}
+
 
 .search-form {
   width: 100%;
@@ -659,7 +673,6 @@ h6 {
   left: 0;
   bottom: 0;
   width: 17%;
-  min-width:150px;
   z-index: 996;
   transition: all 0.3s;
   padding: 20px;
@@ -716,6 +729,7 @@ h6 {
   padding: 0;
   margin: 0;
   list-style: none;
+  float:right;/*추가*/
 }
 
 .sidebar-nav li {

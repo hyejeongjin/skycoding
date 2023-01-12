@@ -404,7 +404,8 @@ public class ReviewDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE job_review_comment SET com_content=? WHERE com_id=?";
+			sql = "UPDATE job_review_comment SET com_content=?, "
+					+ "com_modify_date=SYSDATE WHERE com_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reviewComment.getCom_content());
 			pstmt.setInt(2, reviewComment.getCom_id());

@@ -40,8 +40,9 @@
 
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
  
-  <!-- 사이드바 -->
+   <div class="page-main">
   
+  <!-- 사이드바 -->
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
@@ -81,8 +82,11 @@
     </ul>
   </aside><!-- 사이드바 끝-->
 
+
+<div class="content-main"><!-- 전체 화면의 87% -->
+	<!-- 사이드바 오른쪽 화면 시작 -->
+	<div class="content-right">
 <!-- 검색폼 -->
-  <main id="main" class="main">
   <section class="section">
     <div class="search-bar">
       <form class="search-form d-flex align-items-center"  id="search-form" action="list.do" method="get" action="#">
@@ -148,9 +152,9 @@
     </div>
    <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 
-    
-  </main>
-
+  </div><!-- end of content-right -->
+  </div><!-- end of content-main -->
+</div><!-- end of page-main -->
 </body>
 
 </html>

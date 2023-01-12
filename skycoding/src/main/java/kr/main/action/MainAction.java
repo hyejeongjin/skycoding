@@ -24,4 +24,4 @@ public class MainAction implements Action{
 		return "/WEB-INF/views/main/main.jsp";
 	}
 
-}   
+}           

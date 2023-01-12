@@ -16,10 +16,10 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="list-style-type: none;">
 						<li class="nav-item dropdown">
 							<a class="nav-link">강의</a>
-							<a class="nav-link" href="#">HTML</a>
-							<a class="nav-link" href="#">CSS</a>
-							<a class="nav-link" href="#">JAVA</a>
-							<a class="nav-link" href="#">DB</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/course/list.do?course_cate=1">HTML</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/course/list.do?course_cate=2">CSS</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/course/list.do?course_cate=3">JAVA</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/course/list.do?course_cate=4">DB</a>
 						</li>
 				</ul>
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="list-style-type: none;">

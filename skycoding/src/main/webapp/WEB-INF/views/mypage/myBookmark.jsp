@@ -50,7 +50,7 @@
 	          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
 	          <div class="card">
 	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}" target="_blank">
-	          		<img src="${courselike.course_photo}" class="card-img-top" style="height:300px;">
+	          		<img src="${pageContext.request.contextPath}/upload/${courselike.course_photo}" class="card-img-top" style="height:300px;">
 	          	</a>            
 	          </div>      		
 	      	</div>      		

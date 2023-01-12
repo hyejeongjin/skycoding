@@ -105,13 +105,13 @@ $(function(){
 							</tr>
 						</thead>
 						<tbody class="table-body table-group-divider">
-							<c:forEach var="qnaBoard" items="${list}">
+							<c:forEach var="freeBoard" items="${list}">
 							<tr>
-								<td>${qnaBoard.qna_id}</td>
-								<td><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></td>
-								<td>${qnaBoard.mem_id}</td>
-								<td>${qnaBoard.qna_reg_date}</td>
-								<td>${qnaBoard.qna_hit}</td>
+								<td>${freeBoard.free_id}</td>
+								<td><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></td>
+								<td>${freeBoard.mem_id}</td>
+								<td>${freeBoard.free_reg_date}</td>
+								<td>${freeBoard.free_hit}</td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -119,13 +119,13 @@ $(function(){
 					
 					<%-- 작은 화면용 테이블 --%>
 					<table class="table table-hover table-group-divider" id="t2">
-						<c:forEach var="qnaBoard" items="${list}">
+						<c:forEach var="freeBoard" items="${list}">
 						<tr>
 							<td>
-								<div><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></div>
-								<span class="t-sub-info">${qnaBoard.mem_id}</span> &nbsp; 
-								<span class="t-sub-info">${qnaBoard.qna_reg_date}</span> &nbsp;
-								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${qnaBoard.qna_hit}</span>
+								<div><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></div>
+								<span class="t-sub-info">${freeBoard.mem_id}</span> &nbsp; 
+								<span class="t-sub-info">${freeBoard.free_reg_date}</span> &nbsp;
+								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${freeBoard.free_hit}</span>
 							</td>
 						</c:forEach>
 					</table>

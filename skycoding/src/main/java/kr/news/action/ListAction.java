@@ -23,6 +23,9 @@ public class ListAction implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
+		//dropdown sort 추가     
+				String sort = request.getParameter("sort");
+				if(sort == null) sort="1";
 		
 		
 		NewsDAO dao = NewsDAO.getInstance();
@@ -39,7 +42,7 @@ public class ListAction implements Action{
 		if(count > 0) {
 			list = dao.getListNews(page.getStartRow(),
 					                page.getEndRow(),
-					                keyfield,keyword);
+					                keyfield,keyword,sort);
 		}
 		
 		request.setAttribute("count", count);

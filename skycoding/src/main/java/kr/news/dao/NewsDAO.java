@@ -102,7 +102,7 @@ public class NewsDAO {
 		}
 		//글목록(검색글 목록)
 		public List<NewsVO> getListNews(int start, int end,
-				             String keyfield, String keyword)
+				             String keyfield, String keyword,String sort)
 		                                   throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -122,11 +122,19 @@ public class NewsDAO {
 					else if(keyfield.equals("2")) sub_sql +=  "WHERE b.news_content LIKE ?";
 				
 				}
+				//dropdown if에 sort 추가
+				if(sort.equals("1")) {
+					sort = "news_id DESC";
+				}else if(sort.equals("2")) {
+					sort = "news_hit DESC";
+				}else {
+					sort = "news_id DESC";
+				}
 				
-				//SQL문 작성
+				//SQL문 작성 --//dropdown orderby 옆에 sort 변수 추가
 				sql= "SELECT * FROM (SELECT a.*, rownum rnum "
 						+ "FROM (SELECT * FROM news b " 
-						+ sub_sql + " ORDER BY news_attr ASC, news_id DESC)a) "
+						+ sub_sql + " ORDER BY "+sort+", news_attr ASC, news_id DESC)a) "
 						+ "WHERE rnum >= ? AND rnum <= ?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);

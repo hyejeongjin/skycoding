@@ -642,6 +642,10 @@ h6 {
 	width: 100px;
 	margin-left: auto; /*오른쪽 배치*/
 }
+#list_sort{
+	width: 100px;
+	margin-left: auto; /*오른쪽 배치*/
+}
 
 #sub-select {
 	display: flex;

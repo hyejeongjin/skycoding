@@ -18,7 +18,15 @@
 <!-- 순서가 중요함(맨위에 있으면 스타일 달라짐) -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="https://kit.fontawesome.com/dce0734714.js" crossorigin="anonymous"></script>
-    
+ <script type="text/javascript">
+  
+  <!--dropdwon-->
+  	$(function(){
+  		$('#list_sort').change(function(){
+  			location.href='list.do?course_cate=${param.course_cate}&sort='+$(this).val();
+  		});
+  	});
+  </script>    
 </head>
 <body>
 <div class="page-main">
@@ -41,13 +49,15 @@
 					</div>
 				</div>
 				<!-- 검색폼 끝 -->
+				<!-- dropdown -->
 				<div id="sub-select" class="content1">
 					<span id="list-num">전체 ${count}개</span>
-					<select class="form-select" id="form-select2" name="keyfield2" aria-label="form-select">
-						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>최신순</option>
-						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
+					<select class="form-select" name="sort" id="list_sort" aria-label="form-select" style="width:120px; margin-left: auto;">
+						<option value="1" <c:if test="${param.sort == 1}">selected</c:if>>최신순</option>
+						<option value="2" <c:if test="${param.sort == 2}">selected</c:if>>조회순</option>
 					</select>
 				</div>
+				<!--dropdown끝-->
 				<!-- 목록 -->
 				<div class="content-margin">
 				<c:if test="${count == 0}">

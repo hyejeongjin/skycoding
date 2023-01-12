@@ -42,7 +42,7 @@
 						alert('로그인 후 사용하세요!');
 					}else if(param.result == 'success'){
 						alert('수강신청 성공');
-						location.href='../cart/list.do';
+						//location.href='../cart/list.do';
 					}else{
 						alert('수강신청 오류');
 					}

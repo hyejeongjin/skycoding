@@ -7,19 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트 상세페이지</title>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-	#register_banner {
-	font-size:25px; 
-	vertical-align:bottom;
-	}
-	#event_benefit{
-	color:red;
-	}
-</style>
-
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/event-style.css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
 	 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -39,7 +36,10 @@
 	
 </head>
 <body>
-<div class="container">
+<div class="container page-main">
+	<!-- header 시작 -->
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <!-- header 끝 -->
 	<!-- 이벤트 신청 배너 시작 -->
 	<div id="register_banner">
 		<span id="detail_rest_date">
@@ -86,5 +86,6 @@
 	<jsp:include page="event_notice.jsp"/>
 	<!-- 페이지 하단 주의사항 -->
 </div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

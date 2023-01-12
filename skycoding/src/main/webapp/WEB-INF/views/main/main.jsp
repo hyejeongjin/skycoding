@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,96 +66,27 @@
 					<h2 class="py-3">신규 강의</h2>
 					<div
 						class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+						<!-- 카드 시작 -->
+						<c:forEach var="course" items="${courseList}">
 						<div class="col mb-5">
 							<div class="card h-50">
 								<!-- Product image-->
-								<img class="card-img-top"
-									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-									alt="..." />
-
+									<img class="card-img-top"
+									src="${pageContext.request.contextPath}/upload/${course.course_photo}"
+									<c:if test="${course.course_photo==null}">
+									src="${pageContext.request.contextPath}/images/blank.png"
+									</c:if>>
 								<!-- Product actions-->
 								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
 									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">수강하러가기</a>
+										<a class="btn btn-outline-dark mt-auto" 
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course.course_id}">수강하러가기</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col mb-5">
-							<div class="card h-50">
-								<!-- Product image-->
-								<img class="card-img-top"
-									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-									alt="..." />
-
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">수강하러가기</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col mb-5">
-							<div class="card h-50">
-								<!-- Product image-->
-								<img class="card-img-top"
-									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-									alt="..." />
-
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">수강하러가기</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col mb-5">
-							<div class="card h-50">
-								<!-- Product image-->
-								<img class="card-img-top"
-									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-									alt="..." />
-
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">수강하러가기</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col mb-5">
-							<div class="card h-50">
-								<!-- Product image-->
-								<img class="card-img-top"
-									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-									alt="..." />
-
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">수강하러가기</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col mb-5">
-							<div class="card h-50">
-								<!-- Product image-->
-								<img class="card-img-top"
-									src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-									alt="..." />
-
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
-									<div class="text-center">
-										<a class="btn btn-outline-dark mt-auto" href="#">수강하러가기</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
+						<!-- 카드 끝 -->
 					</div>
 				</div>
 			</section>

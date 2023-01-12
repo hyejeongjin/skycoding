@@ -6,24 +6,23 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.hmember.dao.MemberDAO;
 
-public class FindPwAction implements Action{
+public class ChangePwAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		//전송된 데이터 인코딩 처리
+		//데이터 인코딩
 		request.setCharacterEncoding("utf-8");
-
+		
 		//전송된 데이터 반환
+		String newPw = request.getParameter("new_pw");
 		String id = request.getParameter("mem_id");
-		String pwa = request.getParameter("mem_pwa");
-
+		
 		MemberDAO dao = MemberDAO.getInstance();
-		String myPw = dao.findPw(id,pwa);
-
-		request.setAttribute("myPw", myPw);
-		request.setAttribute("id", id);
-
-		return "/WEB-INF/views/hmember/findPw.jsp";
+		newPw = dao.changePassword(newPw, id);
+		
+		request.setAttribute("newPw", newPw);
+		
+		return "/WEB-INF/views/hmember/loginForm.jsp";
 	}
 }

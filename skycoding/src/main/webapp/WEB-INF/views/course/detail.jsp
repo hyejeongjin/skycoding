@@ -25,36 +25,7 @@
   <script type="text/javascript">
   
   //학습중 강좌 담기 이벤트 처리
-  $(function(){
-  	$('#item_cart').submit(function(event){
-			//기본 이벤트 제거
-			event.preventDefault();
-			let form_data = $(this).serialize();
-			
-			//서버와 통신
-			$.ajax({
-				url:'../cart/write.do',
-				type:'post',
-				data:form_data,
-				dataType:'json',
-				success:function(param){
-					if(param.result == 'logout'){
-						alert('로그인 후 사용하세요!');
-					}else if(param.result == 'success'){
-						alert('수강신청 성공');
-						location.href='../cart/list.do';
-					}else{
-						alert('수강신청 오류');
-					}
-				},
-				error:function(){
-					alert('네트워크 오류 발생');
-				}
-			});
-		});
-		
-	});
-  
+
   </script>
 </head>
 
@@ -106,7 +77,7 @@
   <!-- 메인 시작 -->
   <!-- 카드 시작 : 강의 -->
   <main id="main" class="main">
-
+ 
     <section class="section contact">
       <div class="row gy-4">
         <div class="col-xl-6">
@@ -121,7 +92,7 @@
            <input type="hidden" id="course_id" value="${course.course_id}">
           <img id="output_fav" src="${pageContext.request.contextPath}/images/like01.png" width="50"> 	
           <div class="text-end">
-            <button type="submit" class="btn btn-primary" id ="item_cart" >수강신청</button>
+            <input type="button" value="수강신청" class="btn btn-primary" onclick="location.href='application.do?course_id=${course.course_id}'">
             
           </div>
         </div>

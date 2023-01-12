@@ -34,7 +34,7 @@ public class EmployUpdateAction implements Action{
 		EmployVO db_employ = dao.getEmployDetail(emp_id);
 		
 		if(mem_auth!=9){
-			//관리자가 아닌 경우
+			//관리자가 아닌 경우 
 			FileUtil.removeFile(request, emp_photo);//업로드 된 파일 삭제
 			return "/WEB-INF/views/common/notice.jsp";
 		}

@@ -5,9 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>이벤트 등록 폼 - 관리자만</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/job_style.css" rel="stylesheet">
 <script type="text/javascript">
 $(function(){
 	$('#event_form').submit(function(){
@@ -56,7 +64,8 @@ $(function(){
 </script>
 </head>
 <body>
-	<div>
+	<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<form action="registerEvent.do" id="event_form" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>

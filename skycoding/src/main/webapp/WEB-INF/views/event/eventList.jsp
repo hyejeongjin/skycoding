@@ -7,47 +7,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>이벤트 메인페이지</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-    .container{
-        margin:0 auto;
-    }
-    .main-page{
-        margin:0 auto;
-    }
-    nav{
-        margin: 0 auto;
-    }
-    .btn_nav{
-    	padding-top:10px;
-    }
-    .card{
-        margin: 20px 20px 20px 0;
-    }
-    .event_btn{
-        width:47%;
-    }
-    #update_event_btn{
-    	margin-bottom: 15px;
-    }
-    .card img{
-        width:100%; height:160px;
-    }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/event-style.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 </script>
 </head>
 <body>
-	<div class="main-page container">
-		<div class="btn_nav container">
+	<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="content-main">
+		<div id="event_list_nav" class="btn_nav">
 				<c:if test="${mem_auth == 9}">
-                <input class="btn btn-outline-warning btn-md float-start" type="button" value="이벤트 등록" style="display:block"
+                <input id="list_register_btn" class="btn btn-outline-warning btn-md float-start" type="button" value="이벤트 등록" style="display:block"
                 			onclick="location.href='registerEventForm.do'">
                 </c:if>
-					<select class="float-end btn btn-outline-danger btn-md" id="form-select2" name="keyfield2" aria-label="form-select">
+					<select id="event_list_select" class="float-end btn btn-outline-danger btn-md" id="form-select2" name="keyfield2" aria-label="form-select">
 						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>마감임박순</option>
 						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
 						<option value="2" <c:if test="${param.keyfield2==3}">selected</c:if>>최신순</option>
@@ -97,7 +81,7 @@
 		<hr size="1" noshade>
 		<!-- 종료된 이벤트 카드 시작 -->
 	    <h3 style="font-size:20px;">종료된 이벤트</h3>
-		    <div class="container" id="progress_event">
+		    <div class="container" id="end_event">
 		    	<c:if test="${empty list2}">
 		    	<table class="table table-group-divider align-center">
 		   			<tr>
@@ -130,6 +114,8 @@
 		</c:if>
 		</div>
 		<!-- 종료된 이벤트 카드 끝 -->
-	</div><!--end of main-page -->
+		</div><!-- end of content-main -->
+	</div><!-- end of page-main -->
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

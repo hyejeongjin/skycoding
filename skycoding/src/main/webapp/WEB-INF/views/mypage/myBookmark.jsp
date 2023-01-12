@@ -90,7 +90,7 @@
 	      	<div class="col-lg-4">
 	          <input type="checkbox" name="cbox" value="${courselike.course_id}" style="zoom:1.5;">
 	          <div class="card">
-	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}" target="_blank">
+	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}">
 	          		<img src="${pageContext.request.contextPath}/upload/${courselike.course_photo}" class="card-img-top" style="height:300px;">
 	          	</a>            
 	          </div>      		

@@ -41,7 +41,7 @@
 			<!-- 사이드바 오른쪽 화면 시작 -->
 			<div class="content-right">
 				<!-- 검색폼 시작 -->
-				<div class="section"> 
+				<div class="section">  
 					<div class="search-bar">
 						<form class="search-form d-flex align-items-center" action="employList.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
 							<select class="form-select" id="form-select1" name="keyfield" aria-label="form-select">

@@ -94,7 +94,7 @@
         <input type="text" name="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요"> 
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
-
+ 
     </div><!-- 검색폼 끝 -->
 </section>
      

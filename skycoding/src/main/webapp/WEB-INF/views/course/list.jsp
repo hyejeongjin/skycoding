@@ -152,11 +152,11 @@
 		</c:if>
               <!-- 페이지 처리 끝 -->
     </div>
-   <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 
   </div><!-- end of content-right -->
   </div><!-- end of content-main -->
 </div><!-- end of page-main -->
+   <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 
 </html>

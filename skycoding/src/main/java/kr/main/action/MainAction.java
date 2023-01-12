@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
-
+ 
 public class MainAction implements Action{
 
 	@Override

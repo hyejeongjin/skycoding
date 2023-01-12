@@ -23,17 +23,30 @@
 </head>
 
 <script type="text/javascript">
-	window.onload=function(){
-		var checks = document.getElementsByName('mycheckbox');
-		var allbtn = document.getElementById('allbtn');
-		
-		allbtn.onclick=function() {
-			for(var i=0; checks.length; i++){
-				if(checks[i].checked) checks[i].checked=false;
-				else checks[i].checked=true;
-			}	
-		}
-	}
+	/*체크박스 전체선택 및 전체해제*/
+	$(document).ready(function() {
+		$("#allbtn").click(function() {
+			var chks = document.getElementsByName("cbox");
+			var chksChecked = 0;
+			
+			for(var i=0; i<chks.length; i++) {			
+				if(chks[i].checked) {
+					chksChecked++;
+				}
+			}
+			
+			if(chks.length == chksChecked){
+				for(var j=0; j<chks.length; j++) {
+					chks[j].checked=false;
+				}
+			}
+			else{
+				for(var j=0; j<chks.length; j++) {
+					chks[j].checked=true;
+				}
+			}
+		});
+	});
 </script>
 
 <body>
@@ -60,7 +73,7 @@
       <div class="row align-items-top">
       	<c:forEach var="courselike" items="${courselikeList}">
 	      	<div class="col-lg-4">
-	          <input type="checkbox" name="mycheckbox" style="zoom:1.5;">
+	          <input type="checkbox" name="cbox" style="zoom:1.5;">
 	          <div class="card">
 	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}" target="_blank">
 	          		<img src="${pageContext.request.contextPath}/upload/${courselike.course_photo}" class="card-img-top" style="height:300px;">

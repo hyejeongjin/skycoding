@@ -52,25 +52,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
                             <!-- 주소 skycoding으로 변경 -->
-        <a class="nav-link " href="/myUITest/course/list.do?course_cate=1">
+        <a class="nav-link " href="/skycoding/course/list.do?course_cate=1">
           <span>HTML</span>
         </a>
       </li>
 
       <li class="nav-item">          <!-- 주소 skycoding으로 변경 -->
-        <a class="nav-link collapsed" href="/myUITest/course/list.do?course_cate=2">
+        <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=2">
           <span>CSS</span>
         </a>
       </li>
       
       <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->
-        <a class="nav-link collapsed" href="/myUITest/course/list.do?course_cate=3">
+        <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=3">
           <span>JAVA</span>
         </a>
       </li>
       
       <li class="nav-item">           <!-- 주소 skycoding으로 변경 -->
-        <a class="nav-link collapsed" href="/myUITest/course/list.do?course_cate=4">
+        <a class="nav-link collapsed" href="/skycoding/course/list.do?course_cate=4">
           <span>DB</span>
         </a>
       </li>
@@ -78,7 +78,7 @@
          <!-- 관리자 등급만 버튼 보이게 생성 -->
     <c:if test="${!empty mem_num && mem_auth == 9}">
         <li class="nav-item">         <!-- 변경 -->
-        <a class="nav-link collapsed" href="/myUITest/course/writeForm.do">
+        <a class="nav-link collapsed" href="/skycoding/course/writeForm.do">
           <span>강의 등록</span>
         </a>
       </li>

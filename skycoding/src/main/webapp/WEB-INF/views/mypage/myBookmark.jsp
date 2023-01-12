@@ -22,6 +22,19 @@
 
 </head>
 
+<script type="text/javascript">
+	window.onload=function(){
+		var checks = document.getElementsByName('mycheckbox');
+		var allbtn = document.getElementById('allbtn');
+		
+		allbtn.onclick=function() {
+			for(var i=0; checks.length; i++){
+				if(checks[i].checked) checks[i].checked=false;
+				else checks[i].checked=true;
+			}	
+		}
+	}
+</script>
 
 <body>
   <jsp:include page="/WEB-INF/views/common/mybookmarkmain.jsp"/>
@@ -32,7 +45,7 @@
 		
 	<section class="section">
 	    <span class="likecourse-button">
-          <button type="button" class="btn btn-secondary" style="margin-right:0.5em;"><i class="bi bi-check-lg"></i>전체선택</button>
+          <button type="button" id="allbtn" class="btn btn-secondary" style="margin-right:0.5em;"><i class="bi bi-check-lg"></i>전체선택</button>
           <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i>삭제</button>
         </span>	
 	    <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right;">
@@ -47,35 +60,14 @@
       <div class="row align-items-top">
       	<c:forEach var="courselike" items="${courselikeList}">
 	      	<div class="col-lg-4">
-	          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
+	          <input type="checkbox" name="mycheckbox" style="zoom:1.5;">
 	          <div class="card">
 	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselike.course_id}" target="_blank">
 	          		<img src="${pageContext.request.contextPath}/upload/${courselike.course_photo}" class="card-img-top" style="height:300px;">
 	          	</a>            
 	          </div>      		
 	      	</div>      		
-      	</c:forEach>
-
-      	<!-- 
-        <div class="col-lg-4">
-          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
-          <div class="card">
-            <img src="assets/img/product-1.jpg" class="card-img-top" style="height:300px;">
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
-          <div class="card">
-            <img src="assets/img/product-2.jpg" class="card-img-top" style="height:300px;">
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <input type="checkbox" id="mycheckbox1" style="zoom:1.5;">
-          <div class="card">
-            <img src="assets/img/product-3.jpg" class="card-img-top" style="height:300px;">
-          </div>
-        </div>
-         -->                                                   
+      	</c:forEach>                                                  
       </div>
     </section>
 

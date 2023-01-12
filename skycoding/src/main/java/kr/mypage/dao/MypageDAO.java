@@ -279,8 +279,7 @@ public class MypageDAO {
 		}		
 		
 		//내가 선택한 좋아요 목록
-		public List<MycourselikeVO> getListCourseFav(int start,
-				                        int end,int mem_num)
+		public List<MycourselikeVO> getListCourseFav(int mem_num)
 				            		   throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -292,17 +291,14 @@ public class MypageDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+				sql = "SELECT * FROM (SELECT a.* "
 					+ "FROM (SELECT * FROM course c JOIN hmember m "
 					+ "USING(mem_num) JOIN course_like l USING(course_id) "
-					+ "WHERE l.mem_num=? ORDER BY course_id DESC)a) "
-					+ "WHERE rnum >= ? AND rnum <= ?";
+					+ "WHERE l.mem_num=? ORDER BY course_id DESC)a) ";
 				//PrepardStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
 				pstmt.setInt(1, mem_num);
-				pstmt.setInt(2, start);
-				pstmt.setInt(3, end);
 				
 				//SQL문을 실행해서 결과행들을 ResultSet에 담음
 				rs = pstmt.executeQuery();

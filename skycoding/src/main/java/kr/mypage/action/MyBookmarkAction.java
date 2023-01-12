@@ -30,7 +30,7 @@ public class MyBookmarkAction implements Action{
 		//내가 선택한 강좌 좋아요 목록
 		MypageDAO courselikeDao = MypageDAO.getInstance();
 		List<MycourselikeVO> courselikeList = 
-				courselikeDao.getListCourseFav(1, 5, user_num);
+				courselikeDao.getListCourseFav(user_num);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("courselikeList", courselikeList);

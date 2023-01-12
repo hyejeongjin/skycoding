@@ -55,7 +55,7 @@
 							<button type="submit" title="Search"><i class="bi bi-search"></i></button>
 						</form>
 					</div>
-				</div>
+				</div> 
 				<!-- 검색폼 끝 -->
 		
 				<!-- dropdwon 시작 -->

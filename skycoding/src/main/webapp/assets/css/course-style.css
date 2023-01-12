@@ -6,6 +6,30 @@
 */
 
 /*--------------------------------------------------------------
+# 내가 추가한 부분
+--------------------------------------------------------------*/
+/*footer*/
+#footer1_container{
+   width:90%;
+   margin:auto;
+}
+.footer1-right{
+   width:77%;
+   margin-right:0;
+}
+#footer1_right{
+   padding-left:24px;
+}
+/* card */
+.card-write{
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+
+/*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 :root {
@@ -251,15 +275,9 @@ h6 {
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
   float:left;
-  width:250px;
+  /*width:150px;*/
   margin : 10px;
-  cursor : pointer;
-}
-.card-write{
-  margin-bottom: 30px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  cursor : pointer; /*추가*/
 }
 
 .card-header,
@@ -285,7 +303,7 @@ h6 {
 }
 
 .card-body {
-  padding: 0 20px 20px 20px;
+  padding: 0 10px 10px 10px;
 }
 
 .card-img-overlay {
@@ -1284,20 +1302,11 @@ h6 {
   color: #012970;
 }
 
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+
 #output_fav{
 	cursor:pointer;
 }
-
-#footer1_container{
-   width:90%;
-   margin:auto;
-}
-.footer1-right{
-   width:77%;
-   margin-right:0;
-}
-#footer1_right{
-   padding-left:24px;
-}
-
 

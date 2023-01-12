@@ -22,6 +22,7 @@ public class CourseListAction implements Action {
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
+		//dropdown sort 추가 
 		String sort = request.getParameter("sort");
 		if(sort == null) sort="1";
 		
@@ -36,11 +37,11 @@ public class CourseListAction implements Action {
 				new PagingUtil2(keyfield,keyword,
 						      Integer.parseInt(course_cate),
 						          count,8,3,"list.do");
-		
+		//dropdown 
 		List<CourseVO> courseList = null;
 		if(count > 0) {
 			courseList= dao.getListCourse(page.getStartRow(),
-					                page.getEndRow(),
+					                page.getEndRow(),           //dropdown sort 추가 
 					                keyfield,keyword, Integer.parseInt(course_cate),sort);
 			
 			

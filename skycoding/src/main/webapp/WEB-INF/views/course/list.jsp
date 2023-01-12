@@ -22,6 +22,8 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.fav.js"></script>
   <script type="text/javascript">
+  
+  <!--dropdwon-->
   	$(function(){
   		$('#list_sort').change(function(){
   			location.href='list.do?course_cate=${param.course_cate}&sort='+$(this).val();

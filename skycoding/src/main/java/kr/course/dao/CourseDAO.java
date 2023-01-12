@@ -97,9 +97,11 @@ public class CourseDAO {
 	}
 	
 	//관리자/사용자 - 검색 강의 목록 , 전체 강의 목록 (최신순)
+	//dropdown String sort 변수 추가 
 	public List<CourseVO> getListCourse(int start, int end, 
 			String keyfield, String keyword,
 			int course_cate, String sort) throws Exception{
+		 
         
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -117,7 +119,7 @@ public class CourseDAO {
 				//검색 처리
 				sub_sql += "AND course_name LIKE ?";
 			}
-			
+			//dropdown if에 sort 변수 추가 
 			if(sort.equals("1")) {
 				sort = "course_id DESC";
 			}else if(sort.equals("2")) {
@@ -129,6 +131,7 @@ public class CourseDAO {
 			}
 			
 			//전체/검색 강의 보기
+			//dropdown orderby 옆에 sort 변수 추가 
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM ("
 					+ "SELECT * FROM course LEFT OUTER JOIN (SELECT course_id, COUNT(*) like_count FROM course_like group by course_id) USING(course_id) WHERE course_cate = ? " + sub_sql
 					+ " ORDER BY "+sort+")a) "

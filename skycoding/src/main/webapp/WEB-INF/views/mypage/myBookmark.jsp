@@ -69,23 +69,21 @@
   <jsp:include page="/WEB-INF/views/common/mybookmarkmain.jsp"/>
 
   <main id="main" class="main">    
-	<form action="deleteCourseLike.do">		
+	<form action="deleteCourseLike.do">
+	<c:if test="${not empty courselikeList}">	
 	<section class="section">
 	    <span class="likecourse-button">
           <button type="button" id="allbtn" class="btn btn-secondary" style="margin-right:0.5em;"><i class="bi bi-check-lg"></i>전체선택</button>
           <button type="submit" id="delbtn" class="btn btn-danger"><i class="bi bi-x-lg"></i>삭제</button>
         </span>
-        <!--	
-	    <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right;">
-	        <input type="text" name="query" style="width:200px;" placeholder="강의명 검색">
-	        <button type="button" title="Search"><i class="bi bi-search"></i></button>
-	    </form> <!-- End Search Bar -->  
 	</section><br>
+	</c:if>	
 
     
     <!-- 여기서부터 본문 내용 시작 -->
     <section class="section clear:both">
       <div class="row align-items-top">
+      	<c:if test="${empty courselikeList}"><div style="height:350px;"><br><h4><b>관심 강좌가 없습니다.</b></h4></div></c:if>
       	<c:forEach var="courselike" items="${courselikeList}">
 	      	<div class="col-lg-4">
 	          <input type="checkbox" name="cbox" value="${courselike.course_id}" style="zoom:1.5;">

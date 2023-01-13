@@ -29,7 +29,7 @@
   <main id="main" class="main">    
 
 
-		
+	<c:if test="${not empty courseList}">	
 	<section class="section">
 		<h6>정렬기준</h6>
 		<!-- 검색폼 시작 -->
@@ -51,10 +51,11 @@
 	        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
 	    </form> <!-- End Search Bar -->    
 	</section><br><br><br>
-
+	</c:if>
     
     <section class="section clear:both"> 
       <div class="row align-items-top">
+      	<c:if test="${empty courseList}"><div style="height:350px;"><br><h4><b>학습중인 강좌가 없습니다.</b></h4></div></c:if>
       	<c:forEach var="courselist" items="${courseList}">
 	        <div class="col-lg-4">
 	          <div class="card">

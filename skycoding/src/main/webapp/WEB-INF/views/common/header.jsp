@@ -60,14 +60,13 @@
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/jobEmploy/employList.do">취업현황</a></li>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/jobReview/reviewList.do">취업후기</a></li>
-							</ul></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage/profilePage.do">마이페이지(임시)</a></li>	
+							</ul></li>	
 					</ul>
 
 					<c:if test="${!empty mem_num}">
 						<%-- 로그인이 된 경우 --%>
 
-						<span style="margin-right: 10px;">${mem_id} 님</span>
+						<span style="margin-right: 10px;"><a href="${pageContext.request.contextPath}/mypage/profilePage.do">${mem_id} 님</a></span>
 						<Button type="button" class="btn btn-primary"
 							onclick="location.href='${pageContext.request.contextPath}/hmember/logout.do'">로그아웃</Button>
 					</c:if>

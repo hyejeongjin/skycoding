@@ -121,7 +121,9 @@
           <img id="output_fav" src="${pageContext.request.contextPath}/images/like01.png" width="50"> 	
           <div class="text-end">
              
+             <c:if test="${!empty mem_num && mem_auth == 1}">
             <input type="button" id="cart_check" value="수강신청" class="btn btn-primary" >
+            </c:if>
             <span id="message_id"></span>
           </div>
         </div>

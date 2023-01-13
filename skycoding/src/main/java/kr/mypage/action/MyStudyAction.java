@@ -26,12 +26,18 @@ public class MyStudyAction implements Action{
 		//로그인이 된 경우(혜정님 MemberDAO, MemberVo 가져옴)
 		MypageDAO dao = MypageDAO.getInstance();
 		MypageVO member = dao.getMember(user_num);
+
+		String sort = request.getParameter("sort"); //정렬 기준
+		String keyword = request.getParameter("query"); //강좌명 검색
+
+		if(sort==null) sort="1";
 		
 		//내가 신청한 강좌 목록
 		MypageDAO courseDao = MypageDAO.getInstance();
 		List<MycourselistVO> courseList = 
-				courseDao.getListCourse(user_num);
+				courseDao.getListCourse(user_num, sort, keyword);
 		
+		request.setAttribute("keyword", keyword);
 		request.setAttribute("member", member);
 		request.setAttribute("courseList", courseList);
 		

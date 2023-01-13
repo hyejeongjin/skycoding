@@ -32,12 +32,22 @@
 		
 	<section class="section">
 		<h6>정렬기준</h6>
-	    <select class="form-select" style="width:160px; float:left;">
-	      <option selected value="1">최근신청순</option>
-	      <option value="2">가나다순</option>
-	    </select>	
-	    <form class="search-form d-flex align-items-center" method="POST" action="#" style="float:right;">
-	        <input type="text" name="query" style="width:200px;" placeholder="강의명 검색">
+		<!-- 검색폼 시작 -->
+	    <select class="form-select" id="list_sort"  aria-label="form-select" name="sort" style="width:160px; float:left;">
+	      <option value="1" <c:if test="${param.sort==1}">selected</c:if>>최근신청순</option>
+	      <option value="2" <c:if test="${param.sort==2}">selected</c:if>>가나다순</option>
+	    </select>
+	    
+	    <script>
+			$(function(){
+				$('#list_sort').change(function(){
+					location.href='myStudy.do?sort='+$(this).val();
+				});
+			});
+		</script>
+			
+	    <form action="${pageContext.request.contextPath}/mypage/myStudy.do" class="search-form d-flex align-items-center" style="float:right;">
+	        <input type="text" name="query" value="${param.keyword}" style="width:200px;" placeholder="강의명 검색">
 	        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
 	    </form> <!-- End Search Bar -->    
 	</section><br><br><br>
@@ -53,24 +63,7 @@
 	          	</a>
 	          </div>
 	        </div>      	
-      	</c:forEach>
-      	<!-- 
-        <div class="col-lg-4">
-          <div class="card">
-            <img src="assets/img/product-1.jpg" class="card-img-top" style="height:300px;">
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card">
-            <img src="assets/img/product-2.jpg" class="card-img-top" style="height:300px;">
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card">
-            <img src="assets/img/product-3.jpg" class="card-img-top" style="height:300px;">
-          </div>
-        </div>
-         -->                                                   
+      	</c:forEach>                                                
       </div>
     </section>
 

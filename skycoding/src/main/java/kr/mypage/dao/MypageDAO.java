@@ -349,22 +349,39 @@ public class MypageDAO {
 		}
 		
 		//내가 신청한 강좌 목록
-		public List<MycourselistVO> getListCourse(int mem_num)
+		public List<MycourselistVO> getListCourse(int mem_num, String sort, String keyword)
 				            		   throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			List<MycourselistVO> list = null;
 			String sql = null;
-			
+			String sub_sql = "";
+
 			try {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
+				
+				//정렬 기준
+				if(sort.equals("1")) {
+					sort = "reg_date DESC";//최근신청순
+				} else if(sort.equals("2")) {
+					sort = "course_name ASC";//가나다순	
+				} else {
+					sort  = "reg_date DESC";//최근신청순
+				}
+				
+				//강의명 검색
+				if(keyword!=null && !keyword.equals("")) {
+					sub_sql = " AND c.course_name Like '%"+keyword+"%'";//강의명 검색	
+				}
+
+				
 				//SQL문 작성
 				sql = "SELECT * FROM (SELECT a.* "
 					+ "FROM (SELECT * FROM course c JOIN hmember m "
 					+ "USING(mem_num) JOIN course_cart t USING(course_id) "
-					+ "WHERE t.mem_num=? ORDER BY reg_date DESC)a) ";
+					+ "WHERE (t.mem_num=?" +sub_sql+") ORDER BY " + sort + ")a) ";
 				//PrepardStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩

@@ -8,7 +8,7 @@
 </script>
 </c:if>
 <script type="text/javascript">
-	alert('신청완료했습니다.');
-	history.go(-1);
+	alert('이벤트가 등록되었습니다');
+	location.href='eventList.do';
 	//location.href='상세강의 페이지';
 </script>

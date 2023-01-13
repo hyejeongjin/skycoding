@@ -6,6 +6,58 @@
 */
 
 /*--------------------------------------------------------------
+# 내가 추가한 부분
+--------------------------------------------------------------*/
+.page-main{
+	margin-top:60px;
+}
+.content-main {
+	width: 87%;
+	margin: auto;
+	overflow:hidden;
+	padding: 100px 20px;
+}
+
+.content-right {
+	width: 85%;
+	float: right; 
+	padding: 20px 30px; /*상하 좌우*/
+	transition: all 0.3s; /*모든 것에 속도 움직임을 넣음*/
+}
+
+#course-cards{
+   margin-top:10px;
+}
+
+.course-card{
+   margin-bottom:30px;
+}
+.cards{
+	margin-bottom:20px;
+}
+
+
+
+/*footer*/
+#footer1_container{
+   width:90%;
+   margin:auto;
+}
+.footer1-right{
+   width:77%;
+   margin-right:0;
+}
+#footer1_right{
+   padding-left:24px;
+}
+/**
+* Template Name: NiceAdmin - v2.5.0
+* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 :root {
@@ -40,7 +92,7 @@ h6 {
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
-#main {
+#main {	
   margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
@@ -630,7 +682,8 @@ h6 {
   left: 0;
   bottom: 0;
   width: 17%;
-  min-width:150px; 
+  float:left;
+  /*min-width:150px;*/
   z-index: 996;
   transition: all 0.3s;
   padding: 20px;
@@ -681,6 +734,7 @@ h6 {
   padding: 0;
   margin: 0;
   list-style: none;
+  float:right;/*추가*/
 }
 
 .sidebar-nav li {
@@ -1279,8 +1333,13 @@ h6 {
   color: #012970;
 }
 
-/*여기서부터는 추가한 css*/
+/*
+/*여기서부터는 추가한 css
 .profile_nav{
 	align-items: left;
 	text-align: left;
+}
+*/
+.section{
+	margin:auto;
 }

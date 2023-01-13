@@ -25,8 +25,9 @@
 
 <body>
   <jsp:include page="/WEB-INF/views/common/mystudymain.jsp"/>
-
-  <main id="main" class="main">    
+	<div class="page-main">
+	<div class="content-main">
+	<div class="content-right">   
 
 	<c:if test="${not empty courseList}">	
 	<section class="section">
@@ -89,7 +90,9 @@
                 </ul>
               </nav><!-- End Pagination with icons -->
     </div>
-  </main><!-- End #main -->
+  </div>
+  </div>
+  </div>
   <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>
 

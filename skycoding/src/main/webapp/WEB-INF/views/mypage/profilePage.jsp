@@ -109,16 +109,16 @@
 
 <body>
   <jsp:include page="/WEB-INF/views/common/mypagemain.jsp"/>
-
-  <main id="main" class="main">  
-    <section class="section profile">
-    
+	<div class="page-main">
+	<div class="content-main">
+	<div class="content-right">
+		
       <div class="row">
 		<!-- 프로필 사진 -->      
-        <div class="col-xl-6">    
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-			  <h2>프로필사진</h2><br>
+        <div class="col-xl-6 cards">    
+          <div class="card h-100">
+            <div class="card-body profile-card pb-0 pt-4 d-flex flex-column align-items-center">
+			  <h2 class="mb-0">프로필사진</h2><br>
               		<c:if test="${empty member.photo}">
 					<img 
 					src="${pageContext.request.contextPath}/images/face.png"
@@ -127,7 +127,7 @@
 					<c:if test="${!empty member.photo}">
 					<img 
 					src="${pageContext.request.contextPath}/upload/${member.photo}"
-					class="rounded-circle my-photo">
+					class="rounded-circle my-photo" width="120" height="120">
 					</c:if>
 					<br>               	
                 <div class="text-center">
@@ -144,9 +144,9 @@
 	    </div>
 	    
 	    <!-- 회원정보 -->       
-        <div class="col-xl-6">       
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+        <div class="col-xl-6 cards">       
+          <div class="card h-100">
+            <div class="card-body profile-card pb-0 pt-4 d-flex flex-column align-items-center">
 			  <h2>회원정보</h2><br>
 			  <ul>
 				<li>이름 : ${member.name}</li>
@@ -166,9 +166,9 @@
 	    </div>
 	    
 	    <!-- 회원탈퇴 -->
-        <div class="col-xl-6">       
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+        <div class="col-xl-6 cards">       
+          <div class="card h-100">
+            <div class="card-body profile-card pb-0 pt-4 d-flex flex-column align-items-center">
 			  <h2>회원탈퇴</h2><br>
               <form>             	
                 <div class="text-center">
@@ -181,9 +181,9 @@
 	    </div>
 	    
 	    <!-- 비밀번호 수정 -->
-        <div class="col-xl-6">       
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+        <div class="col-xl-6 cards">       
+          <div class="card h-100">
+            <div class="card-body profile-card pb-0 pt-4 d-flex flex-column align-items-center">
 			  <h2>비밀번호 수정</h2><br>
               <form>             	
                 <div class="text-center">
@@ -196,8 +196,9 @@
 	    </div>	    	    
 
       </div>
-    </section>
-  </main><!-- End #main --> 
+      </div>
+      </div>
+      </div>
   <jsp:include page="/WEB-INF/views/common/footer1.jsp" />
   
 </body>

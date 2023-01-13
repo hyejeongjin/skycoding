@@ -1761,7 +1761,7 @@ h6 {
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
-.navbar > .container,
+.navbar > .container,  
 .navbar > .container-fluid,
 .navbar > .container-sm,
 .navbar > .container-md,

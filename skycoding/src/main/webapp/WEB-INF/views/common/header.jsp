@@ -18,7 +18,7 @@
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
-</head> 
+</head>   
 <body>
 	<header id="header" class="header fixed-top d-flex align-items-center">
 		<div class="container px-4 px-lg-5" style="float: none; margin: auto;">

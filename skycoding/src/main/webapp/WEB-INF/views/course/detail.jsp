@@ -23,9 +23,39 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/course.fav.js"></script>
   <script type="text/javascript">
-  
-  //학습중 강좌 담기 이벤트 처리
-
+  //서버와 통신
+ $(function(){
+	 let course_idChecked = 0;
+	 $('#cart_check').click(function(){
+		 $.ajax({
+				url : '../cart/checkApplication.do',
+				type : 'post',
+				data : {course_id:$('#course_id').val()
+				},
+				dataType : 'json',
+				success : function(param) {
+					if (param.result == 'courseNotFound') {
+						course_idChecked = 1;
+							$('#message_id').css('color', '#000000').text(
+								'수강신청 가능');
+							location.href='application.do?course_id=${course.course_id}';
+					} else if (param.result == 'courseDuplicated') {
+						idChecked = 0;
+						$('#message_id').css('color', 'red').text(
+						'수강신청 중복');
+						$('#id').val('').focus();
+					} else {
+						idChecked = 0;
+						alert('수강신청 오류 발생');
+					}
+				},
+				error : function() {
+					idChecked = 0;
+					alert('네트워크 오류 발생');
+				}
+			});
+	});
+ });
   </script>
 </head>
 
@@ -92,8 +122,9 @@
            <input type="hidden" id="course_id" value="${course.course_id}">
           <img id="output_fav" src="${pageContext.request.contextPath}/images/like01.png" width="50"> 	
           <div class="text-end">
-            <input type="button" value="수강신청" class="btn btn-primary" onclick="location.href='application.do?course_id=${course.course_id}'">
-            
+             
+            <input type="button" id="cart_check" value="수강신청" class="btn btn-primary" >
+            <span id="message_id"></span>
           </div>
         </div>
       </div>

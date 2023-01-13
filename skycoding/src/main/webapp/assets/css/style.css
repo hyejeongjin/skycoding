@@ -18,6 +18,11 @@ body {
   color: #444444;
 }
 
+#header{
+	background-color: #FFF;
+}
+
+
 a {
   color: #4154f1;
   text-decoration: none;

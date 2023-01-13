@@ -28,7 +28,6 @@
 
   <main id="main" class="main">    
 
-
 	<c:if test="${not empty courseList}">	
 	<section class="section">
 		<h6>정렬기준</h6>
@@ -55,6 +54,7 @@
     
     <section class="section clear:both"> 
       <div class="row align-items-top">
+      	<!-- 수강중인 강의 없을 때 처리 -->
       	<c:if test="${empty courseList}"><div style="height:350px;"><br><h4><b>학습중인 강좌가 없습니다.</b></h4></div></c:if>
       	<c:forEach var="courselist" items="${courseList}">
 	        <div class="col-lg-4">

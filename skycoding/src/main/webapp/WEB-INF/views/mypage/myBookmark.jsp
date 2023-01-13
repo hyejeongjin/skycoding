@@ -83,6 +83,7 @@
     <!-- 여기서부터 본문 내용 시작 -->
     <section class="section clear:both">
       <div class="row align-items-top">
+      	<!-- 관심강좌 없을 때 처리 -->
       	<c:if test="${empty courselikeList}"><div style="height:350px;"><br><h4><b>관심 강좌가 없습니다.</b></h4></div></c:if>
       	<c:forEach var="courselike" items="${courselikeList}">
 	      	<div class="col-lg-4">

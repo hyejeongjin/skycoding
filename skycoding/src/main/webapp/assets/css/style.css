@@ -17,13 +17,14 @@ body {
   background: white;
   color: #444444;
 }
-
+#header{padding:0;}
 
 #container{
 	background-color: white;
+	margin:0;
+	padding:0;
 }
 #navbar{
-	padding:0;
 	width:100%;
 }
 

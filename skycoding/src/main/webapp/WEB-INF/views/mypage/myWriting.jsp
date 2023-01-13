@@ -37,7 +37,9 @@ $(function(){
   <!-- 사이드바 -->
   <jsp:include page="/WEB-INF/views/common/mywritingmain.jsp"/>
 
-	<main id="main" class="main">
+	<div class="page-main">
+	<div class="content-main">
+	<div class="content-right">
 		<!-- 전체선택 및 삭제 -->
 		<section class="section">
 		    <span class="likecourse-button">
@@ -134,7 +136,9 @@ $(function(){
 
 <%-----------------------------------------신나리가 쓴 부분 끝-----------------------------%>
 
-	</main>
+	</div>
+	</div>
+	</div>
 	<!-- End #main -->
 	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
 </body>

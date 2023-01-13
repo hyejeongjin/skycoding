@@ -122,7 +122,7 @@
 		<c:forEach var="course" items="${list}">
 			  <div class="course-card" onclick="location.href='detail.do?course_id=${course.course_id}'">
 			    <div class="card h-100">
-			      <img src="${pageContext.request.contextPath}/upload/${course.course_photo}" class="card-img-top" width="50px" height="70px">
+			      <img src="${pageContext.request.contextPath}/upload/${course.course_photo}" class="card-img-top" width="80px" height="200px">
 			     
 			      <div class="card-body">
 			        <h6 class="card-title">	${course.course_name}</h6>

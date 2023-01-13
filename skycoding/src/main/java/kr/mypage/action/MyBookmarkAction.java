@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.mypage.vo.MypageVO;
+import kr.util.PagingUtil2;
 import kr.mypage.dao.MypageDAO;
 import kr.mypage.vo.MycourselikeVO;
 
@@ -15,6 +16,10 @@ public class MyBookmarkAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum==null) pageNum = "1"; //메인에서 list.do를 호출할 때
+		String keyword = request.getParameter("query"); //강좌명 검색
+		String sort = request.getParameter("sort"); //정렬 기준
 		
 		HttpSession session = request.getSession();
 		Integer user_num = 
@@ -25,15 +30,18 @@ public class MyBookmarkAction implements Action{
 		
 		//로그인이 된 경우(혜정님 MemberDAO, MemberVo 가져옴) 
 		MypageDAO dao = MypageDAO.getInstance();
-		MypageVO member = dao.getMember(user_num);
+		int count = dao.getCourselikeCount(user_num, null);
+
+		PagingUtil2 page = new PagingUtil2(null, keyword, Integer.parseInt(pageNum), count, 3, 3, "myBookmark.do");
 		
 		//내가 선택한 강좌 좋아요 목록
 		MypageDAO courselikeDao = MypageDAO.getInstance();
 		List<MycourselikeVO> courselikeList = 
-				courselikeDao.getListCourseFav(user_num);
+				courselikeDao.getListCourseFav(page.getStartRow(), page.getEndRow(), user_num, sort, keyword);
 		
-		request.setAttribute("member", member);
+		request.setAttribute("count", count);
 		request.setAttribute("courselikeList", courselikeList);
+		request.setAttribute("page", page.getPage());
 		
 		return "/WEB-INF/views/mypage/myBookmark.jsp";
 	}

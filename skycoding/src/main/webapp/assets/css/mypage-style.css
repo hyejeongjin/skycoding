@@ -1343,3 +1343,54 @@ h6 {
 .section{
 	margin:auto;
 }
+
+/*작성게시글*/
+
+.table-content{
+	margin:10px auto;
+}
+#t2 {
+	display: none;
+}
+
+@media ( max-width : 1199px) {
+	#t1 {
+		display: none;
+	}
+	#t2 {
+		display: table;
+	}
+}
+
+/* Search Bar */
+.search-bar {
+  max-width: 500px;
+  margin:auto;
+  padding: 20px 0px;
+}
+#form-select1 {
+	width: 100px;
+	margin-right: 5px;
+}
+#form-select2 {
+	width: 100px;
+	margin-left: auto; /*오른쪽 배치*/
+}
+
+#sub-select {
+	display: flex;
+	align-items: flex-end;
+	margin-top: 20px;
+}
+
+@media ( max-width : 759px) {
+	.search-bar {
+		min-width: 85%;
+		margin: auto;
+		padding: 20px 0px;
+	}
+	#form-select1 {
+		width: 20px;
+		margin-right: 5px;
+	}
+}

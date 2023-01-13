@@ -16,11 +16,20 @@ public class MainAction implements Action{
 		
 		//강의 목록 메인에 보여지도록함
 		CourseDAO courseDAO = CourseDAO.getInstance();
-	
+	  
 		List<CourseVO> courseList = 
-				courseDAO.getListCourse(1, 6,null, null,1, "1");//표시 강의만 반환 //String sort값 가져와야됨 null(X)문자이므로 ""사용
+				courseDAO.getListCourse(1, 3,null, null,1, "1");//표시 강의만 반환 //String sort값 가져와야됨 null(X)문자이므로 ""사용
+		List<CourseVO> courseList2 = 
+				courseDAO.getListCourse(1, 3,null, null,2, "1");
+		List<CourseVO> courseList3 = 
+				courseDAO.getListCourse(1, 3,null, null,3, "1");
+		List<CourseVO> courseList4 = 
+				courseDAO.getListCourse(1, 3,null, null,4, "1");
 		
 		request.setAttribute("courseList", courseList);
+		request.setAttribute("courseList2", courseList2);
+		request.setAttribute("courseList3", courseList3);
+		request.setAttribute("courseList4", courseList4);
 		
 		return "/WEB-INF/views/main/main.jsp";
 	}

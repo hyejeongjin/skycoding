@@ -144,9 +144,9 @@ public class EventDAO {
 		try {
 			conn = DBUtil.getConnection();
 			if(attr == 1) {							//진행 이벤트일 경우 추가될 sql문
-				sub_sql += "WHERE event_attr = 1";
+				sub_sql += "WHERE event_attr =1 AND EXTRACT(YEAR FROM event_reg_date) > 2000";
 			}else if(attr == 0){					//종료 이벤트일 겨이우 추가될 sql문
-				sub_sql += "WHERE event_attr = 0";
+				sub_sql += "WHERE event_attr =0 AND EXTRACT(YEAR FROM event_reg_date) > 2000";
 			}
 			sql = "SELECT COUNT(*) FROM EVENT " + sub_sql;
 			//PreparedStatement 객체 생성
@@ -177,11 +177,11 @@ public class EventDAO {
 			
 			//속성(attr)값에 따라 셀렉되는 레코드를 구별
 			//+ reg_date기준 추가 -> 2000년 전에 등록한 글은 표시되지 않게
-			sql = "SELECT * FROM (SELECT rownum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
+			sql = "SELECT * FROM (SELECT rownum rnum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
 					+ "JOIN COURSE c ON event.event_course_id = c.course_id "
 					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) > 2000 "
 					+ "ORDER BY event.event_reg_date DESC) e "
-					+ "WHERE e.event_attr = "+attr+") WHERE rownum >=? AND rownum <=?";
+					+ "WHERE e.event_attr = "+attr+") WHERE rnum >=? AND rnum <=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			//페이지 시작점과 끝점 데이터 바인딩

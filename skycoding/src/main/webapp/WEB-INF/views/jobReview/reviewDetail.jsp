@@ -48,7 +48,7 @@
 					<div class="top-button">
 						<input type="button" value="수정" class="btn btn-primary btn-sm" 
 								onclick="location.href='reviewUpdateForm.do?rev_id=${review.rev_id}'">
-						<input type="button" value="삭제" class="btn btn-primary btn-sm" id="delete_btn">
+						<input type="button" value="삭제" class="btn btn-primary btn-sm" class="delete-btn">
 						<script type="text/javascript">
 							$(function(){
 								$('#delete_btn').click(function(){

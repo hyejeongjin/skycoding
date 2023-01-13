@@ -41,7 +41,7 @@ $(function(){
 						                               //data-comnum은 댓글 번호 표시(수정, 삭제시 댓글번호를 쉽게 읽어옴)
 						output += '<div class="comment-btn">';
 						output += ' <input type="button" data-comnum="'+item.com_id+'" value="수정" class="modify-btn align-right btn btn-secondary btn-sm">';
-						output += ' <input type="button" data-comnum="'+item.com_id+'" value="삭제" class="delete-btn align-right btn btn-secondary btn-sm">';
+						output += ' <input type="button" data-comnum="'+item.com_id+'" value="삭제" class="delete-btn align-right btn btn-secondary btn-sm" id="delete_btn">';
 						output += '</div>';
 					}
 					output += '</div></div>';
@@ -242,7 +242,7 @@ $(function(){
 		let com_id = $(this).attr('data-comnum');
 		
 		//서버와 통신
-		$.ajax({
+		$.ajax({ 
 			url:'deleteComment.do',
 			type:'post',
 			data:{com_id:com_id},

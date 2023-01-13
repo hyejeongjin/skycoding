@@ -58,7 +58,7 @@
       </li>
 
       <li class="nav-item">          
-        <a id="cate2" class="menuq-link nav-link" href="/skycoding/course/list.do?course_cate=2">
+        <a id="cate2" class="menu-link nav-link" href="/skycoding/course/list.do?course_cate=2">
           <span>CSS</span>
         </a>
       </li>

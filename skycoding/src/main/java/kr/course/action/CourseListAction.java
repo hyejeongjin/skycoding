@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
-import kr.util.PagingUtil;
 import kr.util.PagingUtil2;
 
 

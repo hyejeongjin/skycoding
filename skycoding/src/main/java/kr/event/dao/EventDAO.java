@@ -178,7 +178,7 @@ public class EventDAO {
 			//속성(attr)값에 따라 셀렉되는 레코드를 구별
 			sql = "SELECT * FROM (SELECT rownum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
 					+ "JOIN COURSE c ON event.event_course_id = c.course_id "
-					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) < 2000 "
+					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) > 2000 "
 					+ "ORDER BY event.event_reg_date DESC) e "
 					+ "WHERE e.event_attr = "+attr+") WHERE rownum >=? AND rownum <=?";
 			

@@ -16,7 +16,7 @@ public class MypageVO {
 	
 	//비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
-		//회원 등급(auth) : 0탈퇴회원,1정지회원,2일반회원,9관리자
+		//회원 등급(auth) : 0탈퇴회원,1일반회원,9관리자
 		if(mem_auth >= 1 && mem_pw.equals(userPasswd)) {
 			//비밀번호 일치
 			return true;

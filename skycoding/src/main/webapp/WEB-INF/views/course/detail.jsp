@@ -36,8 +36,6 @@
 				success : function(param) {
 					if (param.result == 'courseNotFound') {
 						course_idChecked = 1;
-							$('#message_id').css('color', '#000000').text(
-								'수강신청 가능');
 							location.href='application.do?course_id=${course.course_id}';
 					} else if (param.result == 'courseDuplicated') {
 						idChecked = 0;

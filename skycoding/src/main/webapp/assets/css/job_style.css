@@ -106,10 +106,18 @@
 }
 .bottom-btn{
 	display:flex;
-	margin-right: 10px;
+	margin:0 10px;
 }
 .bottom-btn .list-btn{
 	margin-left:auto;
+}
+
+
+/*이전글 다음글*/
+.bottom-prevNext{
+	list-style:none;
+	margin-top:15px;
+	padding-left:0;
 }
 
 /*취업 글수정
@@ -657,7 +665,7 @@ h6 {
 	width: 100px;
 	margin-right: 5px;
 }
-#list-sort {
+#list_sort {
 	width: 100px;
 	margin-left: auto; /*오른쪽 배치*/
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.jobEmploy.vo.EmployVO;
+import kr.jobReview.vo.ReviewVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -195,6 +196,51 @@ public class EmployDAO {
 		}
 		return employ;
 	} 
+	
+	//이전글,다음글
+	public EmployVO prevNext(int emp_id)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		EmployVO pnEmploy = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();	
+			//SQL문 작성
+			sql = "SELECT * FROM (" 
+				+ "SELECT emp_id,emp_title,"
+			    + "lag(emp_id,1) over(order by emp_id) prev,"
+			    + "lag(emp_title,1) over(order by emp_id) prev_title,"
+			    + "lead(emp_id,1) over(order by emp_id) next,"
+			    + "lead(emp_title,1) over(order by emp_id) next_title "
+			    + "FROM job_employ)j WHERE j.emp_id=?";
+					
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, emp_id);
+			//SQL문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				pnEmploy = new EmployVO();
+				pnEmploy.setEmp_id(rs.getInt("emp_id"));
+				pnEmploy.setEmp_title(rs.getString("emp_title"));
+				pnEmploy.setPrev(rs.getInt("prev"));
+				pnEmploy.setPrev_title(rs.getString("prev_title"));
+				pnEmploy.setNext(rs.getInt("next"));
+				pnEmploy.setNext_title(rs.getString("next_title"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return pnEmploy;
+	}
+	
 	
 	
 	//조회수 증가

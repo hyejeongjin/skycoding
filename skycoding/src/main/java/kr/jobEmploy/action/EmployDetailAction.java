@@ -1,8 +1,5 @@
 package kr.jobEmploy.action;
   
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.jobEmploy.dao.EmployDAO;
 import kr.jobEmploy.vo.EmployVO;
+import kr.qnaboard.vo.QnaBoardVO;
 import kr.util.StringUtil;
 
 public class EmployDetailAction implements Action{
@@ -28,8 +26,10 @@ public class EmployDetailAction implements Action{
 		//조회수 증가
 		dao.UpdateReadCount(emp_id);
 		
-		EmployVO employ = dao.getEmployDetail(emp_id);
+		//이전글,다음글
+		EmployVO pnEmploy = dao.prevNext(emp_id);
 		
+		EmployVO employ = dao.getEmployDetail(emp_id);
 		
 		//HTML태그를 허용하지 않음
 		employ.setEmp_title(StringUtil.useNoHtml(employ.getEmp_title()));
@@ -37,6 +37,7 @@ public class EmployDetailAction implements Action{
 		employ.setEmp_content(StringUtil.useBrNoHtml(employ.getEmp_content()));
 		
 		request.setAttribute("employ", employ);
+		request.setAttribute("pnEmploy", pnEmploy);
 		
 		return "/WEB-INF/views/jobEmploy/employDetail.jsp";
 	}  

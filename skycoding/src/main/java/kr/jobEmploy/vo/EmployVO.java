@@ -11,10 +11,44 @@ public class EmployVO {
 	private Date emp_reg_date;
 	private Date emp_modify_date;
 	private int mem_num;
+	
 	//테이블에 없어도 목록에 가져올 필요한 정보 추가
 	private String mem_id;
 	private String mem_photo;
 	private int mem_auth;
+	
+	//이전글, 다음글 추가
+	private int prev;
+	private String prev_title;
+	private int next;
+	private String next_title;
+	
+	
+	
+	public int getPrev() {
+		return prev;
+	}
+	public void setPrev(int prev) {
+		this.prev = prev;
+	}
+	public String getPrev_title() {
+		return prev_title;
+	}
+	public void setPrev_title(String prev_title) {
+		this.prev_title = prev_title;
+	}
+	public int getNext() {
+		return next;
+	}
+	public void setNext(int next) {
+		this.next = next;
+	}
+	public String getNext_title() {
+		return next_title;
+	}
+	public void setNext_title(String nwxt_title) {
+		this.next_title = nwxt_title;
+	}
 	
 	public int getMem_auth() {
 		return mem_auth;

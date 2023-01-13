@@ -109,7 +109,7 @@
 						</c:forEach>
 						<!-- 카드2 끝 -->
 						<!-- 카드3 시작 -->
-						<c:forEach var="course3" items="${courseList}">
+						<c:forEach var="course3" items="${courseList3}">
 						<div class="col mb-5">
 							<div class="card h-50">
 								<!-- Product image-->
@@ -130,7 +130,7 @@
 						</c:forEach>
 						<!-- 카드3 끝 -->
 						<!-- 카드4 시작 -->
-						<c:forEach var="course4" items="${courseList}">
+						<c:forEach var="course4" items="${courseList4}">
 						<div class="col mb-5">
 							<div class="card h-50">
 								<!-- Product image-->

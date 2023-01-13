@@ -19,10 +19,22 @@
   <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/assets/css/mypage-style.css" rel="stylesheet">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#search_form').submit(function(){
+		if($('#keyword').val().trim()==''){
+			alert('검색어를 입력하세요');
+			$('#keyword').val('').focus();
+			return false;
+		}	
+	});
+});
+</script>
 </head>
 
 
 <body>
+  <!-- 사이드바 -->
   <jsp:include page="/WEB-INF/views/common/mywritingmain.jsp"/>
 
 	<main id="main" class="main">
@@ -34,102 +46,93 @@
 	        </span>	
 		</section>
 		
-		<!-- 검색창 시작 -->
-		<div class="section">
-			<div class="search-bar">
-				<form class="search-form d-flex align-items-center" method="POST"
-					action="#">
-					<select class="form-select" style="width:160px; float:left;" id="form-select1" name="category"
-						onchange="">
-						<option value="1" selected>제목 + 내용</option>
-						<option value="2">제목</option>
-						<option value="3">내용</option>
-					</select> <input type="text" name="query" placeholder="검색어를 입력하세요">
-					<button type="submit" title="Search">
-						<i class="bi bi-search"></i>
-					</button>
-				</form>
-			</div>
-		</div>
-		<!-- 검색창 끝 -->
-
-		<!-- content 시작 -->
-		<div class="content-main align-center">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col" width="5%"></th>
-						<th scope="col" width="10%">글번호</th>
-						<th scope="col" width="10%">카테고리</th>
-						<th scope="col" width="25%">제목</th>
-						<th scope="col" width="15%">작성자</th>
-						<th scope="col" width="15%">작성일</th>
-						<th scope="col" width="10%">추천수</th>
-						<th scope="col" width="10%">조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>				
-						<td><input type="checkbox" name="checkbox"></td>
-						<th scope="row">3</th>
-						<td>취업후기</td>
-						<td>가나다라마바사</td>
-						<td>Otto</td>
-						<td>2023-01-05</td>
-						<td>123</td>
-						<td>178</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="checkbox"></td>
-						<th scope="row">2</th>
-						<td>자유게시판</td>
-						<td>가나다라마바사</td>
-						<td>Thornton</td>
-						<td>2022-12-25</td>
-						<td>150</td>
-						<td>409</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="checkbox"></td>
-						<th scope="row">1</th>
-						<td>취헙후기</td>
-						<td>가나다라마바사</td>
-						<td>Thornton</td>
-						<td>2022-12-13</td>
-						<td>3</td>
-						<td>144</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!-- content 끝 -->
+		<!-- 검색폼 시작 -->
+				<div class="section"> 
+					<div class="search-bar">
+						<form class="search-form d-flex align-items-center" action="list.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
+							<select class="form-select" id="form-select1" name="keyfield" aria-label="form-select">
+								<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+								<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
+							</select> 
+							<%--제목을 선택한 게 남아있게 하기 위해 value, c:if 작성. value가 keyfield에 전송된다--%>
+							<%--제목,작성자,내용이 keyfield, 검색창이 keyword.  자기자신에게 값을 보내기 때문에 param 이용 --%>
+							<input type="text" name="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요">
+							<button type="submit" title="Search"><i class="bi bi-search"></i></button>
+						</form>
+					</div>
+				</div>
+				<!-- 검색폼 끝 -->
 		
-		<!-- 글쓰기 버튼 -->
-		<div>
-			<input type="button" class="btn btn-primary" style="float:right" value="글쓰기" >
-		</div><br><br>
-				
-	    <div class="text-center">
-	      <!-- Pagination with icons -->
-	      <nav aria-label="Page navigation example">
-	                <ul class="pagination justify-content-center">
-	                  <li class="page-item">
-	                    <a class="page-link" href="#" aria-label="Previous" style="border:0px; color:black;">
-	                      <span aria-hidden="true">&laquo;</span>
-	                    </a>
-	                  </li>
-	                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">1</a></li>
-	                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">2</a></li>
-	                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">3</a></li>
-	                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">4</a></li>
-	                  <li class="page-item">
-	                    <a class="page-link" href="#" aria-label="Next" style="border:0px; color:black;">
-	                      <span aria-hidden="true">&raquo;</span>
-	                    </a>
-	                  </li>
-	                </ul>
-	              </nav><!-- End Pagination with icons -->
-	    </div>
+		<%-----------------------------------------신나리가 쓴 부분 -----------------------------%>
+		<%-- qna table 시작 --%>
+				<div class="table-content">
+				<c:if test="${count == 0}">
+				<table class="table table-group-divider align-center">
+					<tr>
+						<td>표시할 게시물이 없습니다</td>
+					</tr>
+				</table>
+				</c:if>
+				<c:if test="${count>0}">
+				<table class="table table-hover align-center" id="t1">
+						<thead class="table-head">
+							<tr>
+								<th scope="col" width="10%">글번호</th>
+								<th scope="col" width="40%">제목</th>
+								<th scope="col" width="20%">작성일</th>
+								<th scope="col" width="20%">수정일</th>
+								<th scope="col" width="10%">조회수</th>
+							</tr>
+						</thead>
+						<tbody class="table-body table-group-divider">
+							<c:forEach var="myWrite" items="${list}">
+							<tr>
+								<td>
+								<c:if test="${myWrite.qna_id>0}">${myWrite.qna_id}</c:if>
+								<c:if test="${myWrite.free_id>0}">${myWrite.free_id}</c:if>
+								<c:if test="${myWrite.rev_id>0}">${myWrite.rev_id}</c:if>
+								</td>
+								<td><a class="title-link" href="
+								<c:if test="${myWrite.qna_id>0}">
+								${pageContext.request.contextPath}/board_qna/detail.do?qna_id=${myWrite.qna_id}
+								</c:if>
+								<c:if test="${myWrite.free_id>0}">
+								${pageContext.request.contextPath}/board_free/detail.do?free_id=${myWrite.free_id}
+								</c:if>
+								<c:if test="${myWrite.rev_id>0}">
+								${pageContext.request.contextPath}/jobReview/reviewDetail.do?rev_id=${myWrite.rev_id}
+								</c:if>
+								">${myWrite.title}</a></td>
+								<td>${myWrite.reg_date}</td>
+								<td>${myWrite.modify_date}</td>
+								<td>${myWrite.hit}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					
+					<%-- 작은 화면용 테이블 --%>
+					<table class="table table-hover table-group-divider" id="t2">
+						<c:forEach var="myWrite" items="${list}">
+						<tr>
+							<td>
+								<div><a class="title-link" href="detail.do?qna_id=${myWrite.id}">${myWrite.title}</a></div>
+								<span class="t-sub-info">${myWrite.reg_date}</span> &nbsp; 
+								<span class="t-sub-info">${myWrite.modify_date}</span> &nbsp;
+								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${myWrite.hit}</span>
+							</td>
+						</c:forEach>
+					</table>
+				</c:if>
+			</div><%--qna table 끝 --%>
+			<%-- qna 페이지 번호 시작 --%>
+				<c:if test="${count>0}">
+				<div class="align-center">${page}</div>
+				</c:if>
+			<%-- qna 페이지 번호 끝 --%>	
+			
+
+<%-----------------------------------------신나리가 쓴 부분 끝-----------------------------%>
 
 	</main>
 	<!-- End #main -->

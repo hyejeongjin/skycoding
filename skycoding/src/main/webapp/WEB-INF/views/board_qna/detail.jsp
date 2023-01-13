@@ -133,13 +133,13 @@
 					<div class="col-sm-12 col-md-6">
 						<ul class="bottom-prevNext">
 							<li>
-								<c:if test="${pnBoard.prev!=0}">
-   								이전글 | <a href="detail.do?qna_id=${pnBoard.prev}">${pnBoard.prev_title}</a>
-   								</c:if></li>
-   							<li>
   								<c:if test="${pnBoard.next!=0}">
   								다음글 | <a href="detail.do?qna_id=${pnBoard.next}">${pnBoard.next_title}</a>
   								</c:if>
+  								<li>
+								<c:if test="${pnBoard.prev!=0}">
+   								이전글 | <a href="detail.do?qna_id=${pnBoard.prev}">${pnBoard.prev_title}</a>
+   								</c:if></li>
 							</li>
 						</ul>
 					</div>

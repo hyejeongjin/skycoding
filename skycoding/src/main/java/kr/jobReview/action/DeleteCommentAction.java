@@ -34,7 +34,7 @@ public class DeleteCommentAction implements Action{
 		}else if(mem_num!=null 
 				&& mem_num == db_reviewComment.getMem_num()) {
 			//로그인이 되어 있고 로그인 한 회원번호와 작성자 회원번호가
-			//일치
+			//일치 
 			dao.deleteReviewComment(com_id);
 			mapAjax.put("result", "success");
 		}else {

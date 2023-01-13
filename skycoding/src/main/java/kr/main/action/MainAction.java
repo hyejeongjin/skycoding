@@ -16,7 +16,7 @@ public class MainAction implements Action{
 		
 		//강의 목록 메인에 보여지도록함
 		CourseDAO courseDAO = CourseDAO.getInstance();
-	
+	  
 		List<CourseVO> courseList = 
 				courseDAO.getListCourse(1, 3,null, null,1, "1");//표시 강의만 반환 //String sort값 가져와야됨 null(X)문자이므로 ""사용
 		List<CourseVO> courseList2 = 

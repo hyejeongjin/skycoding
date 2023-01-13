@@ -242,7 +242,7 @@ $(function(){
 		let com_id = $(this).attr('data-comnum');
 		
 		//서버와 통신
-		$.ajax({
+		$.ajax({ 
 			url:'deleteComment.do',
 			type:'post',
 			data:{com_id:com_id},

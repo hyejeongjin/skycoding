@@ -117,30 +117,26 @@
 	</c:if>
 	
     <c:if test="${count > 0}"> 
-    <section class="section">
     
-    
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="course_cards">
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="course_cards">
 		<c:forEach var="course" items="${list}">
-					  <div class="course-card" onclick="location.href='detail.do?course_id=${course.course_id}'">
-					    <div class="card h-100">
-					      <img src="${pageContext.request.contextPath}/upload/${course.course_photo}" class="card-img-top" width="100%" height="100%">
-					     
-					      <div class="card-body">
-					        <h6 class="card-title">	${course.course_name}</h6>
-					        <p class="card-text">
-					        <p class="card-text" style="margin: 10px 0px;">${course.course_tr}</p>
-                <%-- 좋아요 --%>
-                 <input type="hidden" id="course_id" value="${course.course_id}">
-              	<i class="bi bi-heart-fill" style="padding-right:20px;" ></i>${course.like_count}
-              	<i class="bi bi-person-fill" style="padding-right:10px; padding-left:10px;"></i>${course.course_hit}	
-					       
-					      </div>
-				    	</div>
-				  	  </div>
-				  	  </c:forEach>
-                    </div>
-    </section>
+			  <div class="course-card" onclick="location.href='detail.do?course_id=${course.course_id}'">
+			    <div class="card h-100">
+			      <img src="${pageContext.request.contextPath}/upload/${course.course_photo}" class="card-img-top" width="80px" height="200px">
+			     
+			      <div class="card-body">
+			        <h6 class="card-title">	${course.course_name}</h6>
+			        <p class="card-text" style="margin: 10px 0px;">${course.course_tr}</p>
+	                <%-- 좋아요 --%>
+	                 <input type="hidden" id="course_id" value="${course.course_id}">
+	              	<i class="bi bi-heart-fill" style="padding-right:20px;" ></i>${course.like_count}
+	              	<i class="bi bi-person-fill" style="padding-right:10px; padding-left:10px;"></i>${course.course_hit}	
+			       
+			      </div><!-- end of card-body -->
+		    	</div>
+		  	  </div>
+		 </c:forEach>
+	</div>
      </c:if>
     <!-- 강의 메인 끝  -->
     

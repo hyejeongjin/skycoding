@@ -9,6 +9,7 @@ import java.util.List;
 
 import kr.jobReview.vo.ReviewCommentVO;
 import kr.jobReview.vo.ReviewVO;
+import kr.qnaboard.vo.QnaBoardVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
 import kr.util.StringUtil;
@@ -172,6 +173,50 @@ public class ReviewDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return review;
+	}
+	
+	//이전글, 다음글
+	public ReviewVO prevNext(int rev_id) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewVO pnReview = null;
+		String sql = null;
+
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();	
+			//SQL문 작성
+			sql = "SELECT * FROM (" 
+				+ "SELECT rev_id,rev_title,"
+			    + "lag(rev_id,1) over(order by rev_id) prev,"
+			    + "lag(rev_title,1) over(order by rev_id) prev_title,"
+			    + "lead(rev_id,1) over(order by rev_id) next,"
+			    + "lead(rev_title,1) over(order by rev_id) next_title "
+			    + "FROM job_review)j WHERE j.rev_id=?";
+					
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, rev_id);
+			//SQL문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				pnReview = new ReviewVO();
+				pnReview.setRev_id(rs.getInt("rev_id"));
+				pnReview.setRev_title(rs.getString("rev_title"));
+				pnReview.setPrev(rs.getInt("prev"));
+				pnReview.setPrev_title(rs.getString("prev_title"));
+				pnReview.setNext(rs.getInt("next"));
+				pnReview.setNext_title(rs.getString("next_title"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return pnReview;
 	}
 	
 	//조회수 증가
@@ -426,11 +471,22 @@ public class ReviewDAO {
 	}
 	
 	//댓글 삭제
-	
-	
-	
-	
-	
-	
+	public void deleteReviewComment(int com_id)throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql= null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "DELETE FROM job_review_comment WHERE com_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, com_id);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 }

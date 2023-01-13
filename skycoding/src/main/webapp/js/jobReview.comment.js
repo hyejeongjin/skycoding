@@ -236,9 +236,37 @@ $(function(){
 		});
 	});
 	
-	
-	
 	//댓글 삭제
+	$(document).on('click','#delete_btn',function(){
+		//댓글 번호
+		let com_id = $(this).attr('data-comnum');
+		
+		//서버와 통신
+		$.ajax({
+			url:'deleteComment.do',
+			type:'post',
+			data:{com_id:com_id},
+			dataType:'json',
+			success:function(param){
+				if(param.result=='logout'){
+					alert('로그인해야 삭제할 수 있습니다');
+				}else if(param.result=='success'){
+					alert('삭제 완료');
+					selectList(1);
+				}else if(param.result=='wrongAccess'){
+					alert('타인의 글을 삭제할 수 없습니다.');
+				}else{
+					alert('댓글 삭제 오류 발생');
+				}
+			},
+			error:function(){
+				alert('네트워크 통신 오류');
+			}
+		});
+		
+	});
+
+
 	
 	//초기 데이터(목록) 호출
 	selectList(1);

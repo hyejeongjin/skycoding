@@ -86,17 +86,23 @@
 				${employ.emp_content}
 			</div>
 			<hr class="hr-style" size="1" width="100%">
-			<div class="bottom-btn">
-				<!-- 이전글 다음글 버튼 시작 -->
-				<div>
 			
-					<button type="button" value="이전" onclick=""></button>
-					<button type="button" value="다음"></button>
-				</div>
-				<!-- 이전글 다음글 버튼 끝 -->
-				<input class="btn btn-primary list-btn" type="button" value="목록" onclick="location.href='employList.do'">
+			<div class="bottom-btn">
+				<!-- 이전글, 다음글 -->
+				<ul class="bottom-prevNext">
+					<li>
+						<c:if test="${pnEmploy.prev!=0}">
+ 								이전글 | <a href="employDetail.do?emp_id=${pnEmploy.prev}">${pnEmploy.prev_title}</a>
+ 								</c:if></li>
+ 							<li>
+								<c:if test="${pnEmploy.next!=0}">
+								다음글 | <a href="employDetail.do?emp_id=${pnEmploy.next}">${pnEmploy.next_title}</a>
+								</c:if>
+					</li>
+				</ul>
+			
+				<input class="btn btn-primary list-btn my-3" type="button" value="목록" onclick="location.href='employList.do'">
 			</div>
-		
 			
 		</div><!-- 사이드바 오른쪽 화면 끝 -->	
 	</div><!-- 컨텐트 메인 끝 -->

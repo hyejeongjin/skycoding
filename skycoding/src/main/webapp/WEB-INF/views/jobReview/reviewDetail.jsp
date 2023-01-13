@@ -48,10 +48,10 @@
 					<div class="top-button">
 						<input type="button" value="수정" class="btn btn-primary btn-sm" 
 								onclick="location.href='reviewUpdateForm.do?rev_id=${review.rev_id}'">
-						<input type="button" value="삭제" class="btn btn-primary btn-sm" id="delete-btn">
+						<input type="button" value="삭제" class="btn btn-primary btn-sm" id="delete_btn">
 						<script type="text/javascript">
 							$(function(){
-								$('#delete-btn').click(function(){
+								$('#delete_btn').click(function(){
 									let choice = confirm('정말 삭제하시겠습니까?');
 									if(choice){
 										location.replace('reviewDelete.do?rev_id=${review.rev_id}');
@@ -125,7 +125,19 @@
 					</div>
 					<!-- 댓글 끝 -->
 					<div class="bottom-btn">
-						<div>${page}</div>
+						<!-- 이전글, 다음글 -->
+						<ul class="bottom-prevNext">
+							<li>
+								<c:if test="${pnReview.prev!=0}">
+   								이전글 | <a href="reviewDetail.do?rev_id=${pnReview.prev}">${pnReview.prev_title}</a>
+   								</c:if></li>
+   							<li>
+  								<c:if test="${pnReview.next!=0}">
+  								다음글 | <a href="reviewDetail.do?rev_id=${pnReview.next}">${pnReview.next_title}</a>
+  								</c:if>
+							</li>
+						</ul>
+					
 						<input class="btn btn-primary list-btn my-3" type="button" value="목록" onclick="location.href='reviewList.do'">
 					</div>
 					

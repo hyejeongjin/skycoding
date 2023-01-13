@@ -90,15 +90,16 @@
 					<c:forEach var="employ" items="${list}">
 					  <div class="col job-card">
 					    <div class="card h-100">
-					      <a href="employDetail.do?emp_id=${employ.emp_id}">
-					      <img src="${pageContext.request.contextPath}/upload/${employ.emp_photo}" class="card-img-top" width="100%" height="100%">
-					      </a>
-					      <div class="card-body">
-					        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
-					        <p class="card-text">
-					        	${employ.emp_reg_date} &nbsp;${employ.emp_hit}
-					        </p>
-					      </div>
+						      <a href="employDetail.do?emp_id=${employ.emp_id}">
+						      <img src="${pageContext.request.contextPath}/upload/${employ.emp_photo}" class="card-img-top" width="100%" height="100%">
+						      </a>
+						      
+						      <div class="card-body">
+						        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
+						        <p class="card-text">
+						        	${employ.emp_reg_date} &nbsp;${employ.emp_hit}
+						        </p>
+					      	 </div>
 				    	</div>
 				  	  </div>
 					 </c:forEach>

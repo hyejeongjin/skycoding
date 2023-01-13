@@ -296,13 +296,10 @@ h6 {
 
 /* Card */
 .card {
-  margin-bottom: 30px;
   border: none;
   border-radius: 5px;
   box-shadow:  0px 0 30px rgba(1, 41, 112, 0.1);
-  float:left;
   /*width:150px;*/
-  margin : 10px;
   cursor : pointer; /*추가*/
 }
 

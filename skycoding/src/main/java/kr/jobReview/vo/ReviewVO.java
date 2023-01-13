@@ -15,6 +15,47 @@ public class ReviewVO {
 	private String mem_id;
 	private String mem_photo;
 	
+	//컬럼에는 없는데 이전글,다음글 처리하려고 넣음
+	private int next;
+	private String next_title;
+	private int prev;
+	private String prev_title;
+
+	
+	
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+
+	public String getNext_title() {
+		return next_title;
+	}
+
+	public void setNext_title(String next_title) {
+		this.next_title = next_title;
+	}
+
+	public int getPrev() {
+		return prev;
+	}
+
+	public void setPrev(int prev) {
+		this.prev = prev;
+	}
+
+	public String getPrev_title() {
+		return prev_title;
+	}
+
+	public void setPrev_title(String prev_title) {
+		this.prev_title = prev_title;
+	}
+	
+	
 	public int getRev_id() {
 		return rev_id;
 	}

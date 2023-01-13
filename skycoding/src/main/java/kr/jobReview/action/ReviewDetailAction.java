@@ -17,13 +17,17 @@ public class ReviewDetailAction implements Action{
 		ReviewDAO dao = ReviewDAO.getInstance();
 		//조회수 증가
 		dao.updateReadCount(rev_id);
-		  
+		
+		//이전글,다음글
+		ReviewVO pnReview = dao.prevNext(rev_id);
+		
 		//글상세보기
 		ReviewVO review = dao.getReviewDetail(rev_id);
 		review.setRev_title(StringUtil.useNoHtml(review.getRev_title()));
 		review.setRev_content(StringUtil.useBrNoHtml(review.getRev_content()));
 		
 		request.setAttribute("review", review);
+		request.setAttribute("pnReview", pnReview);
 		
 		
 		return "/WEB-INF/views/jobReview/reviewDetail.jsp";

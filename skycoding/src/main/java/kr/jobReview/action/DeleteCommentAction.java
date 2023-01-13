@@ -17,6 +17,7 @@ public class DeleteCommentAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		int com_id = Integer.parseInt(request.getParameter("com_id"));
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();
@@ -35,7 +36,6 @@ public class DeleteCommentAction implements Action{
 			//로그인이 되어 있고 로그인 한 회원번호와 작성자 회원번호가
 			//일치
 			dao.deleteReviewComment(com_id);
-			
 			mapAjax.put("result", "success");
 		}else {
 			//로그인이 되어 있고 회원번호와 작성자 회원번호가 불일치
@@ -47,7 +47,7 @@ public class DeleteCommentAction implements Action{
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		request.setAttribute("ajaxData", ajaxData);
 		
-		return "WEB-INF/views/common/ajax_view.jsp";
+		return "/WEB-INF/views/common/ajax_view.jsp";
 		
 	}
 

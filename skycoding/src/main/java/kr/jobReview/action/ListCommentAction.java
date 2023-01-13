@@ -47,7 +47,7 @@ public class ListCommentAction implements Action{
 			list = Collections.emptyList();//빈 List 생성(빈 배열로 전송)
 		}
 		
-		//user_num값 보내기
+		//mem_num값 보내기
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		

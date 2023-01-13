@@ -66,7 +66,7 @@
 					<h2 class="py-3">신규 강의</h2>
 					<div
 						class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
-						<!-- 카드 시작 -->
+						<!-- 카드1 시작 -->
 						<c:forEach var="course" items="${courseList}">
 						<div class="col mb-5">
 							<div class="card h-50">
@@ -86,7 +86,70 @@
 							</div>
 						</div>
 						</c:forEach>
-						<!-- 카드 끝 -->
+						<!-- 카드1 끝 -->
+						<!-- 카드2 시작 -->
+						<c:forEach var="course2" items="${courseList2}">
+						<div class="col mb-5">
+							<div class="card h-50">
+								<!-- Product image-->
+									<img class="card-img-top"
+									src="${pageContext.request.contextPath}/upload/${course2.course_photo}"
+									<c:if test="${course2.course_photo==null}">
+									src="${pageContext.request.contextPath}/images/blank.png"
+									</c:if>>
+								<!-- Product actions-->
+								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
+									<div class="text-center">
+										<a class="btn btn-outline-dark mt-auto" 
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course2.course_id}">수강하러가기</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						</c:forEach>
+						<!-- 카드2 끝 -->
+						<!-- 카드3 시작 -->
+						<c:forEach var="course3" items="${courseList}">
+						<div class="col mb-5">
+							<div class="card h-50">
+								<!-- Product image-->
+									<img class="card-img-top"
+									src="${pageContext.request.contextPath}/upload/${course3.course_photo}"
+									<c:if test="${course3.course_photo==null}">
+									src="${pageContext.request.contextPath}/images/blank.png"
+									</c:if>>
+								<!-- Product actions-->
+								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
+									<div class="text-center">
+										<a class="btn btn-outline-dark mt-auto" 
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course3.course_id}">수강하러가기</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						</c:forEach>
+						<!-- 카드3 끝 -->
+						<!-- 카드4 시작 -->
+						<c:forEach var="course4" items="${courseList}">
+						<div class="col mb-5">
+							<div class="card h-50">
+								<!-- Product image-->
+									<img class="card-img-top"
+									src="${pageContext.request.contextPath}/upload/${course4.course_photo}"
+									<c:if test="${course4.course_photo==null}">
+									src="${pageContext.request.contextPath}/images/blank.png"
+									</c:if>>
+								<!-- Product actions-->
+								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
+									<div class="text-center">
+										<a class="btn btn-outline-dark mt-auto" 
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course4.course_id}">수강하러가기</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						</c:forEach>
+						<!-- 카드4 끝 -->
 					</div>
 				</div>
 			</section>

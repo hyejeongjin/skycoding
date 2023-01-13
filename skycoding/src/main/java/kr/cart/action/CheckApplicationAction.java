@@ -15,7 +15,7 @@ import kr.controller.Action;
 
 public class CheckApplicationAction implements Action {
 
-	@Override
+	@Override   
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		Integer mem_num = (Integer)session.getAttribute("mem_num");

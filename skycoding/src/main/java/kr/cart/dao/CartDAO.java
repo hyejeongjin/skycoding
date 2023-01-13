@@ -52,7 +52,7 @@ public class CartDAO {
 
 		try {
 
-			//커넥션풀로부터 커넥션 할당
+			//커넥션풀로부터 커넥션 할당   
 			conn = DBUtil.getConnection();
 
 			//sql문 작성

@@ -177,7 +177,9 @@ public class EventDAO {
 			
 			//속성(attr)값에 따라 셀렉되는 레코드를 구별
 			sql = "SELECT * FROM (SELECT rownum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
-					+ "JOIN COURSE c ON event.event_course_id = c.course_id ORDER BY event.event_reg_date DESC) e "
+					+ "JOIN COURSE c ON event.event_course_id = c.course_id "
+					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) < 2000 "
+					+ "ORDER BY event.event_reg_date DESC) e "
 					+ "WHERE e.event_attr = "+attr+") WHERE rownum >=? AND rownum <=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -211,6 +213,7 @@ public class EventDAO {
 		return list;
 	}
 
+	//이벤트 게시글의 
 	//상세 페이지 날짜(마감일까지 남은 일수) 구하는 메서드(ParseException 발생 가능)
 	public Integer getDiffDate(int event_id) throws Exception{
 		Connection conn = null;

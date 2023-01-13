@@ -1885,7 +1885,7 @@ h6 {
     width: auto !important;
     height: auto !important;
     visibility: visible !important;
-    background-color: transparent !important;
+    color: transparent !important;
     border: 0 !important;
     transform: none !important;
     transition: none;
@@ -1932,7 +1932,7 @@ h6 {
     width: auto !important;
     height: auto !important;
     visibility: visible !important;
-    background-color: transparent !important;
+    color: transparent !important;
     border: 0 !important;
     transform: none !important;
     transition: none;
@@ -1979,7 +1979,7 @@ h6 {
     width: auto !important;
     height: auto !important;
     visibility: visible !important;
-    background-color: transparent !important;
+    color: transparent !important;
     border: 0 !important;
     transform: none !important;
     transition: none;
@@ -2026,7 +2026,7 @@ h6 {
     width: auto !important;
     height: auto !important;
     visibility: visible !important;
-    background-color: transparent !important;
+    color: transparent !important;
     border: 0 !important;
     transform: none !important;
     transition: none;
@@ -2073,7 +2073,7 @@ h6 {
     width: auto !important;
     height: auto !important;
     visibility: visible !important;
-    background-color: transparent !important;
+    color: transparent !important;
     border: 0 !important;
     transform: none !important;
     transition: none;
@@ -2119,7 +2119,7 @@ h6 {
   width: auto !important;
   height: auto !important;
   visibility: visible !important;
-  background-color: transparent !important;
+  color: transparent !important;
   border: 0 !important;
   transform: none !important;
   transition: none;
@@ -2132,7 +2132,7 @@ h6 {
   flex-grow: 0;
   padding: 0;
   overflow-y: visible;
-}
+} 
 
 .navbar-dark {
   --bs-navbar-color: rgba(255, 255, 255, 0.55);

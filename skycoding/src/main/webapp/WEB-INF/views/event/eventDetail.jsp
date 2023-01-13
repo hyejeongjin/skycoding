@@ -70,7 +70,7 @@
 		</span>
 		<!-- 마감일 지나면 안 눌러지게 처리 -->
 		<div id="register_btn" class="col-sm-2 col-md-2">
-		<input type="button" value="마감 전 신청하기 👉" onclick="location.href='registerEvent.do'"
+		<input type="button" value="마감 전 신청하기 👉" onclick="location.href='../course/detail.do?course_id=${event.event_course_id}'"
 				class="btn btn-outline-info" <c:if test="${event_diffDay<0}">disabled="disabled"</c:if> >
 		</div>
 		<div class="col"></div>

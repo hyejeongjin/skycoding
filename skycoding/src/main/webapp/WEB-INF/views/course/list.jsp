@@ -41,8 +41,6 @@
   </script>
 </head>
 
-
-
 <body>
 
    <jsp:include page="/WEB-INF/views/common/header.jsp"/>

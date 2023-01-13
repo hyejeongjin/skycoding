@@ -64,9 +64,8 @@ $(function(){
 					</div>
 				</div>
 				<!-- 검색폼 끝 -->
-		
-		<%-----------------------------------------신나리가 쓴 부분 -----------------------------%>
-		<%-- qna table 시작 --%>
+	
+		<%-- table 시작 --%>
 				<div class="table-content">
 				<c:if test="${count == 0}">
 				<table class="table table-group-divider align-center">
@@ -126,15 +125,12 @@ $(function(){
 						</c:forEach>
 					</table>
 				</c:if>
-			</div><%--qna table 끝 --%>
-			<%-- qna 페이지 번호 시작 --%>
+			</div><%--table 끝 --%>
+			<%-- 페이지 번호 시작 --%>
 				<c:if test="${count>0}">
 				<div class="align-center">${page}</div>
 				</c:if>
-			<%-- qna 페이지 번호 끝 --%>	
-			
-
-<%-----------------------------------------신나리가 쓴 부분 끝-----------------------------%>
+			<%-- 페이지 번호 끝 --%>	
 
 	</div>
 	</div>

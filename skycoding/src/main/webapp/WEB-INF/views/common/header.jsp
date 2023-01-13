@@ -18,12 +18,12 @@
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
-</head>
+</head>   
 <body>
 	<header id="header" class="header fixed-top d-flex align-items-center">
 		<div class="container px-4 px-lg-5" style="float: none; margin: auto;">
 			<nav class="navbar navbar-expand-lg navbar-light">
-				<a class="navbar-brand" href="#"
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/main/main.do"
 					style="font-size: 26px; font-weight: 600; color: #012970; font-family: Nunito, sans-serif;">하늘코딩</a>
 				<button class="navbar-toggler" type="button" 
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -33,7 +33,6 @@
 				</button> 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/main/main.do">HOME</a></li>
 
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" id="navbarDropdown" href="#"

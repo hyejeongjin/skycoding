@@ -19,6 +19,8 @@ public class MoreViewEventAction implements Action{
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		String sort = request.getParameter("sort");
+		if(sort == null) sort="1";
 		
 		int attr = Integer.parseInt(request.getParameter("attr"));
 		
@@ -28,7 +30,7 @@ public class MoreViewEventAction implements Action{
 		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 2, 4, "moreViewEvent.do","&attr="+attr);
 		List<EventVO> eventList = null;
 		if(count > 0) {
-			eventList = eventDao.getEventList(page.getStartRow(), page.getEndRow(), keyfield, keyword, attr);
+			eventList = eventDao.getEventList(page.getStartRow(), page.getEndRow(), keyfield, keyword, attr, sort);
 		}
 		
 		request.setAttribute("count", count);

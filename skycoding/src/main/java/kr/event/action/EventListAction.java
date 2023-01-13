@@ -17,10 +17,10 @@ public class EventListAction implements Action{
 		EventDAO eventDao = EventDAO.getInstance();
 		
 		//진행중 이벤트 추출
-		List<EventVO> eventList = eventDao.getEventList(1, 2, null, null, 1);
+		List<EventVO> eventList = eventDao.getEventList(1, 2, null, null, 1, "1");
 		
 		//종료된 이벤트 추출
-		List<EventVO> eventList2 = eventDao.getEventList(1, 2, null, null, 0);
+		List<EventVO> eventList2 = eventDao.getEventList(1, 2, null, null, 0, "1");
 		
 		//진행중인 이벤트의 deadline과 현재 날짜 일수 계산
 		List<Integer> diffDayList = new ArrayList<>();

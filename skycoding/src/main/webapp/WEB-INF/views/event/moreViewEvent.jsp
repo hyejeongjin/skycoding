@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>종료된 이벤트 더보기</title>
+<title>이벤트 더보기</title>
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -21,8 +21,29 @@
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
+		<div id="event_list_nav" class="btn_nav">
+			<!-- 드롭다운 -->
+            <select id="event_list_select" class="float-end btn btn-outline-white btn-md" name="keyfield2" aria-label="form-select">
+				<option value="1" <c:if test="${param.sort==1}">selected</c:if>>최신순</option>
+				<option value="2" <c:if test="${param.sort==2}">selected</c:if>>조회순</option>
+				<option value="3" <c:if test="${param.sort==3}">selected</c:if>>마감임박순</option>
+			</select>
+			<script>
+				$(function(){
+					$('#event_list_select').change(function(){
+						location.href='moreViewEvent.do?pageNum=${param.pageNum}&attr=${param.attr}&sort='+$(this).val();
+					});
+				});
+			</script>
+			<!-- 드롭다운 -->
+        </div>
+        <div style="clear:both;"></div>
 <!-- 진행중 이벤트 카드 시작 -->
-     <h3 style="font-size:20px;">진행중인 이벤트</h3>
+	 <c:if test="${attr == 1 }">
+	     <h3 style="font-size:20px;">진행중인 이벤트</h3>
+	 </c:if>
+	     <h3 style="font-size:20px;">종료된 이벤트</h3>
+     <hr size="1" noshade>
      <div class="container" id="progress_event">
      <!-- 게시물이 없을 때 -->
      <c:if test="${count == 0}">

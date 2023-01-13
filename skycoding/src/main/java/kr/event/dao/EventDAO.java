@@ -165,22 +165,32 @@ public class EventDAO {
 	}
 	
 	//페이징 처리할 이벤트글 목록 가져오기 0:종료  1:진행중
-	public List<EventVO> getEventList(int startNum, int endNum, String keyfield, String keyword, int attr)throws Exception{
+	public List<EventVO> getEventList(int startNum, int endNum, String keyfield, String keyword, int attr, String sort)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<EventVO> list = null;
 		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
+			//dropdown sort변수 추가
+			if(sort.equals("1")) {
+				sort = "event.event_reg_date";
+			}else if(sort.equals("2")) {
+				sort = "event.event_hit";
+			}else {
+				sort = "event.event_deadline";
+			}
 			//속성(attr)값에 따라 셀렉되는 레코드를 구별
 			//+ reg_date기준 추가 -> 2000년 전에 등록한 글은 표시되지 않게
 			sql = "SELECT * FROM (SELECT rownum rnum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
 					+ "JOIN COURSE c ON event.event_course_id = c.course_id "
 					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) > 2000 "
-					+ "ORDER BY event.event_reg_date DESC) e "
+					+ "ORDER BY " + sort + " DESC) e "
 					+ "WHERE e.event_attr = "+attr+") WHERE rnum >=? AND rnum <=?";
 			
 			pstmt = conn.prepareStatement(sql);

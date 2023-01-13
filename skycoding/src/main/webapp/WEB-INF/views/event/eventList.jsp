@@ -27,14 +27,9 @@
 	<div class="content-main">
 		<div id="event_list_nav" class="btn_nav">
 				<c:if test="${mem_auth == 9}">
-                <input id="list_register_btn" class="btn btn-outline-warning btn-md float-start" type="button" value="이벤트 등록" style="display:block"
+                <input id="list_register_btn" class="btn btn-outline-warning btn-md float-end" type="button" value="이벤트 등록" style="display:block"
                 			onclick="location.href='registerEventForm.do'">
                 </c:if>
-					<select id="event_list_select" class="float-end btn btn-outline-danger btn-md" id="form-select2" name="keyfield2" aria-label="form-select">
-						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>마감임박순</option>
-						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
-						<option value="2" <c:if test="${param.keyfield2==3}">selected</c:if>>최신순</option>
-					</select>
         </div>
         <div style="clear:both;"></div>
         <!-- 진행중 이벤트 카드 시작 -->

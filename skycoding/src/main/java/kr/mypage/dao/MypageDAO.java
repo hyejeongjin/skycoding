@@ -282,7 +282,7 @@ public class MypageDAO {
 		}		
 		
 		//내가 선택한 좋아요 목록
-		public List<MycourselikeVO> getListCourseFav(int mem_num)
+		public List<MycourselikeVO> getListCourseFav(int start, int end, int mem_num, String sort, String keyword)
 				            		   throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -294,14 +294,16 @@ public class MypageDAO {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
 				//SQL문 작성
-				sql = "SELECT * FROM (SELECT a.* "
+				sql = "SELECT * FROM (SELECT rownum rnum, a.* "
 					+ "FROM (SELECT * FROM course c JOIN hmember m "
 					+ "USING(mem_num) JOIN course_like l USING(course_id) "
-					+ "WHERE l.mem_num=? ORDER BY like_num DESC)a) ";
+					+ "WHERE l.mem_num=? ORDER BY like_num DESC)a) WHERE rnum >= ? AND rnum<=?";
 				//PrepardStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
 				pstmt.setInt(1, mem_num);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
 				
 				//SQL문을 실행해서 결과행들을 ResultSet에 담음
 				rs = pstmt.executeQuery();
@@ -351,7 +353,7 @@ public class MypageDAO {
 		}
 		
 		//내가 신청한 강좌 목록
-		public List<MycourselistVO> getListCourse(int mem_num, String sort, String keyword)
+		public List<MycourselistVO> getListCourse(int start, int end, int mem_num, String sort, String keyword)
 				            		   throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -359,7 +361,7 @@ public class MypageDAO {
 			List<MycourselistVO> list = null;
 			String sql = null;
 			String sub_sql = "";
-
+			
 			try {
 				//커넥션풀로부터 커넥션 할당
 				conn = DBUtil.getConnection();
@@ -377,18 +379,19 @@ public class MypageDAO {
 				if(keyword!=null && !keyword.equals("")) {
 					sub_sql = " AND c.course_name Like '%"+keyword+"%'";//강의명 검색	
 				}
-
-				
+			
 				//SQL문 작성
-				sql = "SELECT * FROM (SELECT a.* "
+				sql = "SELECT * FROM (SELECT rownum rnum, a.* "
 					+ "FROM (SELECT * FROM course c JOIN hmember m "
 					+ "USING(mem_num) JOIN course_cart t USING(course_id) "
-					+ "WHERE (t.mem_num=?" +sub_sql+") ORDER BY " + sort + ")a) ";
+					+ "WHERE (t.mem_num=?" +sub_sql+") ORDER BY " + sort + ")a) WHERE rnum >= ? AND rnum <=?";
 				//PrepardStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩
 				pstmt.setInt(1, mem_num);
-				
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+
 				//SQL문을 실행해서 결과행들을 ResultSet에 담음
 				rs = pstmt.executeQuery();
 				list = new ArrayList<MycourselistVO>();
@@ -410,6 +413,77 @@ public class MypageDAO {
 			}
 			return list;
 		}
+		
+		//총 레코드 수(검색 레코드 수)          회원번호           검색내용
+		public int getCoursecartCount(int mem_num, String keyword)throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			String sub_sql = "";//검색할 때 사용
+			int count = 0;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				//강의명 검색
+				if(keyword!=null && !keyword.equals("")) {
+					sub_sql = " AND c.course_name Like '%"+keyword+"%'";//강의명 검색	
+				}		
+				
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM course c JOIN course_cart t USING(course_id) WHERE t.mem_num=?" + sub_sql;
+				//preparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				
+				//SQL문 실행하고 결과행을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);//데이터가 1개라 컬럼인덱스 1을 넣음
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}
+
+		//총 레코드 수(검색 레코드 수)          회원번호           검색내용
+		public int getCourselikeCount(int mem_num, String keyword)throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			int count = 0;
+			
+			try {
+				//커넥션풀로부터 커넥션 할당
+				conn = DBUtil.getConnection();
+				
+				//SQL문 작성
+				sql = "SELECT COUNT(*) FROM course_like t WHERE t.mem_num=?";
+				//preparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mem_num);
+				
+				//SQL문 실행하고 결과행을 ResultSet에 담음
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);//데이터가 1개라 컬럼인덱스 1을 넣음
+				}
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(rs, pstmt, conn);
+			}
+			return count;
+		}		
+
 		
 		//작성게시글 총 레코드 수(검색 레코드 수)
 		public int getMyBoardCount(String keyfield, String keyword, int mem_num)throws Exception{	

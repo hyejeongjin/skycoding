@@ -102,25 +102,10 @@
     </form>
 
     <div class="text-center">
-      <!-- Pagination with icons -->
-      <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous" style="border:0px; color:black;">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#" style="border:0px; color:black;">4</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next" style="border:0px; color:black;">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav><!-- End Pagination with icons -->
+		<!-- 페이지 번호 시작 -->
+		<c:if test="${count>0}">
+			<div class="align-center">${page}</div>
+		</c:if>
     </div>
   </div>
   </div>

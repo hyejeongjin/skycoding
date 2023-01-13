@@ -33,7 +33,7 @@
   		
   		$('.menu-link').each(function(index,item){
   			if((index+1) == ${param.course_cate}){
-  				$(this).addClass('collapsed');
+  				$(this).removeClass('collapsed');
   			}
   		});
   		
@@ -52,25 +52,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
                             
-        <a id="cate1" class="menu-link nav-link" href="/skycoding/course/list.do?course_cate=1">
+        <a id="cate1" class="menu-link nav-link collapsed" href="/skycoding/course/list.do?course_cate=1">
           <span>HTML</span>
         </a>
       </li>
 
       <li class="nav-item">          
-        <a id="cate2" class="menu-link nav-link" href="/skycoding/course/list.do?course_cate=2">
+        <a id="cate2" class="menu-link nav-link collapsed" href="/skycoding/course/list.do?course_cate=2">
           <span>CSS</span>
         </a>
       </li>
       
       <li class="nav-item">           
-        <a id="cate3" class="menu-link nav-link" href="/skycoding/course/list.do?course_cate=3">
+        <a id="cate3" class="menu-link nav-link collapsed" href="/skycoding/course/list.do?course_cate=3">
           <span>JAVA</span>
         </a>
       </li>
       
       <li class="nav-item">                
-        <a id="cate4" class="menu-link nav-link" href="/skycoding/course/list.do?course_cate=4">
+        <a id="cate4" class="menu-link nav-link collapsed" href="/skycoding/course/list.do?course_cate=4">
           <span>DB</span>
         </a>
       </li>

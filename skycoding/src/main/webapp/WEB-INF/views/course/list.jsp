@@ -131,7 +131,6 @@
 	                 <input type="hidden" id="course_id" value="${course.course_id}">
 	              	<i class="bi bi-heart-fill" style="padding-right:20px;" ></i>${course.like_count}
 	              	<i class="bi bi-person-fill" style="padding-right:10px; padding-left:10px;"></i>${course.course_hit}	
-			       
 			      </div><!-- end of card-body -->
 		    	</div>
 		  	  </div>

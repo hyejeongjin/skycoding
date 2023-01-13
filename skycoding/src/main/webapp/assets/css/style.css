@@ -18,8 +18,13 @@ body {
   color: #444444;
 }
 
-#header{
-	background-color: #FFF;
+
+#container{
+	background-color: white;
+}
+#navbar{
+	padding:0;
+	width:100%;
 }
 
 

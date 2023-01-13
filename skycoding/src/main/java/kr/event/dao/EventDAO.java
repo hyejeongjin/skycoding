@@ -287,6 +287,26 @@ public class EventDAO {
 		}
 		return event;
 	}
+	//조회수 증가
+	public void addEventView(int event_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "UPDATE EVENT SET event_hit=event_hit+1 WHERE event_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_id);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 	//이벤트 등록글 수정
 		public void updateEvent(EventVO event)throws Exception{

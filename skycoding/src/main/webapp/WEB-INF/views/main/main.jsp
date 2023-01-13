@@ -52,7 +52,7 @@
 							class="d-block w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="${pageContext.request.contextPath}/images/mainimg04.jpg"
+						<img src="${pageContext.request.contextPath}/images/banner3.png"
 							class="d-block w-100">
 					</div>
 				</div>

@@ -30,6 +30,28 @@
 			$('.event_content').append(arr_content[0]);
 			$('#event_benefit').append(arr_content[1]);
 		};
+		
+	$(function(){
+		$('#detail_delete_btn').click(function(){
+			$.ajax({
+				url:'deleteEvent.do',
+				type:'post',
+				data:{event_id:${event.event_id}},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'success'){
+						alert('이벤트를 삭제했습니다.');
+						location.href='eventList.do?attr=1&attr=0';
+					}else{
+						alert('이벤트 삭제 오류 발생');
+					}
+				},
+				error:function(){
+					alert('네트워크 오류 발생');
+				},
+			});
+		});
+	});
 	
 </script>	
 	
@@ -86,11 +108,10 @@
 			<c:if test="${sessionScope.mem_auth == 9 }">
 			<div class="col-sm-6 col-md-6 lg-6 text-end">
 			<c:if test="${event_diffDay>=0}">
-			<input id="deatil_update_btn" type="button" value="수정" 
+			<input id="detail_update_btn" type="button" value="수정" 
 					class="btn btn-outline-primary" onclick="location.href='updateEventForm.do?event_id=${event.event_id}'">
 			</c:if>
-			<input id="deatil_delete_btn" type="button" value="삭제" 
-					class="btn btn-outline-secondary" onclick="location.href='deleteEvent.do?event_id=${event.event_id}'">
+			<input id="detail_delete_btn" type="button" value="삭제" class="btn btn-outline-secondary">
 			</div>
 			</c:if>
 		</div>

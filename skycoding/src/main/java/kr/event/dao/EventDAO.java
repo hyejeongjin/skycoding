@@ -176,6 +176,7 @@ public class EventDAO {
 			conn = DBUtil.getConnection();
 			
 			//속성(attr)값에 따라 셀렉되는 레코드를 구별
+			//+ reg_date기준 추가 -> 2000년 전에 등록한 글은 표시되지 않게
 			sql = "SELECT * FROM (SELECT rownum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
 					+ "JOIN COURSE c ON event.event_course_id = c.course_id "
 					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) > 2000 "
@@ -315,7 +316,6 @@ public class EventDAO {
 		public void updateEvent(EventVO event)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			ResultSet rs = null;
 			String sql = null;
 			
 			try {
@@ -337,10 +337,30 @@ public class EventDAO {
 			} catch (Exception e) {
 				throw new Exception(e);
 			}finally {
-				DBUtil.executeClose(rs, pstmt, conn);
+				DBUtil.executeClose(null, pstmt, conn);
 			}
 		}
 		
+		//등록글 삭제
+		public void deleteEvent(int event_id)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				conn = DBUtil.getConnection();
+				
+				sql = "DELETE FROM EVENT WHERE event_id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, event_id);
+				
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+		}
 
 		//이벤트 등록 파일 삭제
 		public void deleteEventFile(int event_id)throws Exception{

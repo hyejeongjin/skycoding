@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.course.dao.CourseDAO;
 import kr.course.vo.CourseVO;
+import kr.util.PagingUtil;
 import kr.util.PagingUtil2;
 
 
@@ -15,13 +16,17 @@ public class CourseListAction implements Action {
 
 	@Override             
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//페이지 번호 반환
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum==null) pageNum = "1"; //메인에서 list.do를 호출할 때
+		
 		//카테고리 번호 반환        
 		String course_cate = request.getParameter("course_cate");
 		if(course_cate == null) course_cate = "1";
 		
+		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
-		
 		//dropdown sort 추가     
 		String sort = request.getParameter("sort");
 		if(sort == null) sort="1";
@@ -33,11 +38,19 @@ public class CourseListAction implements Action {
 		//페이지처리
 		//keyfield,keyword,currentPage,count,rowCount,
 		//pageCount,url
+		/*
+		 * 
+		PagingUtil page = 
+				new PagingUtil(keyfield,keyword,
+						      Integer.parseInt(pageNum),
+						          count,8,3,"list.do");*/
 		PagingUtil2 page = 
 				new PagingUtil2(keyfield,keyword,
-						      Integer.parseInt(course_cate),
-						          count,8,3,"list.do");
-		//dropdown 
+						      Integer.parseInt(pageNum) ,
+						          count,8,3,"list.do","&course_cate="+course_cate);
+		
+	
+		//목록구하기
 		List<CourseVO> courseList = null;
 		if(count > 0) {
 			courseList= dao.getListCourse(page.getStartRow(),
@@ -49,6 +62,7 @@ public class CourseListAction implements Action {
 		request.setAttribute("count", count);
 		request.setAttribute("list", courseList);
 		request.setAttribute("page", page.getPage());
+		
 
 		
 		

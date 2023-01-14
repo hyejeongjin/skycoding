@@ -508,9 +508,9 @@ public class MypageDAO {
 
 				//SQL문 작성
 				sql = "SELECT COUNT(*) FROM "
-						+ "(SELECT qna_title title, mem_num FROM qna_detail "
-						+ "UNION ALL SELECT free_title, mem_num FROM free_detail "
-						+ "UNION ALL SELECT rev_title, mem_num FROM job_review) WHERE mem_num=?" + sub_sql;  
+						+ "(SELECT qna_title title, mem_num, qna_content content FROM qna_detail "
+						+ "UNION ALL SELECT free_title, mem_num, free_content FROM free_detail "
+						+ "UNION ALL SELECT rev_title, mem_num, rev_content FROM job_review) WHERE mem_num=?" + sub_sql;  
 
 				//PreparedStatement 객체 새성
 				pstmt = conn.prepareStatement(sql);

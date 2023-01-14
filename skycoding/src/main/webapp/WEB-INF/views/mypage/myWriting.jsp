@@ -51,7 +51,7 @@ $(function(){
 		<!-- 검색폼 시작 -->
 				<div class="section"> 
 					<div class="search-bar">
-						<form class="search-form d-flex align-items-center" action="list.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
+						<form class="search-form d-flex align-items-center" action="myWriting.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
 							<select class="form-select" id="form-select1" name="keyfield" aria-label="form-select">
 								<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
 								<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>

@@ -28,6 +28,10 @@ header {
    background-color: white;
 }
 
+#navbar{
+   padding:0px;
+}
+
     #event_list_nav{
     	padding-top:10px;
     }

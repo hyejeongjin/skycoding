@@ -22,7 +22,7 @@ public class MypageDAO {
 	}
 	private MypageDAO() {}
 
-	//회원가입
+	//회원가입 
 	public void insertMember(MypageVO member)
 			                            throws Exception{
 		Connection conn = null;

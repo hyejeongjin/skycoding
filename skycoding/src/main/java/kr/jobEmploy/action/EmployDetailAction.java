@@ -30,7 +30,7 @@ public class EmployDetailAction implements Action{
 		EmployDAO dao = EmployDAO.getInstance();
 		//조회수 증가
 		dao.UpdateReadCount(emp_id);
-		
+		 
 		//이전글,다음글
 		EmployVO pnEmploy = dao.prevNext(emp_id);
 		

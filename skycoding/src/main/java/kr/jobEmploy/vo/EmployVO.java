@@ -1,5 +1,5 @@
 package kr.jobEmploy.vo;
-
+ 
 import java.sql.Date;
 
 public class EmployVO {

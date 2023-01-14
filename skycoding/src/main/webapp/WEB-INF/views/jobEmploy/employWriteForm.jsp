@@ -34,9 +34,25 @@ $(function(){
 	});
 	
 	$('#id_check').on('click',function(){
-		if('#mem_id'){
-			
+		if($('#mem_id').val().trim()==''){
+			alert('회원 아이디를 입력하세요');
+			$('#id_check').val('').focus();
+			return
 		}
+		
+		//서버와 통신
+		$.ajax({
+			url:'',
+			type:'post',
+			data:,
+			dataType:'json',
+			success:function(param){
+				
+			},
+			error:function(){
+				
+			}
+		});
 	});
 	
 });

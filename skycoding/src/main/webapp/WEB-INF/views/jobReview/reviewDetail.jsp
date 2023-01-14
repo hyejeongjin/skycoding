@@ -48,10 +48,10 @@
 					<div class="top-button">
 						<input type="button" value="수정" class="btn btn-primary btn-sm" 
 								onclick="location.href='reviewUpdateForm.do?rev_id=${review.rev_id}'">
-						<input type="button" value="삭제" class="btn btn-primary btn-sm" class="delete-btn" id="delete_btn">
+						<input type="button" value="삭제" class="btn btn-primary btn-sm" class="delete-btn" id="delete_button">
 						<script type="text/javascript">
 							$(function(){
-								$('#delete_btn').click(function(){
+								$('#delete_button').click(function(){
 									let choice = confirm('정말 삭제하시겠습니까?');
 									if(choice){
 										location.replace('reviewDelete.do?rev_id=${review.rev_id}');

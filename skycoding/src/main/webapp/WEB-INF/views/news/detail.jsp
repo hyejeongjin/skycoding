@@ -49,13 +49,6 @@
 		<hr class="hr-style" size="1" width="100%">		
 		<ul class="detail-info1" >
 			
-				<c:if test="${!empty news.news_photo}">
-				<img src="${pageContext.request.contextPath}/upload/${news.news_photo}" width="40" height="40" class="my-photo">
-				</c:if>
-				<c:if test="${empty news.news_photo}">
-				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
-				</c:if>
-			
 			<li>운영자&nbsp;&nbsp;
 			<c:if test="${!empty news.news_modify_date}">
 			수정일 ${news.news_modify_date}&nbsp;&nbsp;

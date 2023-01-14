@@ -39,29 +39,19 @@ $(function(){
 
 	<div class="page-main">
 	<div class="content-main">
-	<div class="content-right">
-		<!-- 전체선택 및 삭제 -->
-		<section class="section">
-		    <span class="likecourse-button">
-	          <button type="button" class="btn btn-secondary" style="margin-right:0.5em;"><i class="bi bi-check-lg"></i>전체선택</button>
-	          <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i>삭제</button>
-	        </span>	
-		</section>
-		
+	<div class="content-right">	
 		<!-- 검색폼 시작 -->
 				<div class="section"> 
-					<div class="search-bar">
-						<form class="search-form d-flex align-items-center" action="myWriting.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
-							<select class="form-select" id="form-select1" name="keyfield" aria-label="form-select">
+						<form class="search-form d-flex" action="myWriting.do" method="get"><!-- 자동 인코딩 처리를 위해 -->
+							<select class="form-select" id="form-select1" name="keyfield" aria-label="form-select" style="width:100px; float:left;">
 								<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
 								<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
 							</select> 
 							<%--제목을 선택한 게 남아있게 하기 위해 value, c:if 작성. value가 keyfield에 전송된다--%>
 							<%--제목,작성자,내용이 keyfield, 검색창이 keyword.  자기자신에게 값을 보내기 때문에 param 이용 --%>
-							<input type="text" name="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요">
+							<input type="text" name="keyword" value="${param.keyword}" placeholder="검색어를 입력하세요" style="float:right;">
 							<button type="submit" title="Search"><i class="bi bi-search"></i></button>
 						</form>
-					</div>
 				</div>
 				<!-- 검색폼 끝 -->
 	

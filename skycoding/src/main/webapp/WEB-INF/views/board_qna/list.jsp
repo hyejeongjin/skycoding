@@ -113,7 +113,7 @@ $(function(){
 						<tbody class="table-body table-group-divider">
 							<c:forEach var="qnaBoard" items="${list}">
 							<tr>
-								<td>${qnaBoard.qna_id}</td>
+								<th scope="row">${qnaBoard.qna_id}</th>
 								<td><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></td>
 								<td>
 								<c:if test="${qnaBoard.qna_status == 0}">${qnaBoard.mem_id}</c:if>

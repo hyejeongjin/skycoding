@@ -115,7 +115,7 @@ $(function(){
 						<tbody class="table-body table-group-divider">
 							<c:forEach var="freeBoard" items="${list}">
 							<tr>
-								<td>${freeBoard.free_id}</td>
+								<th scope="row">${freeBoard.free_id}</th>
 								<td><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></td>
 								<td>
 								<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>

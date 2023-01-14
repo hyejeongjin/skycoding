@@ -37,7 +37,8 @@ public class EmployDetailAction implements Action{
 		//상세정보 자바빈에 저장
 		EmployVO employ = dao.getEmployDetail(emp_id);
 		//여기에다가 등록폼에 입력한 회원 아이디의 회원번호 반환
-		int mem_num = 141; 
+		
+		int mem_num = dao.getEmployDetail2(employ.getMem_id2()); 
 		
 		//회원이 수강한 강의 이름 저장
 		MypageDAO myPageDao = MypageDAO.getInstance();

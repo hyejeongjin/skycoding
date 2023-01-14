@@ -36,21 +36,27 @@ $(function(){
 	$('#id_check').on('click',function(){
 		if($('#mem_id').val().trim()==''){
 			alert('회원 아이디를 입력하세요');
-			$('#id_check').val('').focus();
-			return
+			$('#mem_id').val('').focus();
+			return;
 		}
 		
 		//서버와 통신
 		$.ajax({
-			url:'',
+			url:'${pageContext.request.contextPath}/hmember/checkDuplicatedId.do',
 			type:'post',
-			data:,
+			data:{mem_id:$('#mem_id').val()},
 			dataType:'json',
 			success:function(param){
-				
+				if(param.result=='idNotFound'){//아이디 없음
+					$('span').css('color','red').text('아이디가 존재하지 않음');
+				}else if(param.result=='idDuplicated'){//아이디 있음
+					$('span').css('color','#000000').text('아이디가 존재');
+				}else{
+					alert('아이디 확인 오류 발생');
+				}
 			},
 			error:function(){
-				
+				alert('네트워크 통신 오류');
 			}
 		});
 	});
@@ -87,11 +93,11 @@ $(function(){
 										</div>
 										<div class="row mb-3">
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="mem_id" name="mem_id"
+												<input type="text" class="form-control" id="mem_id" name="mem_id2"
 													placeholder="회원 아이디를 입력해주세요">
 											</div>
 											<div class="col-sm-4 p-0">
-												<input type="button" value="아이디 확인" id="id_check" class="btn btn-light"> &nbsp;<span>여기</span>
+												<input type="button" value="아이디 확인" id="id_check" class="btn btn-light"> &nbsp;<span></span>
 											</div>
 										</div>
 										<div class="row mb-3">

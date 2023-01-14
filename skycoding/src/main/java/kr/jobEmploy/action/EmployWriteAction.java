@@ -32,6 +32,7 @@ public class EmployWriteAction implements Action{
 		
 		EmployVO employ = new EmployVO();
 		employ.setEmp_title(multi.getParameter("title"));
+		employ.setMem_id2(multi.getParameter("mem_id2"));
 		employ.setEmp_content(multi.getParameter("content"));
 		employ.setEmp_photo(multi.getFilesystemName("photo"));
 		employ.setMem_num(mem_num);

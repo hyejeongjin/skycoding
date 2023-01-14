@@ -10,10 +10,12 @@ public class EmployVO {
 	private int emp_hit;
 	private Date emp_reg_date;
 	private Date emp_modify_date;
-	private int mem_num;
+	private int mem_num;//관리자 회원번호
+	private String mem_id2;//회원 아이디
 	
-	//테이블에 없어도 목록에 가져올 필요한 정보 추가
-	private String mem_id;
+	
+	//테이블에 없어도 목록에 가져올 필요한 정보 추가(hmember/hmember_detail)
+	private String mem_id;//관리자 아이디
 	private String mem_photo;
 	private int mem_auth;
 	
@@ -24,7 +26,12 @@ public class EmployVO {
 	private String next_title;
 	
 	
-	
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
 	public int getPrev() {
 		return prev;
 	}
@@ -104,11 +111,11 @@ public class EmployVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public String getMem_id() {
-		return mem_id;
+	public String getMem_id2() {
+		return mem_id2;
 	}
-	public void setMem_id(String mem_id) {
-		this.mem_id = mem_id;
+	public void setMem_id2(String mem_id2) {
+		this.mem_id2 = mem_id2;
 	}
 	public String getMem_photo() {
 		return mem_photo;

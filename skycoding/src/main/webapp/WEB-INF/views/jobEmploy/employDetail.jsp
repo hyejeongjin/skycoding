@@ -83,9 +83,11 @@
 			</div>
 			<hr class="hr-style" size="1" width="100%">
 			<div class="detail-content">
-				${employ.emp_content}<br><br>
-				[수강한 강의 내역]<br>
+				<b>${employ.emp_content}</b><br><br>
+				<i class="fa-solid fa-book"></i> 
+				수강한 강의 내역<br>
 				<c:forEach var="course" items="${list}">
+					<i class="fa-solid fa-check" style="color:green;"></i>
 					${course.course_name}<br> 
 				</c:forEach>
 			</div>

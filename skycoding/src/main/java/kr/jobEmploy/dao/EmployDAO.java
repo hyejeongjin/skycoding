@@ -32,15 +32,16 @@ public class EmployDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			//                                   (mem_num은 session에서 구함)
-			sql = "INSERT INTO job_employ (emp_id,mem_num,emp_title,emp_content,emp_photo) "
-					+ "VALUES (job_employ_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO job_employ (emp_id,mem_num,emp_title,mem_id2,emp_content,emp_photo) "
+					+ "VALUES (job_employ_seq.nextval,?,?,?,?,?)";
 			//preparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(1, employ.getMem_num());
 			pstmt.setString(2, employ.getEmp_title());
-			pstmt.setString(3, employ.getEmp_content());
-			pstmt.setString(4, employ.getEmp_photo());
+			pstmt.setString(3, employ.getMem_id2());
+			pstmt.setString(4, employ.getEmp_content());
+			pstmt.setString(5, employ.getEmp_photo());
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -168,7 +169,7 @@ public class EmployDAO {
 			conn = DBUtil.getConnection();
 			//SQL문 작성
 			//hmember에서는 id, hmember_detail에서는 photo
-			sql = "SELECT * FROM job_employ j JOIN hmember h USING(mem_num) "
+			sql = "SELECT * FROM job_employ j JOIN hmember h USING(mem_num) "//mem_num은 관리자번호
 					+ "JOIN hmember_detail d USING(mem_num) WHERE j.emp_id=?";
 			//preparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -187,6 +188,7 @@ public class EmployDAO {
 				employ.setEmp_hit(rs.getInt("emp_hit"));
 				employ.setMem_num(rs.getInt("mem_num"));
 				employ.setMem_id(rs.getString("mem_id"));
+				employ.setMem_id2(rs.getString("mem_id2"));
 				employ.setMem_photo(rs.getString("mem_photo"));
 			}
 		}catch(Exception e) {
@@ -195,6 +197,37 @@ public class EmployDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return employ;
+	} 
+	
+	//글상세정보(입력한 회원아이디의 회원번호 반환)
+	public int getEmployDetail2(String mem_id2)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int mem_num = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT h.mem_num FROM job_employ j JOIN hmember h ON (j.mem_id2=h.mem_id) "//mem_num은 회원번호
+					+ "WHERE j.mem_id2=?";
+			//preparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, mem_id2);
+			//SQL문 실행하고 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mem_num = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return mem_num;
 	} 
 	
 	//이전글,다음글

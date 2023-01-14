@@ -21,6 +21,12 @@
 #container{
    background-color: white;
 }
+#navbar{
+	padding:0px;
+}
+
+
+
 
 @media ( max-width : 959px) {
 	.content-right {

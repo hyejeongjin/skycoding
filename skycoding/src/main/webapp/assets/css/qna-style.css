@@ -595,6 +595,9 @@ h6 {
 #container{
    background-color: white;
 }
+#navbar{
+	padding:0px;
+}
 
 @media (min-width: 1200px) {
   .logo {

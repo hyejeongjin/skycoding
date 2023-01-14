@@ -36,6 +36,10 @@
 #container{
    background-color: white;
 }
+#navbar{
+	padding:0px;
+}
+
 #card_write{
 	height:70%;
 	margin-bottom:10px;

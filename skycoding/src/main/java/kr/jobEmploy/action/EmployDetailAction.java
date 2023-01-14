@@ -43,7 +43,7 @@ public class EmployDetailAction implements Action{
 		MypageDAO myPageDao = MypageDAO.getInstance();
 		int count = myPageDao.getCoursecartCount(mem_num, null);
 		List<MycourselistVO> list = new ArrayList<MycourselistVO>();
-		list = myPageDao.getListCourse(1, count, mem_num, null, null);
+		list = myPageDao.getListCourse(1, count, mem_num, "1", null);
 		
 		//HTML태그를 허용하지 않음
 		employ.setEmp_title(StringUtil.useNoHtml(employ.getEmp_title()));

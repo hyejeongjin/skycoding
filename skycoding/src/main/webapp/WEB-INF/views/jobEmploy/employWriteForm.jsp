@@ -34,7 +34,7 @@ $(function(){
 	});
 	
 	$('#id_check').on('click',function(){
-		if(){
+		if('#mem_id'){
 			
 		}
 	});

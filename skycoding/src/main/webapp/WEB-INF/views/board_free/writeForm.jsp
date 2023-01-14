@@ -77,6 +77,8 @@
 										<!-- 익명체크 -->
 										<div class="check-anony">
 											<label class="form-check-label" for="inlineCheckbox1">익명으로 작성</label>&nbsp;
+											<input class="form-check-input" type="hidden"
+												id="inlineCheckbox1" name="free_status" value="0">
 											<input class="form-check-input" type="checkbox"
 												id="inlineCheckbox1" name="free_status" value="1">
 										</div>

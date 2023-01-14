@@ -70,8 +70,17 @@
 						<li class="inline">
 							<%--프사 있는 경우 --%>
 							<c:if test="${!empty freeBoard.mem_photo}">
-								<img src="${pageContext.request.contextPath}/upload/${freeBoard.mem_photo}" width="40" height="40" class="my-photo">
-							</c:if> <%--프사 없는 경우 --%> <c:if test="${empty freeBoard.mem_photo}">
+								<%--익명으로 작성 --%>
+								<c:if test="${freeBoard.free_status == 1}">
+									<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+								</c:if>
+								<%--익명 아닌 경우 --%>
+								<c:if test="${freeBoard.free_status == 0}">
+									<img src="${pageContext.request.contextPath}/upload/${freeBoard.mem_photo}" width="40" height="40" class="my-photo">
+								</c:if>
+							</c:if>
+							 <%--프사 없는 경우 --%> 
+							 <c:if test="${empty freeBoard.mem_photo}">
 								<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 							</c:if>
 						</li>

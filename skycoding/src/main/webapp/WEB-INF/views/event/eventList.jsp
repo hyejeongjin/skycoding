@@ -43,7 +43,7 @@
 	        <div class="row row-cols-1 row-cols-md-2 g-2">
 			<c:forEach var="event" items="${list}">
 	            <div class="col">
-	              <div class="card "><!-- shadow p-3 mb-5 bg-body rounded --><!-- shadow-sm p-3 mb-5 bg-body rounded -->
+	              <div class="card shadow-sm p-3 mb-5 bg-body rounded"><!-- shadow p-3 mb-5 bg-body rounded --><!-- shadow-sm p-3 mb-5 bg-body rounded -->
 	                <img class="card-img-top" src="${pageContext.request.contextPath}/upload/${event.event_photo}">
 	                <div class="card-body">
 	                  <h5 class="card-title">🖥 ${event.event_course_name}</h5>
@@ -95,7 +95,7 @@
 		     	<div class="end_event row row-cols-1 row-cols-md-2 g-2">
 					<c:forEach var="event" items="${list2}">
 		         	<div class="end_event_ col">
-			           <div class="card">
+			           <div class="card shadow-sm p-3 mb-5 bg-body rounded">
 			             <img class="card-img-top" src="${pageContext.request.contextPath}/upload/${event.event_photo}">
 			             <div class="card-body">
 			               <h5 class="card-title">${event.event_course_name}</h5>

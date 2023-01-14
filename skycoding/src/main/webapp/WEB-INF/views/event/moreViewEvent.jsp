@@ -60,7 +60,7 @@
       <div class="row row-cols-1 row-cols-md-3 g-3">
 		<c:forEach var="event" items="${list}">
             <div class="col">
-              <div class="card">
+              <div class="card shadow-sm p-3 mb-5 bg-body rounded">
                 <img src="${pageContext.request.contextPath}/upload/${event.event_photo}" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">${event.event_course_name}</h5>

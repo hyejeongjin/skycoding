@@ -31,8 +31,8 @@ public class FreeBoardDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO free_detail (free_id,free_title,free_content,free_photo,mem_num) "
-					+ "VALUES (free_detail_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO free_detail (free_id,free_title,free_content,free_photo,mem_num,free_status) "
+					+ "VALUES (free_detail_seq.nextval,?,?,?,?,?)";
 			//PreparedStatement객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -40,6 +40,7 @@ public class FreeBoardDAO {
 			pstmt.setString(2, freeboard.getFree_content());
 			pstmt.setString(3, freeboard.getFree_photo());
 			pstmt.setInt(4, freeboard.getMem_num());
+			pstmt.setInt(5, freeboard.getFree_status());
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -147,6 +148,7 @@ public class FreeBoardDAO {
 				freeBoard.setFree_title(StringUtil.useNoHtml(rs.getString("free_title")));
 				freeBoard.setFree_hit(rs.getInt("free_hit"));
 				freeBoard.setFree_reg_date(rs.getDate("free_reg_date"));
+				freeBoard.setFree_status(rs.getInt("free_status"));
 				freeBoard.setMem_id(rs.getString("mem_id"));
 				
 				list.add(freeBoard);
@@ -189,6 +191,7 @@ public class FreeBoardDAO {
 				freeBoard.setFree_reg_date(rs.getDate("free_reg_date"));
 				freeBoard.setFree_modify_date(rs.getDate("free_modify_date"));
 				freeBoard.setFree_photo(rs.getString("free_photo"));
+				freeBoard.setFree_status(rs.getInt("free_status"));
 				freeBoard.setMem_num(rs.getInt("mem_num"));
 				freeBoard.setMem_id(rs.getString("mem_id"));
 				freeBoard.setMem_photo(rs.getString("mem_photo"));

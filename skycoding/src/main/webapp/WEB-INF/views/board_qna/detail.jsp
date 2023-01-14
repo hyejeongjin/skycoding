@@ -75,7 +75,10 @@
 								<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 							</c:if>
 						</li>
-						<li>${qnaBoard.mem_id}</li>
+						<li>
+							<c:if test="${qnaBoard.qna_status == 0}">${qnaBoard.mem_id}</c:if>
+							<c:if test="${qnaBoard.qna_status == 1}">익명</c:if>
+						</li>
 					</ul>
 					<ul class="detail-info2">
 						<li>작성일 ${qnaBoard.qna_reg_date}
@@ -119,7 +122,7 @@
 									name="qnaComm_content" id="qnaComm_content"
 									<c:if test="${empty mem_num}">disabled="disabled"</c:if>><c:if test="${empty mem_num}">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 									<c:if test="${!empty mem_num}">
-									<input type="submit" value="등록" class="btn btn-outline-primary" id="inner-submit">
+									<button type="submit" class="btn btn-outline-primary" id="inner-submit"><i class="fa-solid fa-paper-plane fa-2x"></i></button>
 									</c:if>
 							</div>
 						</form>

@@ -29,7 +29,7 @@
 	<div class="content-main">
 	<div class="content-right">   
 
-	<c:if test="${not empty courseList}">	
+		
 	<section class="section">
 		<h6>정렬기준</h6>
 		<!-- 검색폼 시작 -->
@@ -47,11 +47,11 @@
 		</script>
 			
 	    <form action="myStudy.do" class="search-form d-flex align-items-center" style="float:right;">
-	        <input type="text" name="query" value="${param.keyword}" style="width:200px;" placeholder="강의명 검색">
+	        <input type="text" name="query" value="${param.query}" style="width:200px;" placeholder="강의명 검색">
 	        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
 	    </form> <!-- End Search Bar -->    
 	</section><br><br><br>
-	</c:if>
+	
     
     <section class="section clear:both"> 
       <div class="row align-items-top">

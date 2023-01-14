@@ -31,8 +31,8 @@ public class QnaBoardDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO qna_detail (qna_id,qna_title,qna_content,qna_photo,mem_num) "
-					+ "VALUES (qna_detail_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO qna_detail (qna_id,qna_title,qna_content,qna_photo,mem_num,qna_status) "
+					+ "VALUES (qna_detail_seq.nextval,?,?,?,?,?)";
 			//PreparedStatement객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -40,6 +40,7 @@ public class QnaBoardDAO {
 			pstmt.setString(2, qnaboard.getQna_content());
 			pstmt.setString(3, qnaboard.getQna_photo());
 			pstmt.setInt(4, qnaboard.getMem_num());
+			pstmt.setInt(5, qnaboard.getQna_status());
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -146,6 +147,7 @@ public class QnaBoardDAO {
 				qnaBoard.setQna_hit(rs.getInt("qna_hit"));
 				qnaBoard.setQna_reg_date(rs.getDate("qna_reg_date"));
 				qnaBoard.setMem_id(rs.getString("mem_id"));
+				qnaBoard.setQna_status(rs.getInt("qna_status"));
 				
 				list.add(qnaBoard);
 			}
@@ -190,6 +192,8 @@ public class QnaBoardDAO {
 				qnaBoard.setMem_num(rs.getInt("mem_num"));
 				qnaBoard.setMem_id(rs.getString("mem_id"));
 				qnaBoard.setMem_photo(rs.getString("mem_photo"));
+				qnaBoard.setQna_status(rs.getInt("qna_status"));
+				
 			}
 		}catch(Exception e) {
 			throw new Exception(e);

@@ -108,7 +108,7 @@
 													id="qna_content" style="height: 300px">${qnaBoard.qna_content}</textarea>
 											</div>
 										</div>
-
+										
 										<div class="text-end">
 											<input type="button" value="취소" class="btn btn-secondary" 
 													onclick="location.href='detail.do?qna_id=${qnaBoard.qna_id}'">

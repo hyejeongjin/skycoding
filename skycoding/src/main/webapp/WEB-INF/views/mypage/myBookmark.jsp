@@ -24,7 +24,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		/*체크박스 전체선택 및 전체해제*/
+		/*체크박스 페이지 당 전체선택 및 전체해제*/
 		$("#allbtn").click(function() {
 			var chks = document.getElementsByName("cbox");
 			var chksChecked = 0;

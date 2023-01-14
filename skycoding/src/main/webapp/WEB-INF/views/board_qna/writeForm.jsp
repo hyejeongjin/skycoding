@@ -74,6 +74,13 @@
 											</div>
 										</div>
 
+										<!-- 익명체크 -->
+										<div class="check-anony">
+											<label class="form-check-label" for="inlineCheckbox1">익명으로 작성</label>&nbsp;
+											<input class="form-check-input" type="checkbox"
+												id="inlineCheckbox1" name="qna_status" value="1">
+										</div>
+
 										<div class="text-end">
 											<input type="button" value="취소" class="btn btn-secondary" onclick="location.href='list.do'">
 											<input type="submit" value="등록" class="btn btn-primary">

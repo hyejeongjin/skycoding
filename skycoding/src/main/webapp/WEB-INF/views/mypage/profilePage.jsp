@@ -133,11 +133,13 @@
                 <div class="text-center">
                 	<button type="button" class="btn btn-primary" id="photo_btn">수정</button>
                 </div>
-                <div id="photo_choice" style="display:none;">
+                <div id="photo_choice" style="display:none; margin:0 auto; width:200px;">
 					<input type="file" id="photo" 
-					 accept="image/gif,image/png,image/jpeg" class="mb-2"><br>
+						 accept="image/gif,image/png,image/jpeg" class="mb-2" style="margin:0 auto;"><br>
+					<div class="text-center">	 	 
 					<input type="button" value="전송" id="photo_submit" class="btn btn-primary">
 					<input type="button" value="취소" id="photo_reset" class="btn btn-secondary">
+					</div>
 				</div>         
           	</div>
 	      </div>

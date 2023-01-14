@@ -30,6 +30,7 @@ public class WriteAction implements Action {
 		qnaboard.setQna_title(multi.getParameter("qna_title"));
 		qnaboard.setQna_content(multi.getParameter("qna_content"));
 		qnaboard.setQna_photo(multi.getFilesystemName("qna_photo"));
+		qnaboard.setQna_status(Integer.parseInt(multi.getParameter("qna_status")));
 		qnaboard.setMem_num(user_num);
 
 

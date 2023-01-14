@@ -11,7 +11,8 @@ public class FreeBoardVO {
 	private Date free_modify_date;
 	private int free_hit;
 	private String free_photo;
-	
+	private int free_status;
+
 	//컬럼에는 없는데 사용하려고 넣음
 	private String mem_id; //hmember 속성(아이디)
 	private String mem_photo; //hmember_detail 속성(프사)
@@ -116,6 +117,14 @@ public class FreeBoardVO {
 
 	public void setFree_photo(String free_photo) {
 		this.free_photo = free_photo;
+	}
+
+	public int getFree_status() {
+		return free_status;
+	}
+
+	public void setFree_status(int free_status) {
+		this.free_status = free_status;
 	}
 
 	public String getMem_id() {

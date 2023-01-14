@@ -52,8 +52,9 @@
 <body>
   <jsp:include page="/WEB-INF/views/common/mypagemain.jsp"/>
   
-  <main id="main" class="main">  
-    <section class="section profile">
+	<div class="page-main">
+	<div class="content-main">
+	<div class="content-right">
     <h4><b>비밀번호 수정</b></h4><br> 
        <form id="password_form" action="modifyPw.do" method="post">
          <div class="row mb-3">
@@ -89,8 +90,9 @@
             <input type="button" class="btn btn-primary" value="My페이지" onclick="location.href='profilePage.do'">
          </div>
       </form>
-    </section>
-  </main><!-- End #main -->
+    </div>
+    </div>
+    </div>
   
 </body>
 </html>

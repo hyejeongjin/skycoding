@@ -9,6 +9,7 @@ CREATE TABLE free_detail
 	free_modify_date	DATE,
 	free_hit	NUMBER	DEFAULT 0 NOT NULL,
 	free_photo	VARCHAR2(150),
+	free_status NUMBER DEFAULT 0 NOT NULL,
 	
     CONSTRAINT PK_free_detail PRIMARY KEY (free_id),
     CONSTRAINT FK_free_detail FOREIGN KEY (mem_num) REFERENCES hmember (mem_num)

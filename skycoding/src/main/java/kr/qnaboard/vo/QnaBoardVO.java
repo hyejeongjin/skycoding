@@ -11,7 +11,8 @@ public class QnaBoardVO {
 	private Date qna_modify_date;
 	private int qna_hit;
 	private String qna_photo;
-	
+	private int qna_status;
+
 	//컬럼에는 없는데 사용하려고 넣음
 	private String mem_id; //hmember 속성(아이디)
 	private String mem_photo; //hmember_detail 속성(프사)
@@ -116,6 +117,14 @@ public class QnaBoardVO {
 
 	public void setQna_photo(String qna_photo) {
 		this.qna_photo = qna_photo;
+	}
+	
+	public int getQna_status() {
+		return qna_status;
+	}
+
+	public void setQna_status(int qna_status) {
+		this.qna_status = qna_status;
 	}
 
 	public String getMem_id() {

@@ -108,7 +108,7 @@
 													id="free_content" style="height: 300px">${freeBoard.free_content}</textarea>
 											</div>
 										</div>
-
+										
 										<div class="text-end">
 											<input type="button" value="취소" class="btn btn-secondary" 
 													onclick="location.href='detail.do?free_id=${freeBoard.free_id}'">

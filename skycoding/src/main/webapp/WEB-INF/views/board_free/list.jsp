@@ -117,7 +117,10 @@ $(function(){
 							<tr>
 								<td>${freeBoard.free_id}</td>
 								<td><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></td>
-								<td>${freeBoard.mem_id}</td>
+								<td>
+								<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>
+								<c:if test="${freeBoard.free_status == 1}">익명</c:if>
+								</td>
 								<td>${freeBoard.free_reg_date}</td>
 								<td>${freeBoard.free_hit}</td>
 							</tr>
@@ -131,7 +134,10 @@ $(function(){
 						<tr>
 							<td>
 								<div><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></div>
-								<span class="t-sub-info">${freeBoard.mem_id}</span> &nbsp; 
+								<span class="t-sub-info">
+									<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>
+									<c:if test="${freeBoard.free_status == 1}">익명</c:if>
+								</span> &nbsp; 
 								<span class="t-sub-info">${freeBoard.free_reg_date}</span> &nbsp;
 								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${freeBoard.free_hit}</span>
 							</td>

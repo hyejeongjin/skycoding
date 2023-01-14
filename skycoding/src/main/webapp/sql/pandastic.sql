@@ -20,6 +20,7 @@ create table hmember_detail(
  mem_photo varchar2(150),
  constraint hmember_detail_pk primary key (mem_num),
  constraint hmember_detail_fk foreign key (mem_num) references hmember (mem_num)
+ constraint hmember_detail_fk2 foreign key (mem_pwq) references hmember_qna (mem_pwq)
 );
 
 create sequence hmember_seq;

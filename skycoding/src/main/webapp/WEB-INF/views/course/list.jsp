@@ -25,7 +25,7 @@
   </c:if>
   <script type="text/javascript">
   
-  <!--dropdwon-->
+  <!--dropdown-->
   	$(function(){
   		$('#list_sort').change(function(){
   			location.href='list.do?course_cate=${param.course_cate}&sort='+$(this).val();

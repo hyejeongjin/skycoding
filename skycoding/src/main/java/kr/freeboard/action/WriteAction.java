@@ -30,6 +30,7 @@ public class WriteAction implements Action {
 		freeboard.setFree_title(multi.getParameter("free_title"));
 		freeboard.setFree_content(multi.getParameter("free_content"));
 		freeboard.setFree_photo(multi.getFilesystemName("free_photo"));
+		freeboard.setFree_status(Integer.parseInt(multi.getParameter("free_status")));
 		freeboard.setMem_num(user_num);
 
 

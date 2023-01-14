@@ -36,8 +36,19 @@
 #container{
    background-color: white;
 }
+#card_write{
+	height:70%;
+	margin-bottom:10px;
+}
+#card_btn{
+	display:flex;
+	align-items: center;
+}
+#text_end{
+	margin-left:auto;
+}
 
-
+  
 /*footer*/
 #footer1_container{
    width:90%;

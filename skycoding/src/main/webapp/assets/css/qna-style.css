@@ -1,4 +1,3 @@
-/*여기는 정임이가 추가한거*/
 /*공통
 ---------------------------*/
 .page-main{
@@ -591,6 +590,10 @@ h6 {
 --------------------------------------------------------------*/
 .logo {
   line-height: 1;
+}
+
+#container{
+   background-color: white;
 }
 
 @media (min-width: 1200px) {
@@ -1518,44 +1521,7 @@ h6 {
   color: #012970;
 }
 
-
-
-/*
-ul{
-	list-style:none;
-}
-ul.detail-info{
-	list-style:none;
-	padding: 0;
-}
-ul.detail-info li.inline{
-	display:inline-block;
-}
-.detail-img{
-	max-width:500px;
-}
-ul.detail-sub{
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-ul.detail-sub li{
-	display:inline-block;
-	width:49%;
-	height:50px;
-	vertical-align:middle;
-}
-ul.detail-sub li:first-child img{
-	vertical-align:middle;
-}
-ul.detail-sub li:last-child{
-	text-align:right;
-	line-height:250%;
-}
-
-*/
-
-/*나리 댓글 부분*/
+/*댓글 부분*/
 div.inner-text{
   display:inline-block;
   position:relative;
@@ -1569,6 +1535,7 @@ div.inner-text{
   position:absolute;
   bottom:0px;
   right:0px;
+  border:none;
 }
 
 /*이전글 다음글*/

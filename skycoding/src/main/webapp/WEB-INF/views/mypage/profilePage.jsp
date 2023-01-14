@@ -122,7 +122,7 @@
               		<c:if test="${empty member.photo}">
 					<img 
 					src="${pageContext.request.contextPath}/images/face.png"
-					class="rounded-circle my-photo">
+					class="rounded-circle my-photo" width="120" height="120">
 					</c:if>
 					<c:if test="${!empty member.photo}">
 					<img 
@@ -133,11 +133,13 @@
                 <div class="text-center">
                 	<button type="button" class="btn btn-primary" id="photo_btn">수정</button>
                 </div>
-                <div id="photo_choice" style="display:none;">
+                <div id="photo_choice"  style="display:none; margin:0 auto; width:200px;">
 					<input type="file" id="photo" 
-					 accept="image/gif,image/png,image/jpeg" class="mb-2"><br>
+						 accept="image/gif,image/png,image/jpeg" class="mb-2" style="margin:0 auto;"><br>
+					<div class="text-center" style="margin:0 auto;">	 	 
 					<input type="button" value="전송" id="photo_submit" class="btn btn-primary">
 					<input type="button" value="취소" id="photo_reset" class="btn btn-secondary">
+					</div>
 				</div>         
           	</div>
 	      </div>

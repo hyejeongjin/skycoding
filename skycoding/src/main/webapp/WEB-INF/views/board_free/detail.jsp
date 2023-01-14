@@ -70,12 +70,24 @@
 						<li class="inline">
 							<%--프사 있는 경우 --%>
 							<c:if test="${!empty freeBoard.mem_photo}">
-								<img src="${pageContext.request.contextPath}/upload/${freeBoard.mem_photo}" width="40" height="40" class="my-photo">
-							</c:if> <%--프사 없는 경우 --%> <c:if test="${empty freeBoard.mem_photo}">
+								<%--익명으로 작성 --%>
+								<c:if test="${freeBoard.free_status == 1}">
+									<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+								</c:if>
+								<%--익명 아닌 경우 --%>
+								<c:if test="${freeBoard.free_status == 0}">
+									<img src="${pageContext.request.contextPath}/upload/${freeBoard.mem_photo}" width="40" height="40" class="my-photo">
+								</c:if>
+							</c:if>
+							 <%--프사 없는 경우 --%> 
+							 <c:if test="${empty freeBoard.mem_photo}">
 								<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 							</c:if>
 						</li>
-						<li>${freeBoard.mem_id}</li>
+						<li>
+							<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>
+							<c:if test="${freeBoard.free_status == 1}">익명</c:if>
+						</li>
 					</ul>
 					<ul class="detail-info2">
 						<li>작성일 ${freeBoard.free_reg_date}
@@ -119,7 +131,7 @@
 									name="freeComm_content" id="freeComm_content"
 									<c:if test="${empty mem_num}">disabled="disabled"</c:if>><c:if test="${empty mem_num}">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 									<c:if test="${!empty mem_num}">
-									<input type="submit" value="등록" class="btn btn-outline-primary" id="inner-submit">
+									<button type="submit" class="btn btn-outline-primary" id="inner-submit"><i class="fa-solid fa-paper-plane fa-2x"></i></button>
 									</c:if>
 							</div>
 						</form>

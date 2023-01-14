@@ -24,6 +24,14 @@ header {
 				이벤트 메인 페이지
 ----------------------------------------*/
 /*           		상단        		 	*/
+#container{
+   background-color: white;
+}
+
+#navbar{
+   padding:0px;
+}
+
     #event_list_nav{
     	padding-top:10px;
     }

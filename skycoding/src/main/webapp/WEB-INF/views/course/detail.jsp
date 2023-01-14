@@ -54,6 +54,14 @@
          });
    });
     
+    
+    $('.menu-link').each(function(index,item){
+			if((index+1) == ${param.course_cate}){
+				$(this).removeClass('collapsed');
+			}
+		});
+    
+    
  });
   </script>
 </head>

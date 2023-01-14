@@ -52,7 +52,11 @@
 
 <body>
 <!-- 메인 시작 -->
-  <main id="register-main" class="register-main">
+<div class="page-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+	<div class="content-main">
+  	<main id="register-main" class="register-main">
  
     <div class="pagetitle">
       <h1>강의 등록하기</h1>
@@ -128,6 +132,7 @@
     </section>
 
   </main><!-- 메인 끝 -->
-
+</div>
+</div>
 </body>
 </html>

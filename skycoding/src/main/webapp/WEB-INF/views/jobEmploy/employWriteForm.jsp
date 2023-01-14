@@ -66,7 +66,6 @@ $(function(){
 </head>
 <body>
 	<div class="page-main">
-		<!-- ======= Header ======= -->
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 		<div class="content-main">

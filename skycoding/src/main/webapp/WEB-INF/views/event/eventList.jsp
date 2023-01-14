@@ -74,12 +74,12 @@
 	            </c:if>
 	         </c:forEach>
 		</div>
-		<c:if test="${fn:length(list) > 2}">
-        <div class="row row-cols-1 row-cols-md-1 g-1 justify-content-center">
-        <input type="button" class="btn btn-outline-dark btn-md col-md-5 col-sm-5 col" value="더보기🔍" 
-        		id="more_view" onclick="location.href='moreViewEvent.do?attr=1'">
-        </div>
-        </c:if>
+			<c:if test="${fn:length(list) >= 2}">
+	        <div class="row row-cols-1 row-cols-md-1 g-1 justify-content-center">
+	        <input type="button" class="btn btn-outline-dark btn-md col-md-5 col-sm-5 col" value="더보기🔍" 
+	        		id="more_view" onclick="location.href='moreViewEvent.do?attr=1'">
+	        </div>
+	        </c:if>
 		</c:if>
 		</div>
 		<!-- 진행중 이벤트 카드 끝 -->
@@ -120,7 +120,7 @@
 		     		</c:forEach>
 		     	</div>
 		     		<div style="clear:both; height:20px;"></div>
-		     	<c:if test="${fn:length(list2) > 2}">
+		     	<c:if test="${fn:length(list2) >= 2}">
 				<div class="row row-cols-1 row-cols-md-1 g-1 justify-content-center">
 	     		<input type="button" class="btn btn-outline-dark btn-md col-md-5 col-sm-5 col" value="더보기🔍"  
 	     			   id="more_view" onclick="location.href='moreViewEvent.do?attr=0'">

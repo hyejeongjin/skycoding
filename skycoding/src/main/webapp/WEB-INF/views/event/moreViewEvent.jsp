@@ -57,7 +57,7 @@
      
      <!-- 게시물이 존재할 때 -->
      <c:if test="${count > 0}">
-      <div class="row row-cols-1 row-cols-md-2 g-2">
+      <div class="row row-cols-1 row-cols-md-3 g-3">
 		<c:forEach var="event" items="${list}">
             <div class="col">
               <div class="card">

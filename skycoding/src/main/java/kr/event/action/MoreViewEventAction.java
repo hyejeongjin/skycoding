@@ -27,7 +27,7 @@ public class MoreViewEventAction implements Action{
 		EventDAO eventDao = EventDAO.getInstance();
 		int count = eventDao.getTotalEvent(attr);
 		
-		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 2, 4, "moreViewEvent.do","&attr="+attr);
+		PagingUtil2 page = new PagingUtil2(keyfield, keyword, Integer.parseInt(pageNum), count, 3, 4, "moreViewEvent.do","&attr="+attr);
 		List<EventVO> eventList = null;
 		if(count > 0) {
 			eventList = eventDao.getEventList(page.getStartRow(), page.getEndRow(), keyfield, keyword, attr, sort);

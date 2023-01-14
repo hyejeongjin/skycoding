@@ -1535,6 +1535,7 @@ div.inner-text{
   position:absolute;
   bottom:0px;
   right:0px;
+  border:none;
 }
 
 /*이전글 다음글*/

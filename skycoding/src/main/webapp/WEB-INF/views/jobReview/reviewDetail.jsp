@@ -127,15 +127,16 @@
 					<div class="bottom-btn">
 						<!-- 이전글, 다음글 -->
 						<ul class="bottom-prevNext">
-							<li>
-								<c:if test="${pnReview.prev!=0}">
-   								이전글 | <a href="reviewDetail.do?rev_id=${pnReview.prev}">${pnReview.prev_title}</a>
-   								</c:if></li>
    							<li>
   								<c:if test="${pnReview.next!=0}">
   								다음글 | <a href="reviewDetail.do?rev_id=${pnReview.next}">${pnReview.next_title}</a>
   								</c:if>
 							</li>
+							<li>
+								<c:if test="${pnReview.prev!=0}">
+   								이전글 | <a href="reviewDetail.do?rev_id=${pnReview.prev}">${pnReview.prev_title}</a>
+   								</c:if>
+   							</li>
 						</ul>
 					
 						<input class="btn btn-primary list-btn my-3" type="button" value="목록" onclick="location.href='reviewList.do'">

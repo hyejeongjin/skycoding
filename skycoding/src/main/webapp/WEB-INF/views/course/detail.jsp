@@ -132,7 +132,7 @@
 		          </div><!-- end of text-end -->
 	          </div>
 	  	</div><!-- end of col-8 -->
-      </div><!-- end of row -->
+      </div><!-- end of row -->  
   <!-- 카드 끝 : 강의 -->
       
         <!-- 카드 시작 : 강의 설명글 -->

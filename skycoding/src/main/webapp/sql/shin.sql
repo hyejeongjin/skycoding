@@ -8,6 +8,7 @@ create table qna_detail(
  qna_modify_date date,
  qna_hit number default 0 not null,
  qna_photo varchar2(150),
+ qna_status number not null,
  constraint qna_detail_pk primary key (qna_id),
  constraint qna_detail_fk foreign key (mem_num) references hmember (mem_num)
 );

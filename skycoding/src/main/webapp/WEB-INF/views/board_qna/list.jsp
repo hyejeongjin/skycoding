@@ -115,7 +115,10 @@ $(function(){
 							<tr>
 								<td>${qnaBoard.qna_id}</td>
 								<td><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></td>
-								<td>${qnaBoard.mem_id}</td>
+								<td>
+								<c:if test="${qnaBoard.qna_status == 0}">${qnaBoard.mem_id}</c:if>
+								<c:if test="${qnaBoard.qna_status == 1}">익명</c:if>
+								</td>
 								<td>${qnaBoard.qna_reg_date}</td>
 								<td>${qnaBoard.qna_hit}</td>
 							</tr>
@@ -129,7 +132,10 @@ $(function(){
 						<tr>
 							<td>
 								<div><a class="title-link" href="detail.do?qna_id=${qnaBoard.qna_id}">${qnaBoard.qna_title}</a></div>
-								<span class="t-sub-info">${qnaBoard.mem_id}</span> &nbsp; 
+								<span class="t-sub-info">
+									<c:if test="${qnaBoard.qna_status == 0}">${qnaBoard.mem_id}</c:if>
+									<c:if test="${qnaBoard.qna_status == 1}">익명</c:if>
+								</span> &nbsp; 
 								<span class="t-sub-info">${qnaBoard.qna_reg_date}</span> &nbsp;
 								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${qnaBoard.qna_hit}</span>
 							</td>

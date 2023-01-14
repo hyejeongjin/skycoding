@@ -75,7 +75,10 @@
 								<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 							</c:if>
 						</li>
-						<li>${freeBoard.mem_id}</li>
+						<li>
+							<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>
+							<c:if test="${freeBoard.free_status == 1}">익명</c:if>
+						</li>
 					</ul>
 					<ul class="detail-info2">
 						<li>작성일 ${freeBoard.free_reg_date}

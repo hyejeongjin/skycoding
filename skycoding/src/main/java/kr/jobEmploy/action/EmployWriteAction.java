@@ -20,7 +20,7 @@ public class EmployWriteAction implements Action{
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
 		if(mem_num==null) {//로그인 안 된 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		//로그인이 된 경우
 		//관리자가 아닌 경우

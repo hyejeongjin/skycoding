@@ -21,12 +21,24 @@ $(function(){
 			$('#title').val('').focus();
 			return false;
 		}
+		if($('#id_check').val().trim()==''){
+			alert('회원 아이디를 입력하세요');
+			$('#id_check').val('').focus();
+			return false;
+		}
 		if($('#content').val().trim()==''){
 			alert('내용을 입력하세요');
 			$('#content').val('').focus();
 			return false;
 		}
 	});
+	
+	$('#id_check').on('click',function(){
+		if(){
+			
+		}
+	});
+	
 });
 </script>
 </head>
@@ -55,6 +67,15 @@ $(function(){
 											<div class="col-sm-12">
 												<input type="text" class="form-control" id="title" name="title"
 													placeholder="제목을 입력해주세요">
+											</div>
+										</div>
+										<div class="row mb-3">
+											<div class="col-sm-8">
+												<input type="text" class="form-control" id="mem_id" name="mem_id"
+													placeholder="회원 아이디를 입력해주세요">
+											</div>
+											<div class="col-sm-4 p-0">
+												<input type="button" value="아이디 확인" id="id_check" class="btn btn-light"> &nbsp;<span>여기</span>
 											</div>
 										</div>
 										<div class="row mb-3">

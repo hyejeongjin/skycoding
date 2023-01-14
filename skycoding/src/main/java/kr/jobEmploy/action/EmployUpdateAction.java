@@ -20,7 +20,7 @@ public class EmployUpdateAction implements Action{
 		Integer mem_auth = (Integer)session.getAttribute("mem_auth");
 		
 		if(mem_num==null) {//로그인 안 된 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		//로그인 된 경우
 		//객체가 생성될 때 파일이 upload 경로에 저장됨

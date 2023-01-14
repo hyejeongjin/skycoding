@@ -14,7 +14,7 @@ public class EmployWriteFormAction implements Action{
 		Integer mem_num = (Integer)session.getAttribute("mem_num");//session이 문자열로 반환
 		Integer mem_auth = (Integer)session.getAttribute("mem_auth");//session이 문자열로 반환
 		if(mem_num==null) {//로그인 되지 않은 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		//로그인 된 경우
 		//관리자가 아닌 경우

@@ -19,7 +19,7 @@ public class ReviewUpdateAction implements Action{
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
 		if(mem_num==null) {//로그인 안 된 경우
-			return "redirect:/member/loginForm.do";
+			return "redirect:/hmember/loginForm.do";
 		}
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request);

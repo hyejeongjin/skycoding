@@ -1,5 +1,8 @@
 package kr.jobEmploy.action;
   
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.jobEmploy.dao.EmployDAO;
 import kr.jobEmploy.vo.EmployVO;
+import kr.mypage.dao.MypageDAO;
+import kr.mypage.vo.MycourselistVO;
 import kr.qnaboard.vo.QnaBoardVO;
 import kr.util.StringUtil;
 
@@ -29,7 +34,16 @@ public class EmployDetailAction implements Action{
 		//이전글,다음글
 		EmployVO pnEmploy = dao.prevNext(emp_id);
 		
+		//상세정보 자바빈에 저장
 		EmployVO employ = dao.getEmployDetail(emp_id);
+		//여기에다가 등록폼에 입력한 회원 아이디의 회원번호 반환
+		int mem_num = 141; 
+		
+		//회원이 수강한 강의 이름 저장
+		MypageDAO myPageDao = MypageDAO.getInstance();
+		int count = myPageDao.getCoursecartCount(mem_num, null);
+		List<MycourselistVO> list = new ArrayList<MycourselistVO>();
+		list = myPageDao.getListCourse(1, count, mem_num, null, null);
 		
 		//HTML태그를 허용하지 않음
 		employ.setEmp_title(StringUtil.useNoHtml(employ.getEmp_title()));
@@ -37,6 +51,7 @@ public class EmployDetailAction implements Action{
 		employ.setEmp_content(StringUtil.useBrNoHtml(employ.getEmp_content()));
 		
 		request.setAttribute("employ", employ);
+		request.setAttribute("list", list);
 		request.setAttribute("pnEmploy", pnEmploy);
 		
 		return "/WEB-INF/views/jobEmploy/employDetail.jsp";

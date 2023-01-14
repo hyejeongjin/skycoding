@@ -83,7 +83,11 @@
 			</div>
 			<hr class="hr-style" size="1" width="100%">
 			<div class="detail-content">
-				${employ.emp_content}
+				${employ.emp_content}<br><br>
+				[수강한 강의 내역]<br>
+				<c:forEach var="course" items="${list}">
+					${course.course_name}<br>
+				</c:forEach>
 			</div>
 			<hr class="hr-style" size="1" width="100%">
 			

@@ -17,7 +17,7 @@ public class ReviewUpdateFormAction implements Action{
 		Integer mem_num = (Integer)session.getAttribute("mem_num");
 		
 		if(mem_num==null) {//로그인 안 된 경우
-			return "redirect:/member/loginForm.jsp";
+			return "redirect:/hmember/loginForm.jsp";
 		}
 		//로그인 된 경우
 		int rev_id = Integer.parseInt(request.getParameter("rev_id"));

@@ -64,8 +64,8 @@
 				<div id="sub-select" class="content1">
 					<span id="list-num">전체 ${count}개</span>
 					<select class="form-select" id="list_sort" name="sort" aria-label="form-select">
-						<option value="1" <c:if test="${param.keyfield2==1}">selected</c:if>>최신순</option>
-						<option value="2" <c:if test="${param.keyfield2==2}">selected</c:if>>조회순</option>
+						<option value="1" <c:if test="${param.sort==1}">selected</c:if>>최신순</option>
+						<option value="2" <c:if test="${param.sort==2}">selected</c:if>>조회순</option>
 					</select>
 				</div>
 				<script>

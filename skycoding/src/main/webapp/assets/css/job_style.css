@@ -72,6 +72,15 @@
 .title-link{
 	color:#000;
 }
+/*취업현황 글등록 폼
+----------------*/
+#id_check{
+	height:100%;
+	border-color:lightgray;
+	border-radius: 5px;
+	padding:0 10px;
+}
+
 /*취업 글상세
 ----------------*/
 .detail-top {

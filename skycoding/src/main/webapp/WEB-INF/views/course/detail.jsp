@@ -120,11 +120,12 @@
            <input type="hidden" id="course_id" value="${course.course_id}">
           <img id="output_fav" src="${pageContext.request.contextPath}/images/like01.png" width="50"> 	
           <div class="text-end">
-             
+           <!-- 일반회원 등급만 볼수있게 설정 -->
              <c:if test="${!empty mem_num && mem_auth == 1}">
             <input type="button" id="cart_check" value="수강신청" class="btn btn-primary" >
             </c:if>
             <span id="message_id"></span>
+            <br>
           </div>
         </div>
       </div>
@@ -137,7 +138,7 @@
             <button class="nav-link active" id="교육개요-tab" data-bs-toggle="pill" data-bs-target="#교육개요" type="button" role="tab" aria-controls="교육개요" aria-selected="true">교육개요</button>
           </li>
         </ul>
-        <div class="tab-content pt-2" id="myTabContent">
+      <div class="tab-content pt-2" id="myTabContent">
           <div class="tab-pane fade show active" id="교육개요" role="tabpanel" aria-labelledby="home-tab">
             <h6>교육개요</h6>
             <div class="card-write p-4" >
@@ -146,6 +147,7 @@
           </div>
         </div>
       </div>
+      
     </section>
     <!-- 카드 끝 : 강의 설명글  -->
 

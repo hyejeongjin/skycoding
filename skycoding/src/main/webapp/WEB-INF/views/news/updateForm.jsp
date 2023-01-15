@@ -122,7 +122,7 @@ $(function(){
 			</main><!-- end of register-main -->
 		</div><!-- end of content-main -->
 	</div><!-- end of page-main -->
-	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 
 </html>

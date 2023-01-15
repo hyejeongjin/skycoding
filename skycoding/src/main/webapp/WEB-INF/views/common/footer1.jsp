@@ -34,12 +34,12 @@
 				</ul>
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="list-style-type: none;">
 						<li class="nav-item dropdown">
-							<a class="nav-link" href="#">공지사항</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/news/list.do">공지사항</a>
 						</li>
 				</ul>
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="list-style-type: none;">
 						<li class="nav-item dropdown">
-							<a class="nav-link" href="#">이벤트</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/event/eventList.do?attr=1&attr=0">이벤트</a>
 						</li>
 				</ul>
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="list-style-type: none;">

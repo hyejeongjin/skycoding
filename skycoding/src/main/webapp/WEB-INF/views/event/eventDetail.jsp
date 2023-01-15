@@ -57,25 +57,29 @@
     <!-- header 끝 -->
 	<!-- 이벤트 신청 배너 시작 -->
 	<div id="register_banner" class="row">
-		<div class="col"></div>
-		<span id="detail_rest_date" class="col-sm-3 col-md-3">
-			<c:if test="${event_diffDay<0}">이벤트 종료</c:if>
-			<c:if test="${event_diffDay>=0}">마감까지 D-${event_diffDay+1}</c:if>
-		</span>
-		<!-- 마감일 지나면 안 눌러지게 처리 -->
-		<div id="register_btn" class="col-sm-2 col-md-2">
-		<input type="button" value="마감 전 신청하기 👉" onclick="location.href='../course/detail.do?course_id=${event.event_course_id}'"
-				class="btn btn-outline-info" <c:if test="${event_diffDay<0}">disabled="disabled"</c:if> >
+		<div class="col-md-3"></div>
+		<div id="date_and_btn" class="row col-md-6">
+			<div id="detail_rest_date" class="col-md-6">
+			<span>
+				<c:if test="${event_diffDay<0}">이벤트 종료</c:if>
+				<c:if test="${event_diffDay>=0}">마감까지 D-${event_diffDay+1}</c:if>
+			</span>
+			</div>
+			<!-- 마감일 지나면 안 눌러지게 처리 -->
+			<div id="register_btn" class="col-md-6"><!--  class="col-sm-2 col-md-2"  -->
+			<input type="button" value="마감 전 신청하기 👉" onclick="location.href='../course/detail.do?course_id=${event.event_course_id}'"
+					class="btn btn-outline-info" <c:if test="${event_diffDay<0}">disabled="disabled"</c:if> >
+			</div>
 		</div>
-		<div class="col"></div>
+		<div class="col-md-3"></div>
 	</div>
 	<!-- 이벤트 신청 배너 끝 -->
 	<div class="content-main row">
 		<!-- 이벤트 내용 시작 -->
-		<div id="event_detail_img" class="col-sm col-md-6 container">
-			<img class="rounded img-fluid" src="${pageContext.request.contextPath}/upload/${event.event_photo}">
+		<div id="event_detail_img" class="col-md-6 lg-6 container">
+			<img class="rounded img-fluid img-thumbnail" src="${pageContext.request.contextPath}/upload/${event.event_photo}">
 		</div>
-		<div id="about_event_detail" class="col-sm col-md-6 container">
+		<div id="about_event_detail" class="col-md-6 lg-6 container">
 			<div id="event_detail_period">
 				<span class="badge rounded-pill text-bg-dark" style="font-size:15px;">&nbsp;이벤트 기간&nbsp;</span>
 				<span id="period_date">

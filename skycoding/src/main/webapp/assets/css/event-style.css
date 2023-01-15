@@ -128,15 +128,19 @@ h6 {
 		position:relative;
 		top:0px;
 		z-index:1;
-		padding-top:5px; padding-bottom:5px;
+		padding-top:15px; padding-bottom:15px;
 		font-size:25px; 
 		vertical-align:bottom;
 		background-color:#d7f5ff;
+	}
+	#register_btn{
+		text-align:center;
 	}
 	#register_btn input{
 		position:relative;
 		left:0px;
 		z-index:100;
+		vertical-align:middle;
 	}
 	#event_benefit{
 		color:red;

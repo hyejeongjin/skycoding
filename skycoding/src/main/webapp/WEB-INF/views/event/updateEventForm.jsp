@@ -36,11 +36,6 @@
 				alert('마감일을 yyyy-MM-dd 형식으로 입력해주세요');
 				return false;
 			}
-			if($('#photo').val().trim() == ''){
-				alert('이벤트 썸네일을 첨부하세요!');
-				$('#photo').val('').focus();
-				return false;
-			}
 			if($('#content').val().trim() == ''){
 				alert('이벤트 요약내용을 입력하세요!');
 				$('#content').val('').focus();

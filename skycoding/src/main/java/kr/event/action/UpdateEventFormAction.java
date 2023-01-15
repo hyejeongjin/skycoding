@@ -18,7 +18,7 @@ public class UpdateEventFormAction implements Action{
 		EventDAO eventDao = EventDAO.getInstance();
 		EventVO event = eventDao.getDetailEvent(event_id);
 		event.setEvent_content(StringUtil.useNoHtml(event.getEvent_content()));
-		event.setEvent_detail_content(StringUtil.useBrNoHtml(event.getEvent_detail_content()));
+		event.setEvent_detail_content(StringUtil.useNoHtml(event.getEvent_detail_content()));
 		
 		request.setAttribute("event", event);
 		

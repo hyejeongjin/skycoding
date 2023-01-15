@@ -62,7 +62,7 @@
 	            </div>
 	            <c:if test="${fn:length(list) < 2}">
 	            <div id=locked_event class="col">
-	              <div class="card">
+	              <div class="card shadow-sm p-3 mb-5 bg-body rounded">
 	                <img class="card-img-top" src="${pageContext.request.contextPath}/images/ready.jpg" height="250px">
 	                <div class="card-body">
 	                  <h5 class="card-title" style="color:gray">아직 등록된 이벤트가 없습니다</h5>
@@ -107,7 +107,7 @@
 			         </div>
 			         <c:if test="${fn:length(list2) < 2}">
 	            	<div id=locked_event class="col">
-	              		<div class="card">
+	              		<div class="card shadow-sm p-3 mb-5 bg-body rounded">
 	                		<img class="card-img-top" src="${pageContext.request.contextPath}/images/ready.jpg" height="230">
 	                	<div class="card-body">
 	                  		<h5 class="card-title" style="color:gray">아직 등록된 이벤트가 없습니다</h5>

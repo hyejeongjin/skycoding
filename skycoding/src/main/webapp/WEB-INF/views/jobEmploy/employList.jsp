@@ -94,7 +94,7 @@
 						      <img src="${pageContext.request.contextPath}/upload/${employ.emp_photo}" class="card-img-top" width="100%" height="100%">
 						      </a>
 						      <hr size="1" width="80%" style="color:gray;margin:auto;">
-						      <div class="card-body">
+						      <div class="employ-card-body">
 						        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
 						        <p class="card-text">
 						        	${employ.emp_reg_date}<br>

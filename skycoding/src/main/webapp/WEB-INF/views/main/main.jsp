@@ -80,10 +80,10 @@
 								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto" 
-												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course.course_id}">수강하러가기</a>
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course.course_id}&course_cate=${course.course_cate}">수강하러가기</a>
 									</div>
 								</div>
-							</div>
+							</div><!-- end of card -->
 						</div>
 						</c:forEach>
 						<!-- 카드1 끝 -->
@@ -101,7 +101,7 @@
 								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto" 
-												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course2.course_id}">수강하러가기</a>
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course2.course_id}&course_cate=${course2.course_cate}">수강하러가기</a>
 									</div>
 								</div>
 							</div>
@@ -122,7 +122,7 @@
 								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto" 
-												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course3.course_id}">수강하러가기</a>
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course3.course_id}&course_cate=${course3.course_cate}">수강하러가기</a>
 									</div>
 								</div>
 							</div>
@@ -143,7 +143,7 @@
 								<div class="card-footer p-4 pt-3 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto" 
-												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course4.course_id}">수강하러가기</a>
+												href="${pageContext.request.contextPath}/course/detail.do?course_id=${course4.course_id}&course_cate=${course4.course_cate}">수강하러가기</a>
 									</div>
 								</div>
 							</div>

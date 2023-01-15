@@ -9,12 +9,11 @@
 <title>이벤트 등록 폼 - admin only</title>
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <!-- Vendor CSS Files -->
 <link href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/event-style.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/course-style.css" >
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -66,65 +65,80 @@ $(function(){
 	<div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div class="content-main">
-		<form action="registerEvent.do" id="event_form" method="post" enctype="multipart/form-data">
-				<div class="row mb-3">
-					<div class="col-sm-12">
-					<label for="title">제목</label>
-					<input type="text" name="title" id="title" 
-						   class="form-control" placeholder="이벤트 제목을 입력하세요">
+		<div class="pagetitle">
+      		<h1>이벤트 수정하기</h1>
+   		</div><!-- 타이틀끝 -->
+   		
+   	   <section class="section">
+    	<div class="row">
+      	  <div class="col-lg-12">
+            <div class="card-write">
+             <div class="card-body">
+          	  <h5 class="card-title"></h5>
+				<form action="registerEvent.do" id="event_form" method="post" enctype="multipart/form-data">
+						<div class="row mb-3">
+							<div class="col-sm-12">
+							<label for="title">제목</label>
+							<input type="text" name="title" id="title" 
+								   class="form-control" placeholder="이벤트 제목을 입력하세요">
+							</div>
+						</div>
+						<span>대상 강의 선택</span>
+						<div class="row mb-1">
+							<div class="col-sm-12">
+						<hr>
+							<ul id="register_event_subject">
+								<c:forEach var="course" items="${courseMap}">
+									<li>
+										<input type="radio" name="course_id" id="course_id${course.value}" value="${course.value}">
+										<label for="course_id${course.value}">${course.key}</label>
+									</li>
+								</c:forEach>
+							</ul>
+						<hr>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<input type="hidden" name="attr" value="1">
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-12">
+								<label for="deadline">마감일</label>
+								<input type="text" name="deadline" id="deadline" 
+								   class="form-control" placeholder="yyyy-MM-dd 형식으로 입력하세요">
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-12">
+								<label for="photo">파일</label>
+								<input class="form-control col-" type="file" name="photo" id="photo" accept="image/gif,image/jpeg,image/png">
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-12">
+								<label for="content">요약 내용</label>
+								<textarea class="form-control" name="content" id="content"
+									cols="30" rows="4" placeholder="이벤트 요약 내용을 입력하세요"></textarea>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-12">
+								<label for="detail_content">내용</label>
+								<textarea class="form-control" name="detail_content" id="detail_content"
+									cols="50" rows="4" placeholder="이벤트 세부 내용을 입력하세요"></textarea>
+							</div>
+						</div>
+					<div class="text-end">
+						<input type="button" class="btn btn-secondary" value="돌아가기" onclick="location.href='eventList.do'">
+						<input type="submit" class="btn btn-primary" value="강의 등록">
 					</div>
+				</form>
+			 </div>
+			  </div>
+			   </div>
 				</div>
-				<span>대상 강의 선택</span>
-				<div class="row mb-1">
-					<div class="col-sm-12">
-				<hr>
-					<ul style="list-style:none;">
-						<c:forEach var="course" items="${courseMap}">
-							<li>
-								<input type="radio" name="course_id" id="course_id${course.value}" value="${course.value}">
-								<label for="course_id${course.value}">${course.key}</label>
-							</li>
-						</c:forEach>
-					</ul>
-				<hr>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<input type="hidden" name="attr" value="1">
-				</div>
-				<div class="row mb-3">
-					<div class="col-sm-12">
-						<label for="deadline">마감일</label>
-						<input type="text" name="deadline" id="deadline" 
-						   class="form-control" placeholder="yyyy-MM-dd 형식으로 입력하세요">
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-sm-12">
-						<label for="photo">파일</label>
-						<input class="form-control col-" type="file" name="photo" id="photo" accept="image/gif,image/jpeg,image/png">
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-sm-12">
-						<label for="content">요약 내용</label>
-						<textarea class="form-control" name="content" id="content"
-							cols="30" rows="4" placeholder="이벤트 요약 내용을 입력하세요"></textarea>
-					</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-sm-12">
-						<label for="detail_content">내용</label>
-						<textarea class="form-control" name="detail_content" id="detail_content"
-							cols="50" rows="4" placeholder="이벤트 세부 내용을 입력하세요"></textarea>
-					</div>
-				</div>
-			<div class="text-end">
-				<input type="button" class="btn btn-secondary" value="돌아가기" onclick="location.href='eventList.do'">
-				<input type="submit" class="btn btn-primary" value="강의 등록">
-			</div>
-		</form>
-		</div>
-	</div>
+				 </section>
+		</div><!-- .content-main 끝 -->
+	</div><!-- .page-main 끝 -->
 </body>
 </html>

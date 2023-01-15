@@ -83,20 +83,23 @@
 </head>
 <body>
 <!-- 수정폼 메인 시작 -->
-<main id="register-main" class="register-main page-main">
-  <div class="pagetitle">
-    <h1>이벤트 수정하기</h1>
-  </div><!-- 타이틀끝 -->
+<div class="page-main">
+	<div class="content-main">
+	<main id="register-main" class="register-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	
+  		<div class="pagetitle">
+    		<h1>이벤트 수정하기</h1>
+  		</div><!-- 타이틀끝 -->
+  		
   <section class="section">
     <div class="row">
       <div class="col-lg-12">
-
         <div class="card-write">
           <div class="card-body">
-            <h5 class="card-title">이벤트 수정하기</h5>
- 
-            <form action="updateEvent.do" method="post" id="update_form" 
-                       enctype="multipart/form-data">
+          <h5 class="card-title"></h5>
+          
+            <form action="updateEvent.do" method="post" id="update_form" enctype="multipart/form-data">
                 <input type="hidden" name="event_id" value="${event.event_id}">
 	            <div class="row mb-3 float-start">
 	               <div class="col-sm-12">
@@ -156,5 +159,7 @@
     </div>
   </section>
 </main><!-- 메인 끝 -->
+</div><!-- .content-main 끝 -->
+</div><!-- .page-main 끝 -->
 </body>
 </html>

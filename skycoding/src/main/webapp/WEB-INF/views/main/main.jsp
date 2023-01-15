@@ -43,15 +43,15 @@
 				<!-- end of carousel-indicators -->
 
 				<div class="carousel-inner">
-					<div class="carousel-item active">
+					<div class="carousel-item active" data-bs-interval="2000">
 						<img src="${pageContext.request.contextPath}/images/banner1.jpg"
 							class="d-block w-100">
 					</div>
-					<div class="carousel-item">
+					<div class="carousel-item" data-bs-interval="2000">
 						<img src="${pageContext.request.contextPath}/images/banner2.png"
 							class="d-block w-100">
 					</div>
-					<div class="carousel-item">
+					<div class="carousel-item" data-bs-interval="2000">
 						<img src="${pageContext.request.contextPath}/images/banner3.png"
 							class="d-block w-100">
 					</div>

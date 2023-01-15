@@ -188,11 +188,11 @@
 					<div class="col-6"><!-- 자유게시판 -->
 						<h4 class="pb-3"><a href="${pageContext.request.contextPath}/board_free/list.do">자유게시판 <i class="fa-solid fa-chalkboard"></i> &nbsp; ></a></h4>
 					
-						<table class="table table-hover table-group-divider" id="">
+						<table class="table table-hover table-group-divider">
 						<c:forEach var="freeBoard" items="${boardList}">
 						<tr>
 							<td>
-								<div><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></div>
+								<div><a class="title-link" href="${pageContext.request.contextPath}/board_free/detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></div>
 								<span class="t-sub-info">
 									<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>
 									<c:if test="${freeBoard.free_status == 1}">익명</c:if>

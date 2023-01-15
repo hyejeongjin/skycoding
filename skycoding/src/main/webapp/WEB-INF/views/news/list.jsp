@@ -121,6 +121,6 @@
 	
 		</div><!-- 컨텐트 메인 끝 -->
 	</div><!-- 페이지 메인 끝 -->
-	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

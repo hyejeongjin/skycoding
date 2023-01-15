@@ -66,8 +66,8 @@ public class FreeBoardDAO {
 			if(keyword != null && !"".equals(keyword)) { //검색할 내용이 있는 경우
 				//검색글 개수
 				if(keyfield.equals("1")) sub_sql += "WHERE f.free_title LIKE ?"; //제목 검색
-				else if(keyfield.equals("2")) sub_sql += "WHERE m.mem_id LIKE ?"; //작성자 검색
-				else if(keyfield.equals("3")) sub_sql += "WHERE f.free_content LIKE ?"; //내용 검색
+				else if(keyfield.equals("2")) sub_sql += "WHERE f.free_content LIKE ?"; //내용 검색
+				else if(keyfield.equals("3")) sub_sql += "WHERE m.mem_id LIKE ?"; //작성자 검색
 				
 			}
 			
@@ -112,8 +112,8 @@ public class FreeBoardDAO {
 			if(keyword != null && !"".equals(keyword)) { //검색할 내용이 있는 경우
 				//검색글 개수
 				if(keyfield.equals("1")) sub_sql += "WHERE f.free_title LIKE ?"; //제목 검색
-				else if(keyfield.equals("2")) sub_sql += "WHERE m.mem_id LIKE ?"; //작성자 검색
-				else if(keyfield.equals("3")) sub_sql += "WHERE f.free_content LIKE ?"; //내용 검색
+				else if(keyfield.equals("2")) sub_sql += "WHERE f.free_content LIKE ?"; //내용 검색
+				else if(keyfield.equals("3")) sub_sql += "WHERE m.mem_id LIKE ?"; //작성자 검색
 				
 			}
 			

@@ -48,6 +48,43 @@ h6 {
   font-family: "Nunito", sans-serif;
 }
 
+
+
+/*추가*/
+#main_course_btn{
+	margin-top:50px;
+}
+
+#main_course_btn ul{
+	display:flex;
+	align-self: center;
+	justify-content: center;
+	list-style: none;
+}
+#main_course_btn ul li{
+	margin-right:50px;
+	text-align: center;
+	cursor:pointer;
+}
+
+
+#main_list a, #main_course_btn a{
+	color:gray;
+}
+#main_list a:hover{
+	 color: #4154f1;
+}
+#main_board_list{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+
+
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/

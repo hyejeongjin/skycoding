@@ -301,6 +301,35 @@ public class MemberDAO {
 		return newPw;
 	}
 
+	
+	public int getMemberCount()throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션 풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM hmember_detail";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
+	
 
 }
 

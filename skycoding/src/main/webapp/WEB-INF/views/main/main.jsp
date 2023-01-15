@@ -24,6 +24,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
 	rel="stylesheet">
+<script src="https://kit.fontawesome.com/dce0734714.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -59,11 +60,33 @@
 				<!-- end of carousel-inner -->
 			</div>
 			<!-- end of carousel -->
-
+			
+			<!-- 강의 4개 목록 바로가기 -->
+			<div id="main_course_btn">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/course/list.do?course_cate=1">
+						<i class="fa-brands fa-html5 fa-2x" style="color:orange;"></i><br>
+						# HTML
+					</a></li>
+					<li><a href="${pageContext.request.contextPath}/course/list.do?course_cate=2">
+						<i class="fa-brands fa-css3-alt fa-2x" style="color:blue;"></i><br>
+						# CSS
+					</a></li>
+					<li><a href="${pageContext.request.contextPath}/course/list.do?course_cate=3">
+						<i class="fa-brands fa-java fa-2x" style="color:red;"></i><br>
+						# JAVA
+					</a></li>
+					<li><a href="${pageContext.request.contextPath}/course/list.do?course_cate=4">
+						<i class="fa-solid fa-database fa-2x" style="color:gray;"></i><br>
+						# DB
+					</a></li>
+				</ul>
+			</div>
+			
 			<!-- start of card -->
-			<section class="py-5">
+			<section class="py-3" id="main_list">
 				<div class="container px-4 px-lg-5">
-					<h2 class="py-3">신규 강의</h2>
+					<h4 class="py-3"><a href="${pageContext.request.contextPath}/course/list.do">신규 강의 <i class="fa-regular fa-star" style="color:orange"></i> &nbsp; ></a></h4>
 					<div
 						class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
 						<!-- 카드1 시작 -->
@@ -150,6 +173,36 @@
 						</div>
 						</c:forEach>
 						<!-- 카드4 끝 -->
+					</div>
+				</div><!-- 신규강의 -->
+				
+				<hr size="1" width="100%" style="color:gray;margin:30px 0;">
+				
+				<div class="px-4 px-lg-5 py-4" id="main_board_list">
+					<div class="col-6"><!-- 왼쪽 글 정보 -->
+						<h2><span class="text-primary">${count}</span>명이<br>스카이코딩과<br>함께합니다!<br></h2><br>
+						<p>학교에서 배우기 어렵거나 큰 비용을 지불해야만<br> 배울 수 있는 지식을 스카이코딩이 무료로 제공합니다</p>
+						실력있는 강사님들이 제공하는 다양한 강의를 통해<br>전문적인 지식을 쌓아보세요!
+					</div>
+					
+					<div class="col-6"><!-- 자유게시판 -->
+						<h4 class="pb-3"><a href="${pageContext.request.contextPath}/board_free/list.do">자유게시판 <i class="fa-solid fa-chalkboard"></i> &nbsp; ></a></h4>
+					
+						<table class="table table-hover table-group-divider" id="">
+						<c:forEach var="freeBoard" items="${boardList}">
+						<tr>
+							<td>
+								<div><a class="title-link" href="detail.do?free_id=${freeBoard.free_id}">${freeBoard.free_title}</a></div>
+								<span class="t-sub-info">
+									<c:if test="${freeBoard.free_status == 0}">${freeBoard.mem_id}</c:if>
+									<c:if test="${freeBoard.free_status == 1}">익명</c:if>
+								</span> &nbsp; 
+								<span class="t-sub-info">${freeBoard.free_reg_date}</span> &nbsp;
+								<span class="t-sub-info"><i class="fa-solid fa-eye"></i> ${freeBoard.free_hit}</span>
+							</td>
+						</tr>
+						</c:forEach>
+						</table>
 					</div>
 				</div>
 			</section>

@@ -13,31 +13,31 @@ import kr.event.vo.EventVO;
 import kr.util.DBUtil;
 
 public class EventDAO {
-	
+
 	private static EventDAO instance = new EventDAO();
 	public static EventDAO getInstance() {
 		return instance;
 	}
 	private EventDAO() {}
-	
+
 	//이벤트 등록
 	public void registerEvent(EventVO event) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		try {
 			//커넥션 풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
-			
+
 			//SQL문 작성
 			sql = "INSERT INTO EVENT(event_id,mem_num,event_course_id,event_attr,"
-				+ "event_deadline,event_photo,event_content,event_detail_content) "
-				+ "VALUES (event_seq.nextval,?,?,?,?,?,?,?)";
-			
+					+ "event_deadline,event_photo,event_content,event_detail_content) "
+					+ "VALUES (event_seq.nextval,?,?,?,?,?,?,?)";
+
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			
+
 			//데이터 바인딩
 			pstmt.setInt(1, event.getMem_num());
 			pstmt.setInt(2, event.getEvent_course_id());
@@ -46,7 +46,7 @@ public class EventDAO {
 			pstmt.setString(5, event.getEvent_photo());
 			pstmt.setString(6, event.getEvent_content());
 			pstmt.setString(7, event.getEvent_detail_content());
-			
+
 			//SQL문 실행
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -56,7 +56,7 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+
 	//기존에 등록된 course_id, course_name 얻어오기
 	public Map<String, String> getCourse(int mem_num)throws Exception{
 		Connection conn = null;
@@ -64,17 +64,17 @@ public class EventDAO {
 		ResultSet rs = null;
 		Map<String, String> courseMap = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
-			
+
 			sql = "SELECT e.event_course_id, c.course_name "
 					+ "FROM EVENT e JOIN COURSE c ON e.event_course_id = c.course_id "
 					+ "WHERE e.mem_num = ?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
-			
+
 			rs = pstmt.executeQuery();
 			//course_name과 event_course_id 값을 담을 HashMap생성
 			courseMap = new HashMap<String, String>();
@@ -89,19 +89,19 @@ public class EventDAO {
 		//courseMap 반환
 		return courseMap;
 	}
-	
+
 	//event_id 조회해서 하나의 이벤트 글 가져오기
 	public EventVO getEvent(int event_id)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		
+
 		EventVO event = null;
 		try {
 			//커넥션 할당
 			conn = DBUtil.getConnection();
-			
+
 			//SQL문 작성
 			sql = "SELECT * FROM EVENT WHERE event_id = ?";
 			//PreparedStatement 객체 생성
@@ -109,10 +109,10 @@ public class EventDAO {
 			//데이터 바인딩
 			pstmt.setInt(1, event_id);
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
 				event = new EventVO();
-				
+
 				event.setEvent_id(rs.getInt("event_id"));
 				event.setMem_num(rs.getInt("mem_num"));
 				event.setEvent_course_id(rs.getInt("event_course_id"));
@@ -140,7 +140,7 @@ public class EventDAO {
 		String sql = null;
 		String sub_sql = "";
 		int count = 0;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			if(attr == 1) {							//진행 이벤트일 경우 추가될 sql문
@@ -151,7 +151,7 @@ public class EventDAO {
 			sql = "SELECT COUNT(*) FROM EVENT " + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
-			
+
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) count = rs.getInt(1);
@@ -163,7 +163,7 @@ public class EventDAO {
 		}
 		return count;
 	}
-	
+
 	//페이징 처리할 이벤트글 목록 가져오기 0:종료  1:진행중
 	public List<EventVO> getEventList(int startNum, int endNum, String keyfield, String keyword, int attr, String sort)throws Exception{
 		Connection conn = null;
@@ -173,10 +173,10 @@ public class EventDAO {
 		String sql = null;
 		String sub_sql = "";
 		int cnt = 0;
-		
+
 		try {
 			conn = DBUtil.getConnection();
-			
+
 			//dropdown sort변수 추가
 			if(sort.equals("1")) {
 				sort = "event.event_reg_date DESC";
@@ -192,18 +192,18 @@ public class EventDAO {
 					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) > 2000 "
 					+ "ORDER BY " + sort + ") e "
 					+ "WHERE e.event_attr = "+attr+") WHERE rnum >=? AND rnum <=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			//페이지 시작점과 끝점 데이터 바인딩
 			pstmt.setInt(1, startNum);
 			pstmt.setInt(2, endNum);
-			
+
 			rs = pstmt.executeQuery();
-			
+
 			list = new ArrayList<EventVO>();
 			while(rs.next()) {
 				EventVO event = new EventVO();
-				
+
 				event.setEvent_id(rs.getInt("event_id"));
 				event.setMem_num(rs.getInt("mem_num"));
 				event.setEvent_attr(rs.getInt("event_attr"));
@@ -213,7 +213,7 @@ public class EventDAO {
 				event.setEvent_reg_date(rs.getDate("event_reg_date"));
 				event.setEvent_course_id(rs.getInt("event_course_id"));
 				event.setEvent_course_name(rs.getString("course_name"));
-				
+
 				list.add(event);
 			}
 		}catch(Exception e){
@@ -231,30 +231,30 @@ public class EventDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		
+
 		SimpleDateFormat format = null;
 		String event_getDeadline = null;
 		java.util.Date today = null;
 		Integer diffDay = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
-			
+
 			sql = "SELECT event_deadline FROM EVENT WHERE event_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, event_id);
 			rs = pstmt.executeQuery();
-			
+
 			//마감일 값 추출
 			if(rs.next()) {
 				event_getDeadline = rs.getString("event_deadline");
 			}
-			
+
 			//현재 날짜를 deadline의 포맷에 맞게 변환
 			format = new SimpleDateFormat("yyyy-MM-dd");
 			java.util.Date event_deadline = format.parse(event_getDeadline);
 			today = new java.util.Date();
-			
+
 			//두 날짜 간의 일수 차이
 			long diffSec = (event_deadline.getTime() - today.getTime()) / 1000;
 			diffDay = (int)(diffSec / (24*60*60));
@@ -270,7 +270,7 @@ public class EventDAO {
 		ResultSet rs = null;
 		String sql = null;
 		EventVO event = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT e.event_id, e.event_course_id, e.event_reg_date, e.event_photo, e.event_deadline, "
@@ -280,10 +280,10 @@ public class EventDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, event_id);
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
 				event = new EventVO();
-				
+
 				event.setEvent_id(rs.getInt("event_id"));
 				event.setEvent_course_id(rs.getInt("event_course_id"));
 				event.setEvent_attr(rs.getInt("event_attr"));
@@ -306,14 +306,14 @@ public class EventDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		
+
 		try {
 			conn = DBUtil.getConnection();
-			
+
 			sql = "UPDATE EVENT SET event_hit=event_hit+1 WHERE event_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, event_id);
-			
+
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -321,77 +321,85 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
+
 	//이벤트 등록글 수정
-		public void updateEvent(EventVO event)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = null;
-			
-			try {
-				conn = DBUtil.getConnection();
-				sql = "UPDATE EVENT SET event_attr=?,event_deadline=?,"
-						+ "event_photo=?,event_content=?,event_detail_content=? "
-						+ "WHERE event_id = ?";
-				
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1, event.getEvent_attr());
-				pstmt.setString(2, event.getEvent_deadline());
-				pstmt.setString(3, event.getEvent_photo());
-				pstmt.setString(4, event.getEvent_content());
-				pstmt.setString(5, event.getEvent_detail_content());
-				pstmt.setInt(6, event.getEvent_id());
-				
-				pstmt.executeUpdate();
-			} catch (Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-			}
-		}
-		
-		//등록글 삭제
-		public void deleteEvent(int event_id)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = null;
-			
-			try {
-				conn = DBUtil.getConnection();
-				
-				sql = "DELETE FROM EVENT WHERE event_id=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, event_id);
-				
-				pstmt.executeUpdate();
-			} catch (Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
-			}
+	public void updateEvent(EventVO event)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+
+		if(event.getEvent_photo()!=null) {
+			sub_sql += "event_photo=?,";
 		}
 
-		//이벤트 등록 파일 삭제
-		public void deleteEventFile(int event_id)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String sql = null;
-			
-			try {
-				conn = DBUtil.getConnection();
-				
-				sql = "UPDATE EVENT SET event_photo='' WHERE event_id=?";
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1, event_id);
-				pstmt.executeUpdate();
-				
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(null, pstmt, conn);
+		try {
+			conn = DBUtil.getConnection();
+			sql = "UPDATE EVENT SET event_attr=?,event_deadline=?,"
+					+ sub_sql + "event_content=?,event_detail_content=? "
+					+ "WHERE event_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(++cnt, event.getEvent_attr());
+			pstmt.setString(++cnt, event.getEvent_deadline());
+			if(event.getEvent_photo()!=null) {
+				pstmt.setString(++cnt, event.getEvent_photo());
 			}
+			pstmt.setString(++cnt, event.getEvent_content());
+			pstmt.setString(++cnt, event.getEvent_detail_content());
+			pstmt.setInt(++cnt, event.getEvent_id());
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
 		}
-		
+	}
+
+	//등록글 삭제
+	public void deleteEvent(int event_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			sql = "DELETE FROM EVENT WHERE event_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_id);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
+	//이벤트 등록 파일 삭제
+	public void deleteEventFile(int event_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn = DBUtil.getConnection();
+
+			sql = "UPDATE EVENT SET event_photo='' WHERE event_id=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, event_id);
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+
 }

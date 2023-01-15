@@ -113,6 +113,7 @@
               
               <div class="row mb-3">
                 <div class="col-sm-12">
+                
                   <input class="col- form-control" name="photo" id="photo" 
                   		 type="file" id="formFile" accept="image/gif,image/png,image/jpeg">
                 <c:if test="${!empty event.event_photo}">

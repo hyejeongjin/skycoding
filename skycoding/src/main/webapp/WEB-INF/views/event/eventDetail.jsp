@@ -97,7 +97,7 @@
 		</div>
 		<div class="row" id="eventDetail_btn">
 			<div class="col-sm-6 col-md-6 lg-6">
-				<input type="button" class="btn btn-primary" value="목록으로" onclick="history.go(-1)">
+				<input type="button" class="btn btn-primary" value="목록으로" onclick="location.href='eventList.do?attr=1&attr=0'">
 			</div>
 			<c:if test="${sessionScope.mem_auth == 9 }">
 			<div class="col-sm-6 col-md-6 lg-6 text-end">

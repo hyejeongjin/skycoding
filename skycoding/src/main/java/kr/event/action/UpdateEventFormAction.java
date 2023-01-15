@@ -15,8 +15,10 @@ public class UpdateEventFormAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		Integer event_id = Integer.parseInt(request.getParameter("event_id"));
+ 
 		EventDAO eventDao = EventDAO.getInstance();
 		EventVO event = eventDao.getDetailEvent(event_id);
+		
 		event.setEvent_content(StringUtil.useNoHtml(event.getEvent_content()));
 		event.setEvent_detail_content(StringUtil.useNoHtml(event.getEvent_detail_content()));
 		

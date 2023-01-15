@@ -15,7 +15,7 @@
 
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/news_tyle.css" >
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/news_style.css" >
   <script type="text/javascript">	
   $(function(){
 		$('#write_form').submit(function(){
@@ -101,7 +101,7 @@
     </section>
 
   </main><!-- End #main -->
-  	<jsp:include page="/WEB-INF/views/common/footer1.jsp" />
+  	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </div>
 </body>
 </html>

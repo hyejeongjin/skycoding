@@ -96,7 +96,7 @@
 						      <hr size="1" width="80%" style="color:gray;margin:auto;">
 						      <div class="employ-card-body">
 						        <h6 class="card-title">	<a href="employDetail.do?emp_id=${employ.emp_id}">${employ.emp_title}</a></h6>
-						        <p class="card-text">
+						        <p class="card-text"> 
 						        	${employ.emp_reg_date}<br>
 						        	<i class="fa-solid fa-eye"></i> ${employ.emp_hit}
 						        </p>

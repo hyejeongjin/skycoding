@@ -137,6 +137,15 @@
 	margin-top:15px;
 	padding-left:0;
 }
+/*취업현황 목록
+----------------*/
+.card-body{
+	height:120px;
+}
+.card-text{
+	font-size:10pt;
+	color:rgba(0,0,0,0.55);
+}
 
 /*취업 글수정
 ----------------*/

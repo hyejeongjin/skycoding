@@ -63,6 +63,7 @@
 	          	<a href="${pageContext.request.contextPath}/course/detail.do?course_id=${courselist.course_id}">
 	          		<img src="${pageContext.request.contextPath}/upload/${courselist.course_photo}" class="card-img-top" style="height:300px;">
 	          	</a>
+	          	<h5 class="pt-2"><b>${courselist.course_name}</b></h5>
 	          </div>
 	        </div>      	
       	</c:forEach>                                                

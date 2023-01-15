@@ -38,7 +38,7 @@
 <body>
 <div class="container">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<div class="container" style="float: none; margin-top:100px;">
+<div class="container" style="float: none; margin-top:150px; margin-bottom:150px;">
 		<div class="col-md-5" style="float: none; margin: auto;">
 			<h4>로그인</h4>
 			<form id="login_form" action="login.do" method="post">
@@ -66,6 +66,7 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

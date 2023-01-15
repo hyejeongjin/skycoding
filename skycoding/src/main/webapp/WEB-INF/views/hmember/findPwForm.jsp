@@ -125,7 +125,7 @@
 <body>
 	<div class="container">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<div class="container row" style="float: none; margin-top: 100px;">
+		<div class="container row" style="float: none; margin-top: 100px; margin-bottom:150px;">
 			<div class="col-md-5" style="float: none; margin: auto;">
 				<h4>비밀번호 찾기</h4>
 				<form id="find_pw_form" action="changePw.do" method="post">
@@ -173,6 +173,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

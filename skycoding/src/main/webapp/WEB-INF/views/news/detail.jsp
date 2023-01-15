@@ -50,11 +50,11 @@
 		<ul class="detail-info1" >
 			
 			<li>운영자&nbsp;&nbsp;
-			<c:if test="${!empty news.news_modify_date}">
-			수정일 ${news.news_modify_date}&nbsp;&nbsp;
-					</c:if>
 			작성일 ${news.news_reg_date}</li>
-					<li><i class="fa-solid fa-eye"></i> ${news.news_hit}</li>
+			<c:if test="${!empty news.news_modify_date}">
+			수정일 ${news.news_modify_date} &nbsp;&nbsp;
+			</c:if>
+			<li><i class="fa-solid fa-eye"></i> ${news.news_hit}</li>
 		
 		  </ul>
 		</div>

@@ -179,18 +179,18 @@ public class EventDAO {
 			
 			//dropdown sort변수 추가
 			if(sort.equals("1")) {
-				sort = "event.event_reg_date";
+				sort = "event.event_reg_date DESC";
 			}else if(sort.equals("2")) {
-				sort = "event.event_hit";
+				sort = "event.event_hit DESC";
 			}else {
-				sort = "event.event_deadline";
+				sort = "event.event_deadline ASC";
 			}
 			//속성(attr)값에 따라 셀렉되는 레코드를 구별
 			//+ reg_date기준 추가 -> 2000년 전에 등록한 글은 표시되지 않게
 			sql = "SELECT * FROM (SELECT rownum rnum, e.* FROM (SELECT event.*,c.course_name FROM EVENT event "
 					+ "JOIN COURSE c ON event.event_course_id = c.course_id "
 					+ "WHERE EXTRACT(YEAR FROM event.event_reg_date) > 2000 "
-					+ "ORDER BY " + sort + " DESC) e "
+					+ "ORDER BY " + sort + ") e "
 					+ "WHERE e.event_attr = "+attr+") WHERE rnum >=? AND rnum <=?";
 			
 			pstmt = conn.prepareStatement(sql);

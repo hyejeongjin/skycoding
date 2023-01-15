@@ -23,7 +23,7 @@
 	<div class="content-main">
 		<div id="event_list_nav" class="btn_nav">
 			<!-- 드롭다운 -->
-            <select id="event_list_select" class="float-end btn btn-outline-white btn-md" name="keyfield2" aria-label="form-select">
+            <select id="event_list_select" class="float-end btn btn-outline-white btn-md" name="sort" aria-label="form-select">
 				<option value="1" <c:if test="${param.sort==1}">selected</c:if>>최신순</option>
 				<option value="2" <c:if test="${param.sort==2}">selected</c:if>>조회순</option>
 				<option value="3" <c:if test="${param.sort==3}">selected</c:if>>마감임박순</option>
@@ -31,7 +31,7 @@
 			<script>
 				$(function(){
 					$('#event_list_select').change(function(){
-						location.href='moreViewEvent.do?pageNum=${param.pageNum}&attr=${param.attr}&sort='+$(this).val();
+						location.href='moreViewEvent.do?pageNum=${pageNum}&attr=${attr}&sort='+$(this).val();
 					});
 				});
 			</script>
@@ -39,10 +39,12 @@
         </div>
         <div style="clear:both;"></div>
 <!-- 진행중 이벤트 카드 시작 -->
-	 <c:if test="${attr == 1 }">
-	     <h3 style="font-size:20px;">진행중인 이벤트</h3>
+	 <c:if test="${param.attr == 1 }">
+	     <h3 style="font-size:25px;">진행중인 이벤트</h3>
 	 </c:if>
-	     <h3 style="font-size:20px;">종료된 이벤트</h3>
+	 <c:if test="${param.attr == 0 }">
+	     <h3 style="font-size:25px;">종료된 이벤트</h3>
+	 </c:if>
      <hr size="1" noshade>
      <div class="container" id="progress_event">
      <!-- 게시물이 없을 때 -->
@@ -90,8 +92,12 @@
     <!-- 게시물이 존재할 때 -->
     </div>
     <!-- 이벤트 카드 끝 -->
+    <div class="text-end">
+       <button type="button" class="btn btn-secondary" onclick="location.href='eventList.do?attr=1&attr=0'">전체보기</button>
+	</div>
     </div><!-- .content-main -->
 </div><!-- end of container -->
 <!-- 진행중 이벤트 카드 끝 -->
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

@@ -36,6 +36,8 @@ public class MoreViewEventAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("list", eventList);
 		request.setAttribute("page", page.getPage());
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("attr", attr);
 		
 		return "/WEB-INF/views/event/moreViewEvent.jsp";
 	}

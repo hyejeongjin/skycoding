@@ -76,7 +76,12 @@ h6 {
 	.card{
         margin: 20px 20px 20px 0;
       /*   box-shadow : -3px 3px 6px gray; */
+      box-sizing:border-box;
     }
+    .card-title{
+    	height:48px;
+    }
+    
     .event_btn{
         width:47%;
     }
